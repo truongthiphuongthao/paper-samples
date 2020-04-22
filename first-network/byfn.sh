@@ -171,18 +171,20 @@ function networkUp() {
     exit 1
   fi
 
-  echo "Sleeping 15s to allow Raft cluster to complete booting"
-  sleep 15
+#  echo "Sleeping 15s to allow Raft cluster to complete booting"
+#  sleep 15
 
-  if [ "${NO_CHAINCODE}" != "true" ]; then
-    echo Vendoring Go dependencies ...
-    pushd ../chaincode/abstore/go
-    GO111MODULE=on go mod vendor
-    popd
-    echo Finished vendoring Go dependencies
-  fi
+  #if [ "${NO_CHAINCODE}" != "true" ]; then
+  #  echo Vendoring Go dependencies ...
+     #pushd ../chaincode/abstore/go
+  #  pushd ../chaincode/abstore/javascript
+    #GO111MODULE=on go mod vendor
+  #  popd
+    #echo Finished vendoring Go dependencies
+  #  echo Finished vendoring Javascript dependencies
+  #fi
 
-  # now run the end to end script
+  # now run the end to end script; ko can cung duoc, minh tu run bang tay
   docker exec cli scripts/script.sh $CHANNEL_NAME $CLI_DELAY $CC_SRC_LANGUAGE $CLI_TIMEOUT $VERBOSE $NO_CHAINCODE
   if [ $? -ne 0 ]; then
     echo "ERROR !!!! Test failed"
@@ -440,7 +442,8 @@ COMPOSE_FILE_RAFT2=docker-compose-etcdraft2.yaml
 COMPOSE_FILE_CA=docker-compose-ca.yaml
 #
 # use go as the default language for chaincode
-CC_SRC_LANGUAGE=go
+#CC_SRC_LANGUAGE=go
+CC_SRC_LANGUAGE=javascript
 # default image tag
 IMAGETAG="latest"
 # Parse commandline args
