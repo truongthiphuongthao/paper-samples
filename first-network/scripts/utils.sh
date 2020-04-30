@@ -189,26 +189,26 @@ commitChaincodeDefinition() {
   shift
   parsePeerConnectionParameters $@
   res=$?
-  verifyResult $res "Invoke transaction failed on channel '$CHANNEL_NAME' due to uneven number of peer and org parameters "
+  #verifyResult $res "Invoke transaction failed on channel '$CHANNEL_NAME' due to uneven number of peer and org parameters "
 
-  # while 'peer chaincode' command can get the orderer endpoint from the
+   #while 'peer chaincode' command can get the orderer endpoint from the
   # peer (if join was successful), let's supply it directly as we know
   # it using the "-o" option
-  if [ -z "$CORE_PEER_TLS_ENABLED" -o "$CORE_PEER_TLS_ENABLED" = "false" ]; then
+  #if [ -z "$CORE_PEER_TLS_ENABLED" -o "$CORE_PEER_TLS_ENABLED" = "false" ]; then
     set -x
     peer lifecycle chaincode commit -o orderer.example.com:7050 --channelID $CHANNEL_NAME --name mycc $PEER_CONN_PARMS --version ${VERSION} --sequence ${VERSION} --init-required >&log.txt
-    res=$?
-    set +x
-  else
-    set -x
-    peer lifecycle chaincode commit -o orderer.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA --channelID $CHANNEL_NAME --name mycc $PEER_CONN_PARMS --version ${VERSION} --sequence ${VERSION} --init-required >&log.txt
-    res=$?
-    set +x
-  fi
-  cat log.txt
-  verifyResult $res "Chaincode definition commit failed on peer${PEER}.org${ORG} on channel '$CHANNEL_NAME' failed"
-  echo "===================== Chaincode definition committed on channel '$CHANNEL_NAME' ===================== "
-  echo
+    #res=$?
+    #set +x
+  #else
+   # set -x
+   # peer lifecycle chaincode commit -o orderer.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA --channelID $CHANNEL_NAME --name mycc $PEER_CONN_PARMS --version ${VERSION} --sequence ${VERSION} --init-required >&log.txt
+    #res=$?
+    #set +x
+  #fi
+  #cat log.txt
+  #verifyResult $res "Chaincode definition commit failed on peer${PEER}.org${ORG} on channel '$CHANNEL_NAME' failed"
+  #echo "===================== Chaincode definition committed on channel '$CHANNEL_NAME' ===================== "
+  #echo
 }
 
 # checkCommitReadiness VERSION PEER ORG
@@ -218,38 +218,38 @@ checkCommitReadiness() {
   ORG=$3
   shift 3
   setGlobals $PEER $ORG
-  echo "===================== Checking the commit readiness of the chaincode definition on peer${PEER}.org${ORG} on channel '$CHANNEL_NAME'... ===================== "
-  local rc=1
-  local starttime=$(date +%s)
+  #echo "===================== Checking the commit readiness of the chaincode definition on peer${PEER}.org${ORG} on channel '$CHANNEL_NAME'... ===================== "
+  #local rc=1
+  #local starttime=$(date +%s)
 
   # continue to poll
   # we either get a successful response, or reach TIMEOUT
-  while
-    test "$(($(date +%s) - starttime))" -lt "$TIMEOUT" -a $rc -ne 0
-  do
-    sleep $DELAY
-    echo "Attempting to check the commit readiness of the chaincode definition on peer${PEER}.org${ORG} ...$(($(date +%s) - starttime)) secs"
+  #while
+   # test "$(($(date +%s) - starttime))" -lt "$TIMEOUT" -a $rc -ne 0
+  #do
+   # sleep $DELAY
+    #echo "Attempting to check the commit readiness of the chaincode definition on peer${PEER}.org${ORG} ...$(($(date +%s) - starttime)) secs"
     set -x
     peer lifecycle chaincode checkcommitreadiness --channelID $CHANNEL_NAME --name mycc $PEER_CONN_PARMS --version ${VERSION} --sequence ${VERSION} --output json --init-required >&log.txt
-    res=$?
-    set +x
-    test $res -eq 0 || continue
-    let rc=0
-    for var in "$@"
-    do
-        grep "$var" log.txt &>/dev/null || let rc=1
-    done
-  done
-  echo
-  cat log.txt
-  if test $rc -eq 0; then
-    echo "===================== Checking the commit readiness of the chaincode definition successful on peer${PEER}.org${ORG} on channel '$CHANNEL_NAME' ===================== "
-  else
-    echo "!!!!!!!!!!!!!!! Check commit readiness result on peer${PEER}.org${ORG} is INVALID !!!!!!!!!!!!!!!!"
-    echo "================== ERROR !!! FAILED to execute End-2-End Scenario =================="
-    echo
-    exit 1
-  fi
+   # res=$?
+    #set +x
+    #test $res -eq 0 || continue
+    #let rc=0
+    #for var in "$@"
+    #do
+     #  grep "$var" log.txt &>/dev/null || let rc=1
+   # done
+  #done
+  #echo
+  #cat log.txt
+  #if test $rc -eq 0; then
+   # echo "===================== Checking the commit readiness of the chaincode definition successful on peer${PEER}.org${ORG} on channel '$CHANNEL_NAME' ===================== "
+  #else
+   # echo "!!!!!!!!!!!!!!! Check commit readiness result on peer${PEER}.org${ORG} is INVALID !!!!!!!!!!!!!!!!"
+    #echo "================== ERROR !!! FAILED to execute End-2-End Scenario =================="
+    #echo
+   # exit 1
+  #fi
 }
 
 # queryCommitted VERSION PEER ORG
@@ -258,75 +258,76 @@ queryCommitted() {
   PEER=$2
   ORG=$3
   setGlobals $PEER $ORG
-  EXPECTED_RESULT="Version: ${VERSION}, Sequence: ${VERSION}, Endorsement Plugin: escc, Validation Plugin: vscc"
+  #EXPECTED_RESULT="Version: ${VERSION}, Sequence: ${VERSION}, Endorsement Plugin: escc, Validation Plugin: vscc"
   echo "===================== Querying chaincode definition on peer${PEER}.org${ORG} on channel '$CHANNEL_NAME'... ===================== "
-  local rc=1
-  local starttime=$(date +%s)
+  #local rc=1
+  #local starttime=$(date +%s)
 
   # continue to poll
   # we either get a successful response, or reach TIMEOUT
-  while
-    test "$(($(date +%s) - starttime))" -lt "$TIMEOUT" -a $rc -ne 0
-  do
-    sleep $DELAY
-    echo "Attempting to Query committed status on peer${PEER}.org${ORG} ...$(($(date +%s) - starttime)) secs"
+  #while
+   # test "$(($(date +%s) - starttime))" -lt "$TIMEOUT" -a $rc -ne 0
+  #do
+   # sleep $DELAY
+    #echo "Attempting to Query committed status on peer${PEER}.org${ORG} ...$(($(date +%s) - starttime)) secs"
     set -x
     peer lifecycle chaincode querycommitted --channelID $CHANNEL_NAME --name mycc >&log.txt
-    res=$?
-    set +x
-    test $res -eq 0 && VALUE=$(cat log.txt | grep -o '^Version: [0-9], Sequence: [0-9], Endorsement Plugin: escc, Validation Plugin: vscc')
-    test "$VALUE" = "$EXPECTED_RESULT" && let rc=0
-  done
-  echo
-  cat log.txt
-  if test $rc -eq 0; then
-    echo "===================== Query chaincode definition successful on peer${PEER}.org${ORG} on channel '$CHANNEL_NAME' ===================== "
-  else
-    echo "!!!!!!!!!!!!!!! Query chaincode definition result on peer${PEER}.org${ORG} is INVALID !!!!!!!!!!!!!!!!"
-    echo "================== ERROR !!! FAILED to execute End-2-End Scenario =================="
-    echo
-    exit 1
-  fi
+    #res=$?
+    #set +x
+    #test $res -eq 0 && VALUE=$(cat log.txt | grep -o '^Version: [0-9], Sequence: [0-9], Endorsement Plugin: escc, Validation Plugin: vscc')
+    #test "$VALUE" = "$EXPECTED_RESULT" && let rc=0
+  #done
+  #echo
+  #cat log.txt
+  #if test $rc -eq 0; then
+   # echo "===================== Query chaincode definition successful on peer${PEER}.org${ORG} on channel '$CHANNEL_NAME' ===================== "
+  #else
+   # echo "!!!!!!!!!!!!!!! Query chaincode definition result on peer${PEER}.org${ORG} is INVALID !!!!!!!!!!!!!!!!"
+   # echo "================== ERROR !!! FAILED to execute End-2-End Scenario =================="
+   # echo
+    #exit 1
+  #fi
 }
 
 chaincodeQuery() {
   PEER=$1
   ORG=$2
   setGlobals $PEER $ORG
-  EXPECTED_RESULT=$3
+  #EXPECTED_RESULT=$3
   echo "===================== Querying on peer${PEER}.org${ORG} on channel '$CHANNEL_NAME'... ===================== "
-  local rc=1
-  local starttime=$(date +%s)
+  #local rc=1
+  #local starttime=$(date +%s)
 
   # continue to poll
   # we either get a successful response, or reach TIMEOUT
-  while
-    test "$(($(date +%s) - starttime))" -lt "$TIMEOUT" -a $rc -ne 0
-  do
-    sleep $DELAY
-    echo "Attempting to Query peer${PEER}.org${ORG} ...$(($(date +%s) - starttime)) secs"
+  #while
+    #test "$(($(date +%s) - starttime))" -lt "$TIMEOUT" -a $rc -ne 0
+  #do
+   # sleep $DELAY
+   # echo "Attempting to Query peer${PEER}.org${ORG} ...$(($(date +%s) - starttime)) secs"
     set -x
-    peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","a"]}' >&log.txt
-    res=$?
-    set +x
-    test $res -eq 0 && VALUE=$(cat log.txt | awk '/Query Result/ {print $NF}')
-    test "$VALUE" = "$EXPECTED_RESULT" && let rc=0
+    #peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","a"]}' >&log.txt
+     peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["queryAllCars"]}' >&log.txt
+    #res=$?
+    #set +x
+    #test $res -eq 0 && VALUE=$(cat log.txt | awk '/Query Result/ {print $NF}')
+    #test "$VALUE" = "$EXPECTED_RESULT" && let rc=0
     # removed the string "Query Result" from peer chaincode query command
     # result. as a result, have to support both options until the change
     # is merged.
-    test $rc -ne 0 && VALUE=$(cat log.txt | egrep '^[0-9]+$')
-    test "$VALUE" = "$EXPECTED_RESULT" && let rc=0
-  done
-  echo
+    #test $rc -ne 0 && VALUE=$(cat log.txt | egrep '^[0-9]+$')
+    #test "$VALUE" = "$EXPECTED_RESULT" && let rc=0
+  #done
+  #echo
   cat log.txt
-  if test $rc -eq 0; then
-    echo "===================== Query successful on peer${PEER}.org${ORG} on channel '$CHANNEL_NAME' ===================== "
-  else
-    echo "!!!!!!!!!!!!!!! Query result on peer${PEER}.org${ORG} is INVALID !!!!!!!!!!!!!!!!"
-    echo "================== ERROR !!! FAILED to execute End-2-End Scenario =================="
-    echo
-    exit 1
-  fi
+  #if test $rc -eq 0; then
+   # echo "===================== Query successful on peer${PEER}.org${ORG} on channel '$CHANNEL_NAME' ===================== "
+  #else
+   # echo "!!!!!!!!!!!!!!! Query result on peer${PEER}.org${ORG} is INVALID !!!!!!!!!!!!!!!!"
+    #echo "================== ERROR !!! FAILED to execute End-2-End Scenario =================="
+    #echo
+    #exit 1
+  #fi
 }
 
 # fetchChannelConfig <channel_id> <output_json>
@@ -416,36 +417,36 @@ parsePeerConnectionParameters() {
 # chaincodeInvoke IS_INIT PEER ORG (PEER ORG) ...
 # Accepts as many peer/org pairs as desired and requests endorsement from each
 chaincodeInvoke() {
-  IS_INIT=$1
-  shift
+  #IS_INIT=$1
+  #shift
   parsePeerConnectionParameters $@
-  res=$?
-  verifyResult $res "Invoke transaction failed on channel '$CHANNEL_NAME' due to uneven number of peer and org parameters "
+  #res=$?
+  #verifyResult $res "Invoke transaction failed on channel '$CHANNEL_NAME' due to uneven number of peer and org parameters "
 
-  if [ "${IS_INIT}" -eq "1" ]; then
-    CCARGS='{"Args":["Init","a","100","b","100"]}'
+  #if [ "${IS_INIT}" -eq "1" ]; then
+    CCARGS='{"Args":["initLedger"]}'
     INIT_ARG="--isInit"
-  else
-    CCARGS='{"Args":["invoke","a","b","10"]}'
-    INIT_ARG=""
-  fi
+  #else
+   # CCARGS='{"Args":["queryAllCars"]}'
+   # INIT_ARG=""
+  #fi
 
   # while 'peer chaincode' command can get the orderer endpoint from the
   # peer (if join was successful), let's supply it directly as we know
   # it using the "-o" option
-  if [ -z "$CORE_PEER_TLS_ENABLED" -o "$CORE_PEER_TLS_ENABLED" = "false" ]; then
+  #if [ -z "$CORE_PEER_TLS_ENABLED" -o "$CORE_PEER_TLS_ENABLED" = "false" ]; then
     set -x
     peer chaincode invoke -o orderer.example.com:7050 -C $CHANNEL_NAME -n mycc $PEER_CONN_PARMS ${INIT_ARG} -c ${CCARGS} >&log.txt
-    res=$?
+    #res=$?
     set +x
-  else
-    set -x
-    peer chaincode invoke -o orderer.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n mycc $PEER_CONN_PARMS ${INIT_ARG} -c ${CCARGS} >&log.txt
-    res=$?
-    set +x
-  fi
-  cat log.txt
-  verifyResult $res "Invoke execution on $PEERS failed "
-  echo "===================== Invoke transaction successful on $PEERS on channel '$CHANNEL_NAME' ===================== "
-  echo
+  #else
+   # set -x
+    #peer chaincode invoke -o orderer.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n mycc $PEER_CONN_PARMS ${INIT_ARG} -c ${CCARGS} >&log.txt
+    #res=$?
+    #set +x
+  #fi
+  #cat log.txt
+  #verifyResult $res "Invoke execution on $PEERS failed "
+  #echo "===================== Invoke transaction successful on $PEERS on channel '$CHANNEL_NAME' ===================== "
+  #echo
 }

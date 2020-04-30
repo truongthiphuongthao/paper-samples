@@ -28,13 +28,13 @@ PACKAGE_ID=""
 
 if [ "$CC_SRC_LANGUAGE" = "go" -o "$CC_SRC_LANGUAGE" = "golang" ]; then
 	CC_RUNTIME_LANGUAGE=golang
-	CC_SRC_PATH="github.com/hyperledger/fabric-samples/chaincode/abstore/go/"
+	CC_SRC_PATH="github.com/hyperledger/fabric-samples/chaincode/fabcar/go/"
 elif [ "$CC_SRC_LANGUAGE" = "javascript" ]; then
 	CC_RUNTIME_LANGUAGE=node # chaincode runtime language is node.js
-	CC_SRC_PATH="/opt/gopath/src/github.com/hyperledger/fabric-samples/chaincode/abstore/javascript/"
+	CC_SRC_PATH="/opt/gopath/src/github.com/hyperledger/fabric-samples/chaincode/fabcar/javascript/"
 elif [ "$CC_SRC_LANGUAGE" = "java" ]; then
 	CC_RUNTIME_LANGUAGE=java
-	CC_SRC_PATH="/opt/gopath/src/github.com/hyperledger/fabric-samples/chaincode/abstore/java/"
+	CC_SRC_PATH="/opt/gopath/src/github.com/hyperledger/fabric-samples/chaincode/fabcar/java/"
 else
 	echo The chaincode language ${CC_SRC_LANGUAGE} is not supported by this script
 	echo Supported chaincode languages are: go, javascript, java
@@ -128,13 +128,17 @@ if [ "${NO_CHAINCODE}" != "true" ]; then
 	## query on both orgs to see that the definition committed successfully
 	queryCommitted 1 0 1
 	queryCommitted 1 0 2
+       
 
 	# invoke init
-	chaincodeInvoke 1 0 1 0 2
+	#chaincodeInvoke 1 0 1 0 2
+        chaincodeInvoke 0 1 0 2
+        exit 0
 
 	# Query chaincode on peer0.org1
 	echo "Querying chaincode on peer0.org1..."
-	chaincodeQuery 0 1 100
+	#chaincodeQuery 0 1 100
+         chaincodeQuery 0 1 
 
 	# Invoke chaincode on peer0.org1 and peer0.org2
 	echo "Sending invoke transaction on peer0.org1 peer0.org2..."
@@ -142,7 +146,8 @@ if [ "${NO_CHAINCODE}" != "true" ]; then
 
 	# Query chaincode on peer0.org1
 	echo "Querying chaincode on peer0.org1..."
-	chaincodeQuery 0 1 90
+	#chaincodeQuery 0 1 90
+        chaincodeQuery 0 1 
 
 	## Install chaincode on peer1.org2
 	echo "Installing chaincode on peer1.org2..."
@@ -150,7 +155,8 @@ if [ "${NO_CHAINCODE}" != "true" ]; then
 
 	# Query on chaincode on peer1.org2, check if the result is 90
 	echo "Querying chaincode on peer1.org2..."
-	chaincodeQuery 1 2 90
+	#chaincodeQuery 1 2 90
+         chaincodeQuery 1 2
 
 fi
 

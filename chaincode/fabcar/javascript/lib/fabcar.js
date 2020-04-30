@@ -1,5 +1,8 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
+ * upload('') => id
+ * accept(id) { record.accept=true; putState(id, record);}
+ * query('mssv,id')=>[ds tat ca vanbang co id/ thuoc ve mssv]
  */
 
 'use strict';
@@ -100,6 +103,8 @@ class FabCar extends Contract {
             model,
             owner,
         };
+	
+//	stub.getCreator() ==> MSSV
 
         await ctx.stub.putState(carNumber, Buffer.from(JSON.stringify(car)));
         console.info('============= END : Create Car ===========');
