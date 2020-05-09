@@ -1,143 +1,97 @@
-/*
- * SPDX-License-Identifier: Apache-2.0
- */
 
 'use strict';
 
 const { Contract } = require('fabric-contract-api');
-
+const assert = require('assert')
 class FabCar extends Contract {
 
     async initLedger(ctx) {
         console.info('============= START : Initialize Ledger ===========');
-        const cars = [
+        const papers = [          
             {
-                color: 'blue',
-                make: 'Toyota',
-                model: 'Prius',
-                owner: 'Tomoko',
-            },
-            {
-                color: 'red',
-                make: 'Ford',
-                model: 'Mustang',
-                owner: 'Brad',
-            },
-            {
-                color: 'green',
-                make: 'Hyundai',
-                model: 'Tucson',
-                owner: 'Jin Soo',
-            },
-            {
-                color: 'yellow',
-                make: 'Volkswagen',
-                model: 'Passat',
-                owner: 'Max',
-            },
-            {
-                color: 'black',
-                make: 'Tesla',
-                model: 'S',
-                owner: 'Adriana',
-            },
-            {
-                color: 'purple',
-                make: 'Peugeot',
-                model: '205',
-                owner: 'Michel',
-            },
-            {
-                color: 'white',
-                make: 'Chery',
-                model: 'S22L',
-                owner: 'Aarav',
-            },
-            {
-                color: 'violet',
-                make: 'Fiat',
-                model: 'Punto',
-                owner: 'Pari',
-            },
-            {
-                color: 'indigo',
-                make: 'Tata',
-                model: 'Nano',
-                owner: 'Valeria',
-            },
-            {
-                color: 'brown',
-                make: 'Holden',
-                model: 'Barina',
-                owner: 'Shotaro',
+                mssv: 'B1609548',
+                name: 'Truong Thi Phuong Thao',
+                year: '2021',
+                type: 'Kha',
             },
         ];
 
-        for (let i = 0; i < cars.length; i++) {
-            cars[i].docType = 'car';
-            await ctx.stub.putState('CAR' + i, Buffer.from(JSON.stringify(cars[i])));
-            console.info('Added <--> ', cars[i]);
+        for (let i = 0; i < papers.length; i++) {
+            await ctx.stub.putState(papers[i].mssv, Buffer.from(JSON.stringify(papers[i])));
+            console.info('Added <--> ', papers[i]);
         }
         console.info('============= END : Initialize Ledger ===========');
     }
 
-    async queryCar(ctx, carNumber) {
-        const carAsBytes = await ctx.stub.getState(carNumber); // get the car from chaincode state
-        if (!carAsBytes || carAsBytes.length === 0) {
-            throw new Error(`${carNumber} does not exist`);
-        }
-        console.log(carAsBytes.toString());
-        return carAsBytes.toString();
+    async queryPaper(ctx, mssv){
+    	const paperAsBytes = await ctx.stub.getState(mssv);
+    	return paperAsBytes.toString();
     }
 
-    async createCar(ctx, carNumber, make, model, color, owner) {
-        console.info('============= START : Create Car ===========');
-
-        const car = {
-            color,
-            docType: 'car',
-            make,
-            model,
-            owner,
-        };
-
-        await ctx.stub.putState(carNumber, Buffer.from(JSON.stringify(car)));
-        console.info('============= END : Create Car ===========');
+    async submitPaper(ctx, mssv, name, year, type){
+    	console.info('============= START : Submit Paper ===========');
+    	const paper = {
+    		mssv,
+    		name,
+    		year, 
+    		type,
+    	};
+    	await ctx.stub.putState(mssv,Buffer.from(JSON.stringify(paper)));
+    	const submitPaper = await ctx.stub.getState(mssv);
+    	console.log(submitPaper.toString());
+    	console.info('============= END : Submit Paper ===========');
     }
+    async replyPaper(ctx, mssv, accept){  
+    	const paperContent = JSON.parse(await ctx.stub.getState(mssv))
+    	if (accept){
+    		paperContent.approved = true
 
-    async queryAllCars(ctx) {
-        const startKey = 'CAR0';
-        const endKey = 'CAR999';
-        const allResults = [];
-        for await (const {key, value} of ctx.stub.getStateByRange(startKey, endKey)) {
-            const strValue = Buffer.from(value).toString('utf8');
-            let record;
-            try {
-                record = JSON.parse(strValue);
-            } catch (err) {
-                console.log(err);
-                record = strValue;
-            }
-            allResults.push({ Key: key, Record: record });
-        }
-        console.info(allResults);
-        return JSON.stringify(allResults);
+    	} else {
+    		paperContent.approved = false
+    	}
+
+    	if(!accept){
+    		await ctx.stub.deleteState(mssv,Buffer.from(JSON.stringify(paperContent))) 	
+    	} else {
+    		await ctx.stub.putState(mssv,Buffer.from(JSON.stringify(paperContent)));
+    	}
+    		
     }
-
-    async changeCarOwner(ctx, carNumber, newOwner) {
-        console.info('============= START : changeCarOwner ===========');
-
-        const carAsBytes = await ctx.stub.getState(carNumber); // get the car from chaincode state
-        if (!carAsBytes || carAsBytes.length === 0) {
-            throw new Error(`${carNumber} does not exist`);
-        }
-        const car = JSON.parse(carAsBytes.toString());
-        car.owner = newOwner;
-
-        await ctx.stub.putState(carNumber, Buffer.from(JSON.stringify(car)));
-        console.info('============= END : changeCarOwner ===========');
-    }
-
 }
+const { ChaincodeMockStub, Transform } = require("@theledger/fabric-mock-stub")
+let chaincode = new FabCar()
+const mockStub = new ChaincodeMockStub("MyMockStub", chaincode)
 
+describe ('Test Mychaincode', () => {
+    it("Should init without issues", async () => {
+       
+       mockStub.mockTransactionStart()
+       const initResult = await chaincode.initLedger({stub:mockStub},[])
+       
+       //const submitResult = await chaincode.submitPaper({stub:mockStub},['B1609550'],'Lisa','2021','gioi')
+       //const replyResult = await chaincode.replyPaper({stub:mockStub},['B1609548'])
+    });
+
+    it('should query initialized records', async()=>{
+    	const paperResult = await chaincode.queryPaper({stub:mockStub},'B1609548')
+        console.log(paperResult)
+        assert.equal(paperResult != "", true)
+    })
+    it('should unapprove the current paper', async()=>{
+        await chaincode.submitPaper({stub:mockStub},'B1609550', 'Bang dai hoc', '2020', 'Paper')
+    	await chaincode.replyPaper({stub:mockStub},'B1609550', false) 
+        const paperResult = await chaincode.queryPaper({stub:mockStub},'B1609550') 
+        console.log(paperResult)
+        assert.equal(paperResult == "", true) 
+
+    })	
+   it('should appprove and see changes', async()=>{
+    	await chaincode.submitPaper({stub:mockStub},'B1609550', 'Bang dai hoc', '2020', 'Paper')
+    	await chaincode.replyPaper({stub:mockStub},'B1609550', true) 
+        const paperResult =JSON.parse(await chaincode.queryPaper({stub:mockStub},'B1609550'))
+        console.log(paperResult)
+
+        assert.equal(paperResult.approved, true)
+    })
+});
 module.exports = FabCar;
