@@ -307,7 +307,7 @@ chaincodeQuery() {
    # echo "Attempting to Query peer${PEER}.org${ORG} ...$(($(date +%s) - starttime)) secs"
     set -x
     #peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","a"]}' >&log.txt
-     peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["queryAllCars"]}' >&log.txt
+     peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["queryPaper","B1609548"]}' >&log.txt
     #res=$?
     #set +x
     #test $res -eq 0 && VALUE=$(cat log.txt | awk '/Query Result/ {print $NF}')

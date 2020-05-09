@@ -9,7 +9,8 @@ const path = require('path');
 const fs = require('fs');
 
 
-async function main() {
+exports.queryPaper = async function(mssv) {
+    let response = {}
     try {
         // load the network configuration
         //const ccpPath = path.resolve(__dirname, '..', '..','test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
@@ -37,18 +38,20 @@ async function main() {
         const network = await gateway.getNetwork('mychannel');
 
         // Get the contract from the network.
-        const contract = network.getContract('fabcar');
+        const contract = network.getContract('paper');
 
         // Evaluate the specified transaction.
         // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
         // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
-        const result = await contract.evaluateTransaction('queryAllCars');
-        console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
-
+        const result = await contract.evaluateTransaction('queryPaper', mssv);
+        //console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
+        return result
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`);
-        process.exit(1);
+        response.error = error.message
+        return response
+       // process.exit(1);
     }
 }
 
-main();
+//main();

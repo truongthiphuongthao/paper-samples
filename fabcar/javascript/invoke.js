@@ -1,14 +1,15 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  */
-
 'use strict';
 
 const { Gateway, Wallets } = require('fabric-network');
 const fs = require('fs');
 const path = require('path');
 
-async function main() {
+exports.submitPaper= async function(mssv, name, year, type) {
+    let response = {}
+//  async function main() {
     try {
         // load the network configuration
        // const ccpPath = path.resolve(__dirname, '..', '..','test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
@@ -35,22 +36,32 @@ async function main() {
         // Get the network (channel) our contract is deployed to.
         const network = await gateway.getNetwork('mychannel');
 
+
+
+
         // Get the contract from the network.
-        const contract = network.getContract('fabcar');
+        const contract = network.getContract('paper');
 
         // Submit the specified transaction.
         // createCar transaction - requires 5 argument, ex: ('createCar', 'CAR12', 'Honda', 'Accord', 'Black', 'Tom')
         // changeCarOwner transaction - requires 2 args , ex: ('changeCarOwner', 'CAR12', 'Dave')
-        await contract.submitTransaction('createCar', 'CAR12', 'Honda', 'Accord', 'Black', 'Jerry');
-        console.log('Transaction has been submitted');
+        // await contract.submitTransaction('submitPaper', mssv , name , year , type);
+        //  await contract.submitTransaction('submitPaper', "B1609550" , "Thao" , "2020" , "Kha")
+         await contract.submitTransaction('submitPaper',mssv, name, year, type)
+         console.log('Transaction has been submitted');
 
         // Disconnect from the gateway.
         await gateway.disconnect();
+        response.msg ='submitPaper Transaction has been submitted'
+	return response
 
     } catch (error) {
         console.error(`Failed to submit transaction: ${error}`);
-        process.exit(1);
+        response.error = error.message
+        return response
+        //process.exit(1);
+        return response;
     }
 }
 
-main();
+//main();

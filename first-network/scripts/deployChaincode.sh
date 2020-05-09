@@ -1,11 +1,11 @@
 export CHANNEL_NAME=mychannel
-path=$1
-language=$2
-name=$3
-version=$4
+#path=$1
+#language=$2
+name=$1
+version=$2
 set -x
 # create package chaincode both org1, org2
-peer lifecycle chaincode package ${name}.tar.gz --path /opt/gopath/src/github.com/hyperledger/fabric-samples/chaincode/${path} --lang ${language} --label ${name}_${version}
+peer lifecycle chaincode package ${name}.tar.gz --path /opt/gopath/src/github.com/hyperledger/fabric-samples/chaincode/javascript/ --lang node --label ${name}_${version}
 . scripts/utils.sh
 setGlobals 0 1
 # install chaincode on peer0.org1
