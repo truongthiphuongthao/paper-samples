@@ -2,7 +2,7 @@
 'use strict';
 
 const { Contract } = require('fabric-contract-api');
-const assert = require('assert')
+//const assert = require('assert')
 class FabCar extends Contract {
 
     async initLedger(ctx) {
@@ -58,7 +58,7 @@ class FabCar extends Contract {
     		
     }
 }
-const { ChaincodeMockStub, Transform } = require("@theledger/fabric-mock-stub")
+/*const { ChaincodeMockStub, Transform } = require("@theledger/fabric-mock-stub")
 let chaincode = new Paper()
 const mockStub = new ChaincodeMockStub("MyMockStub", chaincode)
 
@@ -93,5 +93,5 @@ describe ('Test Mychaincode', () => {
 
         assert.equal(paperResult.approved, true)
     })
-});
+});*/
 module.exports = FabCar;

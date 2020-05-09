@@ -8,16 +8,14 @@
         "npm": ">=5"
     },
     "scripts": {
-        "lint": "eslint .",
-        "pretest": "npm run lint",
-        "test":"nyc mocha --recursive",
+        "test": "mocha",
         "start": "fabric-chaincode-node start"
     },
     "engineStrict": true,
     "author": "Hyperledger",
     "license": "Apache-2.0",
     "dependencies": {
-        "fabric-contract-api": "^2.0.0",
+        "fabric-contract-api": "^2.1.1",
         "fabric-shim": "^2.0.0"
     },
     "devDependencies": {
