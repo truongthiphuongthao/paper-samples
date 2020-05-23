@@ -194,21 +194,21 @@ commitChaincodeDefinition() {
    #while 'peer chaincode' command can get the orderer endpoint from the
   # peer (if join was successful), let's supply it directly as we know
   # it using the "-o" option
-  #if [ -z "$CORE_PEER_TLS_ENABLED" -o "$CORE_PEER_TLS_ENABLED" = "false" ]; then
+  if [ -z "$CORE_PEER_TLS_ENABLED" -o "$CORE_PEER_TLS_ENABLED" = "false" ]; then
     set -x
     peer lifecycle chaincode commit -o orderer.example.com:7050 --channelID $CHANNEL_NAME --name mycc $PEER_CONN_PARMS --version ${VERSION} --sequence ${VERSION} --init-required >&log.txt
-    #res=$?
-    #set +x
-  #else
-   # set -x
-   # peer lifecycle chaincode commit -o orderer.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA --channelID $CHANNEL_NAME --name mycc $PEER_CONN_PARMS --version ${VERSION} --sequence ${VERSION} --init-required >&log.txt
-    #res=$?
-    #set +x
-  #fi
-  #cat log.txt
-  #verifyResult $res "Chaincode definition commit failed on peer${PEER}.org${ORG} on channel '$CHANNEL_NAME' failed"
-  #echo "===================== Chaincode definition committed on channel '$CHANNEL_NAME' ===================== "
-  #echo
+    res=$?
+    set +x
+  else
+   set -x
+   peer lifecycle chaincode commit -o orderer.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA --channelID $CHANNEL_NAME --name mycc $PEER_CONN_PARMS --version ${VERSION} --sequence ${VERSION} --init-required >&log.txt
+    res=$?
+    set +x
+  fi
+  cat log.txt
+  verifyResult $res "Chaincode definition commit failed on peer${PEER}.org${ORG} on channel '$CHANNEL_NAME' failed"
+  echo "===================== Chaincode definition committed on channel '$CHANNEL_NAME' ===================== "
+  echo
 }
 
 # checkCommitReadiness VERSION PEER ORG
@@ -307,7 +307,7 @@ chaincodeQuery() {
    # echo "Attempting to Query peer${PEER}.org${ORG} ...$(($(date +%s) - starttime)) secs"
     set -x
     #peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","a"]}' >&log.txt
-     peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["queryPaper","B1609548"]}' >&log.txt
+     peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["truyVan","B1609548"]}' >&log.txt
     #res=$?
     #set +x
     #test $res -eq 0 && VALUE=$(cat log.txt | awk '/Query Result/ {print $NF}')

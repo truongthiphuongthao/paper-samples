@@ -155,11 +155,11 @@ function networkUp() {
     generateCerts
     generateChannelArtifacts
   fi
-  COMPOSE_FILES="-f ${COMPOSE_FILE} -f ${COMPOSE_FILE_RAFT2}"
+  COMPOSE_FILES="-f ${COMPOSE_FILE}" # -f ${COMPOSE_FILE_RAFT2}"
   if [ "${CERTIFICATE_AUTHORITIES}" == "true" ]; then
     COMPOSE_FILES="${COMPOSE_FILES} -f ${COMPOSE_FILE_CA}"
     export BYFN_CA1_PRIVATE_KEY=$(cd crypto-config/peerOrganizations/org1.example.com/ca && ls *_sk)
-    export BYFN_CA2_PRIVATE_KEY=$(cd crypto-config/peerOrganizations/org2.example.com/ca && ls *_sk)
+    # export BYFN_CA2_PRIVATE_KEY=$(cd crypto-config/peerOrganizations/org2.example.com/ca && ls *_sk)
   fi
   if [ "${IF_COUCHDB}" == "couchdb" ]; then
     COMPOSE_FILES="${COMPOSE_FILES} -f ${COMPOSE_FILE_COUCH}"
@@ -259,9 +259,20 @@ function upgradeNetwork() {
 
 # Tear down running network
 function networkDown() {
+  set -x
   # stop org3 containers also in addition to org1 and org2, in case we were running sample to add org3
-  docker-compose -f $COMPOSE_FILE -f $COMPOSE_FILE_COUCH -f $COMPOSE_FILE_RAFT2 -f $COMPOSE_FILE_CA -f $COMPOSE_FILE_ORG3 down --volumes --remove-orphans
-
+  echo $COMPOSE_FILE
+  echo $COMPOSE_FILE_COUCH
+  echo $COMPOSE_FILE_RAFT2
+  echo $COMPOSE_FILE_CA
+  echo $COMPOSE_FILE_ORG3
+  docker-compose -f $COMPOSE_FILE down --volumes --remove-orphans
+  docker-compose -f $COMPOSE_FILE_COUCH down --volumes --remove-orphans
+  docker-compose -f $COMPOSE_FILE_RAFT2 down --volumes --remove-orphans
+  docker-compose -f $COMPOSE_FILE_CA down --volumes --remove-orphans
+  docker-compose -f $COMPOSE_FILE_ORG3 down --volumes --remove-orphans
+  # docker kill $(docker ps -aq)
+  # docker rm $(docker ps -aq)
   # Don't remove the generated artifacts -- note, the ledgers are always removed
   if [ "$MODE" != "restart" ]; then
     # Bring down the network, deleting the volumes
@@ -274,6 +285,7 @@ function networkDown() {
     # remove orderer block and other channel configuration transactions and certs
     rm -rf channel-artifacts/*.block channel-artifacts/*.tx crypto-config ./org3-artifacts/crypto-config/ channel-artifacts/org3.json
   fi
+  set +x
 }
 
 # We will use the cryptogen tool to generate the cryptographic material (x509 certs)
@@ -405,20 +417,20 @@ function generateChannelArtifacts() {
     exit 1
   fi
 
-  echo
-  echo "#################################################################"
-  echo "#######    Generating anchor peer update for Org2MSP   ##########"
-  echo "#################################################################"
-  set -x
-  configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate \
-    ./channel-artifacts/Org2MSPanchors.tx -channelID $CHANNEL_NAME -asOrg Org2MSP
-  res=$?
-  set +x
-  if [ $res -ne 0 ]; then
-    echo "Failed to generate anchor peer update for Org2MSP..."
-    exit 1
-  fi
-  echo
+  # echo
+  # echo "#################################################################"
+  # echo "#######    Generating anchor peer update for Org2MSP   ##########"
+  # echo "#################################################################"
+  # set -x
+  # configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate \
+  #   ./channel-artifacts/Org2MSPanchors.tx -channelID $CHANNEL_NAME -asOrg Org2MSP
+  # res=$?
+  # set +x
+  # if [ $res -ne 0 ]; then
+  #   echo "Failed to generate anchor peer update for Org2MSP..."
+  #   exit 1
+  # fi
+  # echo
 }
 
 # timeout duration - the duration the CLI should wait for a response from

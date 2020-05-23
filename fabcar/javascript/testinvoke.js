@@ -5,18 +5,14 @@
 'use strict';
 
 const { Gateway, Wallets } = require('fabric-network');
-const path = require('path');
 const fs = require('fs');
+const path = require('path');
 
-
-//exports.queryPaper = async function(mssv) 
-async function main (mssv){
-   // let response = {}
+async function main() {
     try {
         // load the network configuration
-        //const ccpPath = path.resolve(__dirname, '..', '..','test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
-        const ccpPath = path.resolve(__dirname, '..', '..','first-network','connection-org1.json');
-        const ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
+        const ccpPath = path.resolve(__dirname, '..', '..','first-network', 'connection-org1.json');
+        let ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
 
         // Create a new file system based wallet for managing identities.
         const walletPath = path.join(process.cwd(), 'wallet');
@@ -41,18 +37,19 @@ async function main (mssv){
         // Get the contract from the network.
         const contract = network.getContract('paper');
 
-        // Evaluate the specified transaction.
-        // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
-        // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
-        const result = await contract.evaluateTransaction('truyVan', mssv);
-        //console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
-        return result
+        // Submit the specified transaction.
+        // createCar transaction - requires 5 argument, ex: ('createCar', 'CAR12', 'Honda', 'Accord', 'Black', 'Tom')
+        // changeCarOwner transaction - requires 2 args , ex: ('changeCarOwner', 'CAR12', 'Dave')
+        await contract.submitTransaction('submitPaper', 'B1609550', 'Lisa', '2022', 'Kha');
+        console.log('Transaction has been submitted');
+
+        // Disconnect from the gateway.
+        await gateway.disconnect();
+
     } catch (error) {
-        console.error(`Failed to evaluate transaction: ${error}`);
-        response.error = error.message
-       // return response
-       // process.exit(1);
+        console.error(`Failed to submit transaction: ${error}`);
+        process.exit(1);
     }
 }
-let mssv = 'B1609548'
-main(mssv);
+
+main();

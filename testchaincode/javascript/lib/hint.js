@@ -1,6 +1,6 @@
 'use strict';
 const { Contract } = require('fabric-contract-api');
-//const assert = require('assert')
+const assert = require('assert')
 class QuanLyDiem extends Contract {
 	
 	async getIdentity(ctx) { 
@@ -42,6 +42,7 @@ class QuanLyDiem extends Contract {
 				    }
 				 }
 			},
+
 		    "AllowedUser":[
 				{"tengv": "GV-002-PTCang"},
 				{"tengv": "GV-003-NTNghe"}
@@ -74,22 +75,13 @@ class QuanLyDiem extends Contract {
 		console.log(svinfo)
 	}
 	
-	/*async truyVan(ctx, mssv){ // truy van cac diem cua sinh vien
+	async truyVan(ctx, mssv){ // truy van cac diem cua sinh vien
 		const sv = await ctx.stub.getState(mssv)
-		//const svinfo = JSON.parse(sv)
-		//console.info(svinfo)
-		console.log(sv.toString())
-		return sv.toString()
-		//console.info(svinfo.hocphan['CT173-01']['diem'])
-	}*/
-         async truyVan(ctx, mssv){ // truy van cac diem cua sinh vien
-		const sv = await ctx.stub.getState(mssv)
-		//const svinfo = JSON.parse(sv)
-		//console.info(svinfo)
-		console.log(sv.toString())
-		return sv.toString()
+		const svinfo = JSON.parse(sv)
+		console.info(svinfo)
 		//console.info(svinfo.hocphan['CT173-01']['diem'])
 	}
+		
 	
 	async truyVanTotNghiep(ctx, mssv){// xet xem sinh vien co tot nghiep khong 
        const sv = await ctx.stub.getState(mssv)
@@ -107,15 +99,14 @@ class QuanLyDiem extends Contract {
        }    
        const diemtb = tong/tongSoChi
        console.log('Diem trung binh: ', tong/tongSoChi)
-       if(diemtb>=4.0  && tongSoChi>=12){
-       	  // console.log("Da tot nghiep") // cai nay e phai return ra moi dc
-       	  return "Da Tot nghiep"
+       if(diemtb>=4.0 && tongSoChi>=12){
+       	  console.log("Da tot nghiep")
        }
-       return "Chua Tot nghiep" // roi e install lai xem
+       else console.log("Chua tot nghiep")
 	}
 }
 	
-/*const { ChaincodeMockStub, Transform } = require("@theledger/fabric-mock-stub")
+const { ChaincodeMockStub, Transform } = require("@theledger/fabric-mock-stub")
 let chaincode = new QuanLyDiem()
 const mockStub = new ChaincodeMockStub("MyMockStub", chaincode)
 describe ('Test Mychaincode', () => {
@@ -153,5 +144,5 @@ describe ('Test Mychaincode', () => {
        // console.log(suaDiem)
         //assert.equal(paperResult != "", true)
     })	
-})*/
+})
 module.exports = QuanLyDiem;
