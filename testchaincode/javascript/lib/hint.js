@@ -61,7 +61,18 @@ class QuanLyDiem extends Contract {
 		const result = await ctx.stub.putState("AllowedUser",Buffer.from(JSON.stringify(gvinfo)))
 		console.log(gvinfo)
 	}
-	
+	// them sinh vien
+	async themSinhVien(ctx, mssv, ten, cmnd){
+		// TODO: add middleware
+		const sinhvien = {
+			'ten': ten,
+			'cmnd': cmnd,
+			'hocphan': {}
+		}
+
+	    const result = await ctx.stub.putState(mssv, Buffer.from(JSON.stringify(sinhvien)));
+	    console.log("them sinh vien thanh cong")
+	}
 	async suaDiem(ctx, mssv, maLopHocPhan,diemmoi){ // giang vien se them diem/hoac sua diem hoc maLopHocPhan cua sinh vien co mssv voi diem tuong ung 
 		// kiem tra giangvien co the sua diem cua "maLopHocPhan" khong
 		// tien hanh sua diem cua sinh vien, va luu ten nguoi sua lai
@@ -119,7 +130,7 @@ describe ('Test Mychaincode', () => {
 	   //const replyResult = await chaincode.replyPaper({stub:mockStub},['B1609548'])
 	});
 	 it('should query initialized records', async()=>{
-    	const ketQuaDiem = await chaincode.truyVan({stub:mockStub},'B1609548')
+    	const truyVan = await chaincode.truyVan({stub:mockStub},'B1609548')
        // console.log(ketQuaDiem)
         //assert.equal(paperResult != "", true)
     })
@@ -132,6 +143,16 @@ describe ('Test Mychaincode', () => {
 	 it('should themGiangVien initialized records', async()=>{
     	const themGiangVien = await chaincode.themGiangVien({stub:mockStub},'GV-004-PNKhang')
        // console.log(suaDiem)
+        //assert.equal(paperResult != "", true)
+    })
+	  it('should themSinhVien initialized records', async()=>{
+    	const themSinhVien = await chaincode.themSinhVien({stub:mockStub},'B1609550','Lisa','012345')
+       // console.log(suaDiem)
+        //assert.equal(paperResult != "", true)
+    })
+	  it('should query initialized records', async()=>{
+    	const truyVan = await chaincode.truyVan({stub:mockStub},'B1609550')
+       // console.log(ketQuaDiem)
         //assert.equal(paperResult != "", true)
     })
 	 it('should truyVanTotNghiep initialized records', async()=>{

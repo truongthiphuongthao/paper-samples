@@ -60,7 +60,17 @@ class QuanLyDiem extends Contract {
 		const result = await ctx.stub.putState("AllowedUser",Buffer.from(JSON.stringify(gvinfo)))
 		console.log(gvinfo)
 	}
-	
+	async themSinhVien(ctx, mssv, ten, cmnd){
+		// TODO: add middleware
+		const sinhvien = {
+			'ten': ten,
+			'cmnd': cmnd,
+			'hocphan': {}
+		}
+
+	    const result = await ctx.stub.putState(mssv, Buffer.from(JSON.stringify(sinhvien)));
+	    console.log("them sinh vien thanh cong")
+	}
 	async suaDiem(ctx, mssv, maLopHocPhan,diemmoi){ // giang vien se them diem/hoac sua diem hoc maLopHocPhan cua sinh vien co mssv voi diem tuong ung 
 		// kiem tra giangvien co the sua diem cua "maLopHocPhan" khong
 		// tien hanh sua diem cua sinh vien, va luu ten nguoi sua lai
@@ -73,15 +83,6 @@ class QuanLyDiem extends Contract {
 		const result = await ctx.stub.putState(mssv, Buffer.from(JSON.stringify(svinfo)))
 		console.log(svinfo)
 	}
-	
-	/*async truyVan(ctx, mssv){ // truy van cac diem cua sinh vien
-		const sv = await ctx.stub.getState(mssv)
-		//const svinfo = JSON.parse(sv)
-		//console.info(svinfo)
-		console.log(sv.toString())
-		return sv.toString()
-		//console.info(svinfo.hocphan['CT173-01']['diem'])
-	}*/
          async truyVan(ctx, mssv){ // truy van cac diem cua sinh vien
 		const sv = await ctx.stub.getState(mssv)
 		//const svinfo = JSON.parse(sv)
@@ -98,7 +99,7 @@ class QuanLyDiem extends Contract {
        let tongSoChi = 0
        // console.log(svinfo.hocphan)
 
-       for(let lophoc in svinfo.hocphan){ // hoi nay e su dung bien 'sv' la ko dung
+       for(let lophoc in svinfo.hocphan){
        		// console.log(svinfo.hocphan[lophoc])
        	// tinh tong deim 
        		
@@ -108,10 +109,9 @@ class QuanLyDiem extends Contract {
        const diemtb = tong/tongSoChi
        console.log('Diem trung binh: ', tong/tongSoChi)
        if(diemtb>=4.0  && tongSoChi>=12){
-       	  // console.log("Da tot nghiep") // cai nay e phai return ra moi dc
        	  return "Da Tot nghiep"
        }
-       return "Chua Tot nghiep" // roi e install lai xem
+       return "Chua Tot nghiep"
 	}
 }
 	
