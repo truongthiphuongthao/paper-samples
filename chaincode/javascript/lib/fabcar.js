@@ -83,7 +83,9 @@ class QuanLyDiem extends Contract {
 		const result = await ctx.stub.putState(mssv, Buffer.from(JSON.stringify(svinfo)))
 		console.log(svinfo)
 	}
-         async truyVan(ctx, mssv){ // truy van cac diem cua sinh vien
+
+
+    async truyVan(ctx, mssv){ // truy van cac diem cua sinh vien
 		const sv = await ctx.stub.getState(mssv)
 		//const svinfo = JSON.parse(sv)
 		//console.info(svinfo)
@@ -94,6 +96,7 @@ class QuanLyDiem extends Contract {
 	
 	async truyVanTotNghiep(ctx, mssv){// xet xem sinh vien co tot nghiep khong 
        const sv = await ctx.stub.getState(mssv)
+       
        const svinfo = JSON.parse(sv.toString())
        let tong = 0
        let tongSoChi = 0

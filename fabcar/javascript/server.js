@@ -3,11 +3,13 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var app = express()
 var port = 3000
-var moduleEnroll = require('./enrollAdmin.js')
+var enrollAdmin = require('./enrollAdmin.js')
 var registerUser = require('./registerUser.js')
-var moduleInvoke = require('./invoke.js')
-var moduleQuery = require('./query.js')
-var moduleApprove = require('./approve.js')
+var themGiangVien = require('./themGiangVien.js')
+var themSinhVien = require('./themSinhVien.js')
+var truyVan = require('./truyVan.js')
+var truyVanTotNghiep = require('./truyVanTotNghiep.js')
+var suaDiem = require('./suaDiem.js')
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -15,6 +17,53 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 
 app.use(express.static('../../frontend'))
+// Them sinh vien
+app.post('/themSinhVien', async(req, res) => {
+   let ten = req.body.ten
+   let mssv = req.body.mssv
+   let cmnd = req.body.cmnd
+      console.log(req.body);
+   let response = await themSinhVien(mssv, ten, cmnd, 'appUser');
+   res.send(response)
+   console.log(response)
+})
+// them giang vien
+app.post('/themGiangVien',async(req, res)=> {
+  let tengv = req.body.tengv;
+  let maGiangVien = req.body.maGiangVien;
+    console.log(req.body);
+  let response = await themGiangVien(maGiangVien,'appUser');
+  res.send(response)
+   console.log(response)
+})
+// suaDiem
+app.post('/themDiem',async(req, res) => {
+  let mssv = req.body.mssv;
+  let maLopHocPhan = req.body.maLopHocPhan;
+  let diemmoi = req.body.diemmoi;
+     console.log(req.body);
+  let response = await suaDiem(mssv, maLopHocPhan, diemmoi,'appUser');
+  res.send(response)
+   console.log(response)
+})
+
+// truy van tot nghiep
+app.get('/truyVanTotNghiep', async(req, res) =>{
+    let mssv = req.query.mssv;
+    // console.log(req.)
+    console.log(req.query.mssv);
+    let response = await truyVanTotNghiep(mssv, 'appUser');
+    res.send(response.toString());
+})
+// truyVan 
+app.get('/truyVan',async(req, res) =>{
+    let mssv = req.query.mssv;
+    // console.log(req.query.mssv);
+    let response = await truyVan(mssv,'appUser');
+    // console.log(response)
+    res.send(response.toString());
+})
+
 /*app.post('/', (req, res)=> {   
         res.writeHead(200,{"Content-Type" : "text/plain"});
         res.write("MSSV:"+req.body.mssv)
@@ -23,7 +72,7 @@ app.use(express.static('../../frontend'))
         res.write("Loai tot nghiep:"+req.body.type)
         ret = s.end()
 })*/
-app.get('/queryPaper', async(req,res) => {
+/*app.get('/queryPaper', async(req,res) => {
      console.log(req.query.mssv)
      let response = await moduleQuery.queryPaper(req.query.mssv)
      //let papersRecord = JSON.parse(response)
@@ -45,5 +94,5 @@ app.post('/approvePaper', async(req,res) => {
      let response = await moduleApprove.approvePaper(req.body.mssv, approve)
      //let papersRecord = JSON.parse(response)
      res.send(response)
-})
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+})*/
+app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));

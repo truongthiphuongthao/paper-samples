@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 
 //exports.submitPaper= async function(mssv, name, year, type) {
- async function main (mssv, ten, cmnd, dinhdanh) {
+async function main (mssv, ten, cmnd, dinhdanh) {
    // let response = {}
 //  async function main() {
     try {
@@ -54,19 +54,20 @@ const path = require('path');
         // Disconnect from the gateway.
         await gateway.disconnect();
         //response.msg ='submitPaper Transaction has been submitted'
-	//return response
-
+		return 'Successfully added student ' + mssv;
     } catch (error) {
         console.error(`Failed to submit transaction: ${error}`);
         //response.error = error.message
        // return response
-        process.exit(1);
+        //process.exit(1);
         //return response;
+        return false;
     }
 }
-let mssv='B1609550'
+/*let mssv='B1609550'
 let ten='Lisa'
 let cmnd='01234'
 let dinhdanh='appUser';
-main(mssv, ten, cmnd, dinhdanh);
+main(mssv, ten, cmnd, dinhdanh);*/
+module.exports = main;
 

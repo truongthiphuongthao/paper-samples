@@ -10,7 +10,7 @@ const fs = require('fs');
 
 
 //exports.queryPaper = async function(mssv) 
-async function main (mssv, dinhdanh){
+async function main(mssv, dinhdanh){
    // let response = {}
     try {
         // load the network configuration
@@ -44,16 +44,21 @@ async function main (mssv, dinhdanh){
         // Evaluate the specified transaction.
         // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
         // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
+        // console.log('=======> OK'   )
         const result = await contract.evaluateTransaction('truyVan', mssv);
-        console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
-       // return result
+        // console.log('=======>', result)
+        // console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
+        return result
+
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`);
         //response.error = error.message
        // return response
-        process.exit(1);
+       // process.exit(1);
+       return false;
     }
 }
-let dinhdanh ='appUser';
-let mssv = 'B1609548';
-main(mssv,dinhdanh);
+// let dinhdanh ='appUser';
+// let mssv = 'B1609548';
+// main(mssv,dinhdanh);
+module.exports = main
