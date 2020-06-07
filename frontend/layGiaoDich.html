@@ -3,11 +3,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <title> Query Student </title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <base href="http://localhost:3000">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>-->
 <style type="text/css">
       header{
         background-color: lightgray;
@@ -57,25 +57,44 @@
           background-color: #dddddd;
       }
     </style>
+  <script type="text/javascript">
+     function layGiaoDich(){
+      // alert('Pressed');
+      var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+          if(this.readyState ==4 && this.status ==200){
+          document.getElementById('vb-tinhtrang').value = xhttp.responseText;
+        }
+      };
+      var mssv = document.getElementById('mssv').value;
+      xhttp.open("GET","/truyVanTotNghiep?mssv="+mssv,true);
+      xhttp.send();
+      return false;
+  }
+  </script>
 </head>
 
 <body>
     <div class="form-group">
-    <form method="GET" action="/truyVan" name="truyVanForm">
+    
         <table class="table">
             <tr>
             
-                <td><label for="mssv">Mã số Sinh Viên</label></td>
-                <td><input class="form-control" type="text" id="mssv" name="mssv" placeholder="B1609523" required></td>
-            
+                <td><label for="block">Block</label></td>
+                <td><input class="form-control" type="text" id="block" name="block" placeholder="" required></td>
             </tr>
+            
 
              <tr>
-                 <td></td>
-                <td><button name="query" value="submitQuery" class="btn btn-primary">Query</button></td>
+                <td></td>
+                <td><button  name="query" class="btn btn-primary"> Chọn  </button></td>
              </tr>
         </table>
-    </form>
+    </div>
+    <div class="form-group">
+
+    	<textarea rows="8" cols="80"></textarea>
+
     </div>
 
 </body>

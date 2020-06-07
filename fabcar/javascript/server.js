@@ -58,7 +58,7 @@ app.get('/truyVanTotNghiep', async(req, res) =>{
 // truyVan 
 app.get('/truyVan',async(req, res) =>{
     let mssv = req.query.mssv;
-    // console.log(req.query.mssv);
+     console.log(req.query.mssv);
     let response = await truyVan(mssv,'appUser');
     // console.log(response)
     res.send(response.toString());

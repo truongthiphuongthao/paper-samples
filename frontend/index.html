@@ -1,104 +1,146 @@
 <!DOCTYPE html>
 <html>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <head>
-<script>
-function validateForm(){ 
-   var mssv = document.forms["myForm"]["mssv"].value;
-   if(mssv == ""){
-     alert("MSSV must be filled out");
-     return false;
-   }
-   var name = document.forms["myForm"]["name"].value;
-   if(name == ""){
-     alert("Name must be filled out");
-     return false;
-   }
-   var year = document.forms["myForm"]["year"].value;
-   if(year == ""){
-     alert("Gradution year must be filled out");
-     return false;
-   }
-   var type = document.forms["myForm"]["type"].value;
-   if(type == ""){
-     alert("Gradution type must be filled out");
-     return false;
-   }
-}
-
-function queryPaper(){
-	var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function(){
-        if(this.readyState ==4 && this.status ==200){
-         var result =JSON.parse(xhttp.responseText);
-       	 console.log(result)
-         document.forms["myForm"]["mssv"].value=result.mssv;
-         document.forms["myForm"]["name"].value=result.name;
-         document.forms["myForm"]["year"].value=result.year;
-         document.forms["myForm"]["type"].value=result.type;
-      //   document.forms["myForm"]["approvalStatus"].value=result.approved;
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title> Query Student </title>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <base href="http://localhost:3000">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>-->
+<style type="text/css">
+      header{
+        background-color: lightgray;
+        font-size:20px;
+        padding:15px;
       }
-    };
-    var mssv = document.forms["myForm"]["mssv"].value;
-    //var submit = document.forms["myForm"]["submit"].value;
-//     var approved = document.forms["myForm"]["approved"].value;
-//    console.log(submit);
-    xhttp.open("GET","./queryPaper?mssv="+mssv,true);
-    xhttp.send();
-}
-</script>
-<style> 
-input[type=text] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-}
-.w3-button {width:150px;}
-h3{
-  font-size: 30px;
-  color: #0000CC;
-  text-align: center;
-}
-h6{
-  font-size: 18px;
-  color: #0000CC;
-  text-align: left;
-}
-</style>
-</head>
-<body>
-<h3> DIPLOMA TEXT </h3>
-<h6> Submit diploma text </h6>
-<form method="POST" action="/" onsubmit="return validateForm()" name="myForm">
-  <div class="form-group">
-  	<label for="mssv">MSSV</label>
-  	<input type="text" id="mssv" name="mssv">
-  </div>
-  <div class="form-group">
-  	<label for="name">Name</label>
-  	<input type="text" id="name" name="name">
-  </div>
-  <div class="form-group">
-  	<label for="year">Gradution year</label>
-  	<input type="text" id="year" name="year">
-  </div>
-  <div class="form-group">
-  	<label for="type">Gradution Type</label>
-  	<input type="text" id="type" name="type">
-  </div>
+      header, .form-group{
+        margin-bottom: 3%;
+      }
+      .form-group{
+        width:50%;
+        
+      }
+      #body{
+        margin-left:3%;
+        margin-right:3%;
+      }
+      .form-control{
+        margin: 8px;
+      }
+      #right_header{
+        width:20%;
+        font-size:15px;
+        margin-right:0px;
+      }
+      #left_header{
+        margin-left:0;
+        width:40%;
+        display:inline-block;
+      } 
+      #id {
+        width:49%;
+        display: inline-block;
+      }
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+          
+      }
+      td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+      }
+      tr:nth-child(even) {
+          background-color: #dddddd;
+      }
+    </style>
+    <script>
+    // document.getElementById('tinhtrang-wrapper').style.display="none";	
+    function truyVanTotNghiep(){
+    	// alert('Pressed');
+	    var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+        	if(this.readyState ==4 && this.status ==200){
+       	 	document.getElementById('vb-tinhtrang').value = xhttp.responseText;
+	      }
+	    };
+	    var mssv = document.getElementById('mssv').value;
+	    xhttp.open("GET","/truyVanTotNghiep?mssv="+mssv,true);
+	    xhttp.send();
+	    return false;
+	}
+	function truyVan(){
+		 	var xhttp1 = new XMLHttpRequest();
+	        xhttp1.onreadystatechange = function(){
+	        	if(this.readyState ==4 && this.status ==200){
+	        	var thongTin = JSON.parse(xhttp1.responseText)
+	        	console.log(thongTin)
+	       	 	document.getElementById('vb-mssv').value = document.getElementById('mssv').value;
+	       	 	document.getElementById('vb-ten').value = thongTin.ten;
+	       	 	document.getElementById('vb-cmnd').value = thongTin.cmnd;
 
-<!--  <div class="form-group">
-  	<label for="type">Approval status</label>
-  	<input type="text" id="idApprovalStatus" name="approvalStatus">
-  </div> --->
-   
- <!-- <input type="submit" id="fsubmit" name="submit" value="Submit"> -->
-  <p>
-    <button class="w3-button w3-blue" name="submit" value="Submit">Submit</button>
-  </p>
-</form>
+		      }
+		    };
+		    var mssv = document.getElementById('mssv').value;
+		    xhttp1.open("GET","/truyVan?mssv="+mssv,true);
+		    xhttp1.send();
+	}
+	function queryAll(){
+		truyVanTotNghiep()
+		truyVan()
+	}
+
+    </script>
+</head>
+
+<body>
+    <div class="form-group">
+    
+        <table class="table">
+            <tr>
+            
+                <td><label for="mssv">Mã số Sinh Viên</label></td>
+                <td><input class="form-control" type="text" id="mssv" name="mssv" placeholder="B1609523" required></td>
+            </tr>
+            
+
+             <tr>
+                <td></td>
+                <td><button onclick="queryAll()" name="query" class="btn btn-primary"> Xem van bang </button></td>
+             </tr>
+        </table>
+    </div>
+    <div class="form-group">
+
+    	<table class="table">
+    		<h3> VĂN BẰNG CỦA SINH VIÊN </h3>
+    		 
+    		<tr>
+                <td><label for="vb-mssv"> MSSV</label></td>
+                <td><input class="form-control" type="text" id="vb-mssv" name="mssv" placeholder=""></td>
+            </tr>
+            <tr>
+                <td><label for="vb-ten"> Họ và tên </label></td>
+                <td><input class="form-control" type="text" id="vb-ten" name="ten" placeholder=""></td>
+            </tr>
+             <tr>
+                <td><label for="vb-cmnd"> CMND </label></td>
+                <td><input class="form-control" type="text" id="vb-cmnd" name="cmnd" placeholder=""></td>
+            </tr>
+
+    		<tr>
+                <td><label for="vb-tinhtrang">Tình trạng tốt nghiệp	</label></td>
+                <td><input class="form-control" type="text" id="vb-tinhtrang" name="tinhtrang" placeholder=""></td>
+            </tr>
+    	</table>
+
+    </div>
 
 </body>
+
 </html>
+
+
