@@ -10,6 +10,7 @@ var themSinhVien = require('./themSinhVien.js')
 var truyVan = require('./truyVan.js')
 var truyVanTotNghiep = require('./truyVanTotNghiep.js')
 var suaDiem = require('./suaDiem.js')
+var truyVanBlock = require('./truyVanBlock.js')
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -63,7 +64,14 @@ app.get('/truyVan',async(req, res) =>{
     // console.log(response)
     res.send(response.toString());
 })
-
+// truyVanBlock
+app.get('/truyVanBlock', async(req, res)=>{
+  let blockID = req.query.blockID;
+  console.log(req.query.blockID)
+  let response = await truyVanBlock(blockID,'appUser');
+  console.log("response"+JSON.stringify(response))
+  res.send(JSON.stringify(response))
+})
 /*app.post('/', (req, res)=> {   
         res.writeHead(200,{"Content-Type" : "text/plain"});
         res.write("MSSV:"+req.body.mssv)

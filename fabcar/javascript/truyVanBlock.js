@@ -3,9 +3,9 @@
  */
 
 'use strict';
-
+// const nw = require('fabric-network');
 const { Gateway, Wallets } = require('fabric-network');
-const common = require('fabric-common')
+const { BlockDecoder} = require('fabric-common')
 // const { BlockDecoder } = require('BlockDecoder')
 const path = require('path');
 const fs = require('fs');
@@ -13,7 +13,7 @@ var Marshal = require('marshal');
 
 
 //exports.queryPaper = async function(mssv) 
-async function main(blockID, dinhdanh){
+async function main(blockID,dinhdanh){
    // let response = {}
     try {
         // load the network configuration
@@ -40,20 +40,38 @@ async function main(blockID, dinhdanh){
 
         // Get the network (channel) our contract is deployed to.
         const network = await gateway.getNetwork('mychannel');
-        // console.log(network.channel)
         // Get the contract from the network.
         const contract = network.getContract('qscc');
+    //    const channel = client.getChannel("mychannel")
+        //console.log(network)
+        // console.log(network);
+        // const channel = network.realtimeFullBlockEventSource.eventServiceManager.channel
 
         // Evaluate the specified transaction.
         // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
         // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
         // console.log('=======> OK'   )
-        const result = await contract.evaluateTransaction('GetChainInfo', "mychannel", blockID);
+         const result = await contract.evaluateTransaction('GetBlockByNumber', "mychannel",blockID)//, blockID);
+        let blockInfo = BlockDecoder.decode(result)
+        // let blockInfo = BlockDecoder.decode(result)
+        //const result = await channel.queryTransaction('GetBlockByNumber', "mychannel", blockID);
+      // console.log(channel)
+     /* let response_payload = await channel.queryBlock(parseInt(blockID));
+      console.log(response.response_payload);
+      if (response_payload) {
+			logger.debug(response_payload);
+			return response_payload;
+		} else {
+			logger.error('response_payload is null');
+			return 'response_payload is null';
+		}
         // console.log('=======>', result)
-        console.log(result);
+        console.log(result);*/
         // console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
         // console.log(common.BlockDecoder)
-        return result
+       //return result
+       console.log(blockInfo)
+       return blockInfo
 
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`);
@@ -63,18 +81,27 @@ async function main(blockID, dinhdanh){
        return false;
     }
 }
-// let dinhdanh ='appUser';
-// let mssv = 'B1609548';
-// main(mssv,dinhdanh);
 module.exports = main
-/*async function temp(){
+//async function temp(blockID, dinhdanh){
+    
 	// main('0', 'appUser')
-    // let blk_bytes = await main('1', 'appUser')
-    // let decoder = new BlockDecoder()
-    // console.log()
-    // console.log(blk_bytes.toString())
-    let obj = new Marshal('RHVtZW1heQ==', 'base64')
-    console.log(obj.parsed)
-}*/
+ //  let blk_bytes = await main(blockID,dinhdanh)
 
-//temp()
+    //let blk_bytes = await main(2,'appUser')
+   /* let i=0;
+    	while(true){
+    		try{
+    			let blk_bytes = await main(i,'appUser')
+    			let blockInfo = BlockDecoder.decode(blk_bytes)
+    			console.log(blockInfo)
+    			i++;
+    		}catch(e){
+    			break;
+    		}
+    		
+    	}*/
+   //     let blockInfo = BlockDecoder.decode(blk_bytes)
+   //     console.log(blockInfo)
+    	
+  //  }
+  //  module.exports = temp;

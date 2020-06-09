@@ -1,17 +1,23 @@
 'use strict';
 const { Contract } = require('fabric-contract-api');
+const ClientIdentity = require('fabric-shim').ClientIdentity;
 //const assert = require('assert')
+
 class QuanLyDiem extends Contract {
 	
-	async getIdentity(ctx) { 
+	//async getIdentity(ctx) { 
 		/*let identity = null
 		return identity*/
-		const ClientIdentity = require('fabric-shim').ClientIdentity;
-		let cid = new ClientIdentity(ctx)
-		if(cid.assertAttributeValue('firstName','Thao')){
-			throw new Error('Not a valid user')
-		}
-	}
+		//let cid = new ClientIdentity(ctx)
+		// if !cid.firstName:
+		// 	throw 
+
+		// if(cid.assertAttributeValue('firstName','Thao')){
+		// 	throw new Error('Not a valid user')
+		// }
+		//identity = cid.firstName
+		//return identity
+	//}
 
 	async khoiTao(ctx){
 		const obj_sv = 
@@ -74,12 +80,14 @@ class QuanLyDiem extends Contract {
 	async suaDiem(ctx, mssv, maLopHocPhan,diemmoi){ // giang vien se them diem/hoac sua diem hoc maLopHocPhan cua sinh vien co mssv voi diem tuong ung 
 		// kiem tra giangvien co the sua diem cua "maLopHocPhan" khong
 		// tien hanh sua diem cua sinh vien, va luu ten nguoi sua lai
+		//const identity = await getIdentity(ctx)
 		const sv = await ctx.stub.getState(mssv);
 		const svinfo = JSON.parse(sv.toString());
 		// lay ma hoc phan
 		const maNhom = svinfo.hocphan[maLopHocPhan]
 		// sua diem cu thanh diem moi
-		svinfo.hocphan[maLopHocPhan].diem= diemmoi;
+		svinfo.hocphan[maLopHocPhan].diem = diemmoi;
+		//svinfo.hocphan[maLopHocPhan].choboi = identity; 
 		const result = await ctx.stub.putState(mssv, Buffer.from(JSON.stringify(svinfo)))
 		console.log(svinfo)
 	}
