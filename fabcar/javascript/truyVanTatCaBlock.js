@@ -13,7 +13,7 @@ var Marshal = require('marshal');
 
 
 //exports.queryPaper = async function(mssv) 
-async function main(blockID,dinhdanh){
+async function main(dinhdanh){
    // let response = {}
     try {
         // load the network configuration
@@ -51,10 +51,22 @@ async function main(blockID,dinhdanh){
         // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
         // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
         // console.log('=======> OK'   )
-         const result = await contract.evaluateTransaction('GetBlockByNumber', "mychannel",blockID)//, blockID);
-         let blockInfo = BlockDecoder.decode(result)
+        let blockID=0;
+        let blockInfo
+        let blockArray=[]
+        while(true){
+            try{
+                 const result = await contract.evaluateTransaction('GetBlockByNumber', "mychannel",blockID)//, blockID);
+                 blockInfo = BlockDecoder.decode(result)
+                 blockArray.push(blockInfo)
+                 console.log(blockArray)
+                  blockID++
+            }catch(e){
+                break;
 
-         return blockInfo
+            }
+        }
+        return blockArray
 
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`);
@@ -64,8 +76,8 @@ async function main(blockID,dinhdanh){
        return false;
     }
 }
+module.exports = main
 //module.exports = main
-main('4','appUser')
 //async function temp(blockID, dinhdanh){
     
 	// main('0', 'appUser')

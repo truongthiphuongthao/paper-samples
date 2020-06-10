@@ -3,18 +3,21 @@ const { Contract } = require('fabric-contract-api');
 const assert = require('assert')
 const ClientIdentity = require('fabric-shim').ClientIdentity;
 class QuanLyDiem extends Contract {
-	
+
 	async getIdentity(ctx) { 
 		/*let identity = null
 		return identity*/
-		
 		let cid = new ClientIdentity(ctx)
-		/*if(cid.assertAttributeValue('firstName','Thao')){
-			throw new Error('Not a valid user')
-		}*/
-		ClientIdentity = cid.firstName
+		// if !cid.firstName:
+		// 	throw 
+
+		// if(cid.assertAttributeValue('firstName','Thao')){
+		// 	throw new Error('Not a valid user')
+		// }
+		let identity = cid.firstName
 		return identity
 	}
+
 
 	async khoiTao(ctx){
 		const obj_sv = 

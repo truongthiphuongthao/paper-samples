@@ -11,6 +11,7 @@ var truyVan = require('./truyVan.js')
 var truyVanTotNghiep = require('./truyVanTotNghiep.js')
 var suaDiem = require('./suaDiem.js')
 var truyVanBlock = require('./truyVanBlock.js')
+var truyVanTatCaBlock = require('./truyVanTatCaBlock.js')
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -69,6 +70,14 @@ app.get('/truyVanBlock', async(req, res)=>{
   let blockID = req.query.blockID;
   console.log(req.query.blockID)
   let response = await truyVanBlock(blockID,'appUser');
+  console.log("response"+JSON.stringify(response))
+  res.send(JSON.stringify(response))
+})
+// truy van tat ca cac block
+app.get('/truyVanTatCaBlock',async(req, res)=>{
+  /*let blockID = req.query.blockID
+  console.log(req.query.blockID)*/
+  let response = await truyVanTatCaBlock('appUser')
   console.log("response"+JSON.stringify(response))
   res.send(JSON.stringify(response))
 })
