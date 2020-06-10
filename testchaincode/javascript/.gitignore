@@ -1,7 +1,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-
+node_modules
 # Logs
 logs
 *.log
