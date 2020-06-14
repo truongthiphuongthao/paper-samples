@@ -14,13 +14,11 @@ describe ('Test Mychaincode', () => {
         Buffer.from(JSON.stringify({
        "QP003" : {
                 "ten" : "Giáo dục quốc phòng - An ninh 1",
-                "sotinchi" : 3,
-                "giangvien": "Khoai Lang"  
+                "sotinchi" : 3
        },
        "QP004" : {
                 "ten" : "Giáo dục quốc phòng - An ninh 2",
-                "sotinchi" :  2,
-                "giangvien": "Khoai Cao"
+                "sotinchi" :  2
        },
        "QP005" : {
                 "ten" : "Giáo dục quốc phòng - An ninh 3",
@@ -30,16 +28,36 @@ describe ('Test Mychaincode', () => {
                 "ten" : "Vi - Tích phân A1",
                 "sotinchi" : 3
        },
-       "TN033" : {
-                "ten" : "Tin học căn bản",
-                "sotinchi" : 1
-       },
-      "TN034" : {
-                "ten" : "TT.Tin học căn bản",
-                "sotinchi" : 2
+       "TN006" : {
+                "ten" : "Vi - Tích phân A2",
+                "sotinchi" : 3
        }
      }))
     )
+     //khoi tao giang vien
+     await chaincode.khoiTaoGiangVien({stub: mockStub}, 
+        Buffer.from(JSON.stringify({
+          "QP003" : {
+             "tengv" : "Khoai Lang",
+             "magv" : "GV001"
+          },
+          "QP004" : {
+            "tengv" : "Khoai Lang",
+            "magv" : "GV001"
+          },
+          "QP005" : {
+            "tengv" : "Khoai Mon",
+            "magv" : "GV003"
+          },
+          "TN001" : {
+            "tengv" : "Khoai So",
+            "magv" : "GV004"
+          }
+        }))
+    )
+     // them giang vien
+  await chaincode.themGiangVien({stub:mockStub},'TN006','Khoai','GV005')
+   // await chaincode.truyVanGV({stub:mockStub},'GV005')
    await chaincode.themSinhVien({stub: mockStub}, 'B1609549', 'Phuong Thao', '362')
 	});
   // Dang ky hoc phan

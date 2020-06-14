@@ -1,7 +1,206 @@
 {
-	"GV-001"{
-		"tengv" : "Phan Thượng Cang"
-		 "mon" : "Lap trinh huong doi tuong"
-
-	}
+	"QPO03" : {
+		"tengv" : "Lê Văn Tèo",
+		"magv" : "GV001"
+	},
+	"QP004" : {
+		"tengv" : "Lê Văn Tèo",
+		"magv" : "GV001"
+	},
+	"QP005" : {
+		"tengv" : "Lê Văn Tèo",
+		"magv" : "GV001"
+	},
+	"TN001" : {
+		"tengv" : "Lê Văn Quốc",
+		"magv" : "GV002"
+	},
+	"TN033" : {
+		"tengv" : "Bùi Minh Quân",
+		"magv" : "GV003"
+	},
+	"TN034" : {
+		"tengv" : "Bùi Minh Quân",
+		"magv" : "GV003"
+	},
+	"CT101" : {
+		"tengv" : "Phan Huy Cường",
+		"magv" : "GV004"
+	},
+	"CT172" : {
+		"tengv" : "Trần Việt Châu",
+		"magv" : "GV005"
+	},
+	"ML009" : {
+		"tengv": "Phạm Thị Hà",
+		"magv" : "GV006"
+	},
+	"TN012" : {
+		"tengv" : "Bùi Thị Cẩm Tú",
+		"magv" : "GV007"
+	},
+	"XH011" : {
+		"tengv" : "Phạm Thị Hằng",
+		"magv" : "GV008"
+	},
+	"KL001" : {
+		"tengv" : "Trần Văn Cường",
+        "magv" : "GV009"
+    },
+    "ML010" : {
+		"tengv" : "Trần Văn Tùng",
+        "magv" : "GV010"
+    },
+    "CT103" : {
+		"tengv" : "Trần Cao Đệ",
+        "magv" : "GV011"
+    },
+    "CT173" : {
+		"tengv" : "Đoàn Hòa Minh",
+        "magv" : "GV012"
+    },
+	"ML006" : {
+		"tengv" : "Phạm Văn Búa",
+        "magv" : "GV013"
+    },
+    "TC001" : {
+		"tengv" : "Trần Thanh Hùng",
+        "magv" : "GV014"
+    },
+	"TN002" : {
+		"tengv" : "Nguyễn Thị Oanh",
+        "magv" : "GV015"
+    },
+	"TN010" : {
+		"tengv" : "Bùi Văn Kiệt",
+        "magv" : "GV015"
+	},
+	"CC001" : {
+		"tengv" : "Trung tâm ĐHCT",
+        "magv" : "TTDHCT"
+    },
+	"C127" : {
+		"tengv" : "Lê Quyết Thắng",
+        "magv" : "GV016"
+    },
+	"CT174" : {
+		"tengv" : "Dương Huỳnh Trâm",
+        "magv" : "GV017"
+    },
+	"CT176" : {
+		"tengv" : "Nguyễn Công Huy",
+        "magv" : "GV018"
+    },
+	"CT181" : {
+		"tengv" : "Bùi Đăng Hà Phương",
+        "magv" : "GV019"
+    },
+    "CT187" : {
+		"tengv" : "Lê Thị Ngọc Diễm",
+		"magv" : "GV020"
+    },
+	"TC002" : {
+		"tengv" : "Trần Thanh Hùng",
+        "magv" : "GV014"
+    },
+	"ML011" : {
+		"tengv" : "Dương Văn Hiếu",
+		"magv" : "GV021"
+    },
+    "CT126" : {
+		"tengv" : "Lê Quyết Thắng",
+        "magv" : "GV016"
+   },
+	"CT171" : {
+		"tengv" : "Huỳnh Xuân Hiệp",
+        "magv" : "GV022"
+    },
+	"CT175" : {
+		"tengv" : "Phạm Nguyên Khang",
+		"magv" : "GV023"
+    },
+    "CT179" : {
+		"tengv" : "Thái Minh Tuấn",
+        "magv" : "GV024"
+    },
+	"CT180" : {
+		"tengv" : "Lê Đức Thắng",
+        "magv" : "GV025"
+    },
+	"CT311" : {
+		"tengv" : "Đỗ Thanh Nghị",
+		"magv" : "GV026"
+    },
+    "CT109" : {
+		"tengv" : "Trương Xuân Định",
+        "magv" : "GV027"
+    },
+	 "CT112" : {
+		"tengv" : "Lâm Nhựt Khang",
+        "magv" : "GV028"
+    },
+	"CT182" : {
+		"tengv" : "Bùi Đăng Hà Phương",
+        "magv" : "GV019"
+    },
+	"CT225" : {
+		"tengv" : "Đỗ Thanh Nghị",
+		"magv" : "GV026"
+    },
+    "CT428" : {
+		"tengv" : "Nguyễn Cao Hồng Ngọc",
+		"magv" : "GV027"
+   },
+	"TC024" : {
+		"tengv" : "Trần Thanh Hùng",
+        "magv" : "GV014"
+    },
+    "CT211" : {
+		"tengv" : "Phạm Hữu Tài",
+        "magv" : "GV028"
+    },
+	"CT212" : {
+		"tengv" : "Ngô Bá Hùng",
+        "magv" : "GV029"
+   },
+	"CT221" : {
+		"tengv" : "Nguyễn Công Huy",
+        "magv" : "GV018"
+    },
+    "CT226" : {
+		"tengv" : "Nguyễn Cao Hồng Ngọc",
+		"magv" : "GV027"
+    },
+	"CT233" : {
+		"tengv" : "Ngô Bá Hùng",
+        "magv" : "GV029"
+    },
+	"CT335" : {
+		"tengv" : "Phạm Hữu Tài",
+        "magv" : "GV028"
+    },
+	"CT232" : {
+		"tengv" : "Trần Thanh Điền",
+        "magv" : "GV030"
+    },
+	"CT274" : {
+		"tengv" : "Đoàn Hòa Minh",
+        "magv" : "GV012"
+   },
+	"CT338" : {
+		"tengv" : "Trần Thanh Điền",
+        "magv" : "GV030"
+    },
+	"CT439" : {
+		"tengv" : "Phan Thượng Cang",
+        "magv" : "GV031"
+    },
+	"CT452" : {
+		"tengv" : "Phan Thượng Cang",
+        "magv" : "GV031"
+    },
+	"CT592" : {
+		"tengv" : "Phan Thượng Cang",
+        "magv" : "GV031"
+    }
 }

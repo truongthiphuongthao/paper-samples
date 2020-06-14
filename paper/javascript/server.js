@@ -13,6 +13,7 @@ var suaDiem = require('./suaDiem.js')
 var truyVanBlock = require('./truyVanBlock.js')
 var truyVanTatCaBlock = require('./truyVanTatCaBlock.js')
 var khoiTaoCacHocPhan = require('./khoiTaoCacHocPhan')
+var khoiTaoGiangVien = require('./khoiTaoGiangVien')
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -119,5 +120,6 @@ app.post('/approvePaper', async(req,res) => {
 app.listen(port, async() => {
   await registerUser('appUser')
   await khoiTaoCacHocPhan()
+  await khoiTaoGiangVien()
   console.log(`Example app listening at http://localhost:${port}`)
 });

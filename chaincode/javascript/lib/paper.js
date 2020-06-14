@@ -48,20 +48,42 @@ class QuanLyDiem extends Contract {
 		console.info(obj_sv["B1609548"])
 		console.info(obj_sv["AllowedUser"])
 	}
-
-	async themGiangVien(ctx, maGiangVien){ // them vao giangVien co ma la maGiangVien, tin giang vien nay
-		const gv = await ctx.stub.getState("AllowedUser")
-		const gvinfo = JSON.parse(gv.toString())
-		gvinfo.push({"tengv":maGiangVien})
-		const result = await ctx.stub.putState("AllowedUser",Buffer.from(JSON.stringify(gvinfo)))
-		console.log(gvinfo)
+	// Khoi tao hoc phan
+	async khoiTaoCacHocPhan(ctx, hocphan) {
+		// TODO: Privilege
+		ctx.stub.putState("__hocphan__", hocphan)
 	}
+	// khoi tao giang vien
+	async khoiTaoGiangVien(ctx, giangvien){
+		ctx.stub.putState("__giangvien__", giangvien)
+		
+	}
+	// them giang vien 
+	async themGiangVien(ctx, mahp, tengv, magv){ 
+		 // let tatCaGiangVien = JSON.parse(await ctx.stub.getState('__giangvien__'))
+		 // let gvinfo = JSON.parse(tatCaGiangVien.toString())
+		 let tatCaGiangVien = await ctx.stub.getState('__giangvien__') 
+		 const gvinfo = JSON.parse(tatCaGiangVien.toString())
+		 console.log("Giang vien",gvinfo)
+		const GV = {	
+			'tengv' : tengv,
+			'magv' : magv
+		}
+	   const result = await ctx.stub.putState(magv, Buffer.from(JSON.stringify(GV)));
+	   console.log("them giang vien thanh cong")
+	}
+	//truy van giang vien
+	//   async truyVanGV(ctx, magv){ // truy van cac diem cua sinh vien
+	// 	const gv = await ctx.stub.getState(magv)
+	// 	// console.log("Giang vien:",gv.toString())
+	// 	return gv.toString()
+	// }
 	 async themSinhVien(ctx, mssv, ten, cmnd) {
 		// console.log(ctx.stub.getState('__hocphan__'))
 		let tatCaHocPhan = JSON.parse(await ctx.stub.getState('__hocphan__'))
 		// let tatCaSinhVien = JSON.parse(await ctx.stub.getState('__sinhvien__')) // e ko can lam cai nay
 		// TODO: add middleware
-
+        
 		const sinhvien = {
 			'ten': ten,
 			'cmnd': cmnd,
@@ -111,24 +133,24 @@ class QuanLyDiem extends Contract {
 	    const result = await ctx.stub.putState(mssv, Buffer.from(JSON.stringify(sinhvien)));
 	    console.log("them sinh vien thanh cong")
 	}
-	// Khoi tao hoc phan
-	async khoiTaoCacHocPhan(ctx, hocphan) {
-		// TODO: Privilege
-		ctx.stub.putState("__hocphan__", hocphan)
-	}
+	
 
 	// Giang vien cho diem
-	async choDiem(ctx, mssv, ki, maLopHocPhan, diemmoi){
-		//const identity = await this.getIdentity(ctx)
-		const identity = 'test'
+	async choDiem(ctx, mssv, ki, maLopHocPhan,diemmoi){
+		const identity = await this.getIdentity(ctx)
+		//const identity = 'test'
 	    const sv = await ctx.stub.getState(mssv);
 	    const svinfo = JSON.parse(sv.toString());
-	    // console.log(JSON.stringify(svinfo, null, 4))
+	    const gv = await ctx.stub.getState('__giangvien__')
+	    const gvinfo = JSON.parse(gv.toString())
+        let GV = gvinfo
+        // console.log(GV[maLopHocPhan].magv,null,4)
 	    for(let hocki in svinfo.hocki){
 	    	if (svinfo.hocki[ki][maLopHocPhan] != undefined) {
 	    		svinfo.hocki[ki][maLopHocPhan] = {
 	    			'diem' : diemmoi,
-	    			'choboi' : identity
+	    			'magv' : GV[maLopHocPhan].magv,
+	    			'tengv' : GV[maLopHocPhan].tengv
 	    		}
 	    	}
 
@@ -203,15 +225,15 @@ class QuanLyDiem extends Contract {
 			 }	
 		  }
 		  const diemTotNghiep = tong / tongSoChi
-		  if(tongSoChi>=11){
+		  if(tongSoChi>=145){
 		  	 kq = " da tot nghiep "
 		  }
 		  else{
 		  	 kq = " chua tot nghiep "
 		  }
-		  // console.log({ 'diemtotnghiep' : diemTotNghiep.toFixed(2),
-		  //           	'tongSoChi' : tongSoChi,
-		  //           	 'kq' : kq })
+		  console.log({ 'diemtotnghiep' : diemTotNghiep.toFixed(2),
+		            	'tongSoChi' : tongSoChi,
+		            	 'kq' : kq })
 		  return { 'diemtotnghiep' : diemTotNghiep.toFixed(2),
 		            'tongSoChi' : tongSoChi,
 		            'kq' : kq
