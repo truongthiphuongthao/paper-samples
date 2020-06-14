@@ -1,0 +1,286 @@
+ {
+		"hocki1nam1" : {
+			"QP003" : {
+				"diem" : -1,
+				"magv" : null,
+				"tengv": null
+			},
+			"QP004" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"QP005" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"TN001" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"TN033" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"TN034" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			}
+		},
+		"hocki2nam1" : {
+			"CT101" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT172" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"ML009" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"TN012" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"XH011" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			}
+		},
+		"hocki3nam1" : {
+			"KL001" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"ML010" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			}
+		},
+		"hocki1nam2" : {
+			"CT103" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT173" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"ML006" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"TC001" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"TN002" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"TN010" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			}
+		},
+		"hocki2nam2" : {
+			"CC001" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT127" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT174" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT176" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT178" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT181" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT187" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"TC002" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			}
+		},
+		"hocki3nam2" : {
+			"ML011" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			}
+		},
+		"hocki1nam3" : {
+			"CT126" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT171" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT175" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT179" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT180" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT311" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			}
+		},
+		"hocki2nam3": {
+			"CT109" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT112" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT182" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT225" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT428" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"TC024" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			}
+		},
+		"hocki1nam4" : {
+			"CT211" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT212" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT221" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT226" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT233" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT335" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			}
+		},
+		"hocki2nam4" : {
+			"CT232" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT274" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT338" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			},
+			"CT439" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			}
+		},
+		"hocki3nam4" : {
+			"CT452" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			}
+		},
+		"hocki1nam5" : {
+			"CT592" : {
+				"diem" : -1,
+				"tengv" : null,
+				"magv" : null
+			}
+		}
+}

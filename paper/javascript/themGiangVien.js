@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 
 //exports.submitPaper= async function(mssv, name, year, type) {
- async function main (maGiangVien, dinhdanh) {
+ async function main (maHp, maGiangVien, dinhdanh) {
    // let response = {}
 //  async function main() {
     try {
@@ -48,10 +48,10 @@ const path = require('path');
         // changeCarOwner transaction - requires 2 args , ex: ('changeCarOwner', 'CAR12', 'Dave')
         // await contract.submitTransaction('submitPaper', mssv , name , year , type);
         //  await contract.submitTransaction('submitPaper', "B1609550" , "Thao" , "2020" , "Kha")
-         let result = await contract.submitTransaction('themGiangVien',maGiangVien);
+         let result = await contract.submitTransaction('themGiangVien', mahp, maGiangVien);
          console.log('Transaction has been submitted');
 
-        // Disconnect from the gateway.
+        // Disconnect from the gatessssway.
         await gateway.disconnect();
         //response.msg ='submitPaper Transaction has been submitted'
 	    return "Successful add giangVien "+maGiangVien;

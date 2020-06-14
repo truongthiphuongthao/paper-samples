@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 
 //exports.submitPaper= async function(mssv, name, year, type) {
- async function main (mssv,maLopHocPhan, diemmoi, dinhdanh) {
+ async function main (mssv,ki,maLopHocPhan, diemmoi, dinhdanh) {
    // let response = {}
 //  async function main() {
     try {
@@ -48,7 +48,7 @@ const path = require('path');
         // changeCarOwner transaction - requires 2 args , ex: ('changeCarOwner', 'CAR12', 'Dave')
         // await contract.submitTransaction('submitPaper', mssv , name , year , type);
         //  await contract.submitTransaction('submitPaper', "B1609550" , "Thao" , "2020" , "Kha")
-         await contract.submitTransaction('suaDiem',mssv, maLopHocPhan, diemmoi);
+         await contract.submitTransaction('choDiem',mssv, ki, maLopHocPhan, diemmoi);
          console.log('Transaction has been submitted');
 
         // Disconnect from the gateway.
@@ -65,9 +65,12 @@ const path = require('path');
         //return response;
     }
 }
-/*let mssv='B1609548';
-let maLopHocPhan='CT173-01'
+let mssv='B1609548';
+let ki ='hocki1nam1'
+let maLopHocPhan='QP003'
 let diemmoi='8'
 let dinhdanh='appUser';
-main(mssv,maLopHocPhan, diemmoi, dinhdanh);*/
-module.exports = main;
+main(mssv,ki, maLopHocPhan, diemmoi, dinhdanh);
+//module.exports = main;
+
+// buong di, a sua cho

@@ -2,18 +2,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 'use strict';
-
 const { Gateway, Wallets } = require('fabric-network');
 const fs = require('fs');
 const path = require('path');
-
+const sinhvien = require('./dulieu/sinhvien.json')
 //exports.submitPaper= async function(mssv, name, year, type) {
-async function main (mssv, ten, cmnd, dinhdanh) {
+async function main (mssv,hocki,hocphan) {
    // let response = {}
 //  async function main() {
     try {
+        let dinhdanh = 'admin'
         // load the network configuration
-       // const ccpPath = path.resolve(__dirname, '..', '..','test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
         const ccpPath = path.resolve(__dirname, '..', '..','first-network', 'connection-org1.json');
         let ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
 
@@ -38,30 +37,30 @@ async function main (mssv, ten, cmnd, dinhdanh) {
         const network = await gateway.getNetwork('mychannel');
         // Get the contract from the network.
         const contract = network.getContract('paper');
-        // Submit the specified transaction.
-        // createCar transaction - requires 5 argument, ex: ('createCar', 'CAR12', 'Honda', 'Accord', 'Black', 'Tom')
-        // changeCarOwner transaction - requires 2 args , ex: ('changeCarOwner', 'CAR12', 'Dave')
-        // await contract.submitTransaction('submitPaper', mssv , name , year , type);
-        //  await contract.submitTransaction('submitPaper', "B1609550" , "Thao" , "2020" , "Kha")
-         await contract.submitTransaction('themSinhVien', mssv ,ten, cmnd);
-         console.log('Transaction has been submitted');
+        //await contract.submitTransaction('dangKyHocPhan','B1609548',JSON.stringify(sinhvien))
+        const dangky =  await contract.submitTransaction('dangKyHocPhan',mssv, hocki, hocphan)
+        //et monhoc = await contract.submitTransaction('dangKyHocPhan',)
+        console.log('Transaction has been submitted');
+
         // Disconnect from the gateway.
         await gateway.disconnect();
+        return true
         //response.msg ='submitPaper Transaction has been submitted'
-		//return 'Successfully added student ' + mssv;
+		// return 'Successfully added student ' + mssv;
     } catch (error) {
         console.error(`Failed to submit transaction: ${error}`);
-        //response.error = error.message
-       // return response
-        //process.exit(1);
-        //return response;
         return false;
     }
 }
 let mssv = 'B1609549'
-let ten = 'Phuong Thao'
-let cmnd = '3612'
-let dinhdanh = 'appUser';
-main(mssv, ten , cmnd , dinhdanh);
-//module.exports = main;
+let hocki = 'hocki1nam1'
+let hocphan =
+ {'QP003':{
+    diem : -1,
+    tengv : null,
+    magv : null
+ }
+}
+ main(mssv, hocki, hocphan)
+// module.exports = main
 

@@ -14,6 +14,7 @@ var truyVanBlock = require('./truyVanBlock.js')
 var truyVanTatCaBlock = require('./truyVanTatCaBlock.js')
 var khoiTaoCacHocPhan = require('./khoiTaoCacHocPhan')
 var khoiTaoGiangVien = require('./khoiTaoGiangVien')
+var dangKyHocPhan = require('./dangKyHocPhan')
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -121,5 +122,6 @@ app.listen(port, async() => {
   await registerUser('appUser')
   await khoiTaoCacHocPhan()
   await khoiTaoGiangVien()
+  await dangKyHocPhan()
   console.log(`Example app listening at http://localhost:${port}`)
 });
