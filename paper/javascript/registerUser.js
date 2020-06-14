@@ -39,7 +39,6 @@ async function main(dinhDanh) {
             console.log('Run the enrollAdmin.js application before retrying');
             return;
         }
-
         // build a user object for authenticating with the CA
         const provider = wallet.getProviderRegistry().getProvider(adminIdentity.type);
         const adminUser = await provider.getUserContext(adminIdentity, 'admin');
@@ -49,12 +48,12 @@ async function main(dinhDanh) {
             affiliation: 'org1.department1',
             enrollmentID: dinhDanh,
             role: 'client',
-	    attrs: [{name: 'firstName', value: 'Thao', ecert: true}]
+	    attrs: [{name: 'name', value: 'Thao', ecert: true}]
         }, adminUser);
         const enrollment = await ca.enroll({
             enrollmentID: dinhDanh,
             enrollmentSecret: secret,
-            attrs_reqs: [{name: 'firstName', optional: false}]
+            attrs_reqs: [{name: 'name', optional: false}]
         });
         const x509Identity = {
             credentials: {
@@ -67,6 +66,5 @@ async function main(dinhDanh) {
         await wallet.put(dinhDanh, x509Identity);
         console.log(`Successfully registered and enrolled admin user "${dinhDanh}" and imported it into the wallet`);
 }
-
-let dinhDanh = 'appUser';
-main(dinhDanh);
+//let dinhDanh = 'appUser';
+module.exports = main

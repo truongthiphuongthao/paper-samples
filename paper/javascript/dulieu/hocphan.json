@@ -1,0 +1,213 @@
+{
+       "QP003" : {
+                "ten" : "Giáo dục quốc phòng - An ninh 1",
+                "sotinchi" : 3,
+                "tichluy": 0
+       },
+       "QP004" : {
+              	"ten" : "Giáo dục quốc phòng - An ninh 2",
+                "sotinchi" :  2,
+                "tichluy": 0
+       },
+       "QP005" : {
+		          "ten" : "Giáo dục quốc phòng - An ninh 3",
+              "sotinchi" : 3,
+              "tichluy": 0
+       },
+       "TN001" : {
+		          "ten" : "Vi - Tích phân A1",
+              "sotinchi" : 3
+       },
+       "TN033" : {
+		"ten" : "Tin học căn bản",
+                "sotinchi" : 1
+       },
+      "TN034" : {
+		"ten" : "TT.Tin học căn bản",
+                "sotinchi" : 2
+       },
+      "CT101" : {
+		"ten" : "Lập trình căn bản A",
+                "sotinchi" : 4
+       }, 
+      "CT172" : {
+                "ten" : "Toán rời rạc",
+                "sotinchi": 4
+       },
+      "ML009" : {
+ 		"ten" : "Những nguyên lí cơ bản của chủ nghĩa Mác-Leenin 1",
+		"sotinchi" : 2
+       },
+      "TN012" : {
+		"ten" : "Đại số tuyến tính và hình học",
+                "sotinchi" : 4
+       },
+      "XH011" : {
+		"ten" : "Cơ sở văn hóa Việt Nam",
+                "sotinchi" : 2
+       },
+      "KL001" : {
+		"ten" : "Pháp luật đại cương",
+                "sotinchi" : 2
+       },
+      "ML010" : {
+		"ten" : "Những nguyên lí cơ bản của chủ nghĩa Mác-Leenin 2",
+		"sotinchi" : 3
+       },
+      "CT103" : {
+		"ten" : "Cấu trúc dữ liệu",
+                "sotinchi" : 4
+       },
+      "CT173" : {
+		"ten" : "Kiến trúc máy tính",
+                "sotinchi" : 3
+       },
+      "ML006" : {
+		"ten" : "Tư tưởng Hồ Chí Minh",
+                "sotinchi" : 2
+       },
+      "TC001" : {
+               "ten" : "Điền kinh 1",
+               "sotinchi" : 1
+       },
+      "TN002" : {
+	       "ten" : "Vi - Tích phân A2",
+               "sotinchi" :1
+       },
+      "TN010" : {
+		"ten" : "Xác suất thống kê",
+                "sotinchi" : 3
+       },
+      "CC001" : {
+		"ten" : "Chứng chỉ Tiếng Anh trình độ A",
+                "sotinchi" : 10
+       },
+      "CT127" : {
+               "ten" : "Lý thuyết thông tin",
+               "sotinchi" :2
+       },
+      "CT174" : {
+	      "ten" : "Phân tích và thiết kế thuật toán",
+              "sotinchi" : 3
+       },
+      "CT176" : {
+	      "ten": "Lập trình hướng đối tượng",
+              "sotinchi" : 3
+       },
+      "CT178" : {
+	      "ten" : "Nguyên lí hệ điều hành",
+              "sotinchi" : 3
+       },
+      "CT181" : {
+	      "ten" : "Hệ thống thông tin doanh nghiệp",
+	      "sotinchi" : 3
+       },
+       "CT187" : {
+	      "ten" : "Nền tảng công nghệ thông tin",
+	      "sotinchi" : 3
+       },
+      "TC002" : {
+               "ten" : "Điền kinh 2",
+               "sotinchi" : 1
+       },
+      "ML011" : { 
+               "ten" : "Đường lối cách mạng Đảng cộng sản Việt Nam",
+	       "sotinchi" : 3
+       },
+      "CT126" : {
+               "ten" : "Lý thuyết xếp hàng",
+               "sotinchi" : 2
+       },
+      "CT171" : {
+               "ten" : "Nhập môn công nghệ phần mềm",
+               "sotinchi" : 3
+       },
+      "CT175" : {
+               "ten" : "Lý thuyết đồ th",
+               "sotinchi" : 3
+       },
+      "CT179" : {
+               "ten" : "Quản trị hệ thống",
+               "sotinchi" : 3
+       },
+      "CT180" : {
+               "ten" : "Cơ sở dữ liệu",
+               "sotinchi" : 3
+       },
+      "CT311" : {
+	       "ten" : "Phương pháp nghiên cứu khoa học",
+               "sotinchi" : 2
+       }, 
+       "CT109" : {
+               "ten" : "Phân tích và thiết kế hệ thống thông tin",
+               "sotinchi" : 3
+       },
+       "CT112" : {
+	       "ten" : "Mạng máy tính",
+               "sotinchi" : 3
+       },
+       "CT182" : {
+	       "ten" : "Ngôn ngữ mô hóa",
+               "sotinchi" : 3
+       },
+       "CT225" : {
+	       "ten" : "Lập trình Python",
+               "sotinchi" : 2
+       }, 
+      "CT428" : {
+	      "ten" : "Lập trình Web",
+              "sotinchi" : 3
+       },
+      "TCO24" : {
+              "ten" : "Điền kinh 3",
+              "sotinchi" : 1           
+       },
+      "CT211" : {
+	       "ten" : "An ninh mạng",
+               "sotinchi" : 3
+       },
+      "CT212" : {
+	       "ten" : "Quản trị mạng",
+               "sotinchi" : 3
+       },
+      "CT221" : {
+	       "ten" : "Lập trình mạng",
+               "sotinchi" : 3
+       },
+      "CT226" : {
+	       "ten" : "Niên luận cơ sở mạng máy tính và truyền thông",
+               "sotinchi" : 3
+       },
+       "CT233" : {
+	       "ten" : "Điện toán đám mây",
+               "sotinchi" : 3
+       },
+       "CT335" : {
+	       "ten" : "Thiết kế cài đặt mạng",
+               "sotinchi" : 3
+       },
+        "CT232" : {
+	       "ten" : "Đánh giá hiệu năng mạng",
+               "sotinchi" : 3
+       },
+        "CT274" : {
+	       "ten" : "Lập trình cho thiết bị di động",
+               "sotinchi" : 3
+       },
+       "CT338" : {
+	       "ten" : "Mạng không dây và di động",
+               "sotinchi" : 2
+       }, 
+        "CT439" : {
+	       "ten" : "Niên luận Mạng máy tính và truyền thông",
+               "sotinchi" : 3
+       },
+       "CT452" : {
+               "ten" : "Thực tập thực tế - TT&MMT",
+               "sotinchi" : 2
+       },
+       "CT592" : {
+               "ten" : "Luận văn tốt nghiệp TT&MMT",
+               "sotinchi" : 10
+       }
+}

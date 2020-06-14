@@ -12,6 +12,7 @@ var truyVanTotNghiep = require('./truyVanTotNghiep.js')
 var suaDiem = require('./suaDiem.js')
 var truyVanBlock = require('./truyVanBlock.js')
 var truyVanTatCaBlock = require('./truyVanTatCaBlock.js')
+var khoiTaoCacHocPhan = require('./khoiTaoCacHocPhan')
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -19,7 +20,9 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 
 app.use(express.static('../../frontend'))
+// Dang ki user
 // Them sinh vien
+
 app.post('/themSinhVien', async(req, res) => {
    let ten = req.body.ten
    let mssv = req.body.mssv
@@ -112,4 +115,9 @@ app.post('/approvePaper', async(req,res) => {
      //let papersRecord = JSON.parse(response)
      res.send(response)
 })*/
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
+
+app.listen(port, async() => {
+  await registerUser('appUser')
+  await khoiTaoCacHocPhan()
+  console.log(`Example app listening at http://localhost:${port}`)
+});

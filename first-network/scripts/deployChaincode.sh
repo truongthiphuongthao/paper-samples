@@ -13,8 +13,8 @@ setGlobals 0 1
 # install chaincode on peer0.org1
 peer lifecycle chaincode install ${name}.tar.gz
 # Environment variables for PEER1 in Org1
-setGlobals 1 1
-peer lifecycle chaincode install ${name}.tar.gz
+#setGlobals 1 1
+#peer lifecycle chaincode install ${name}.tar.gz
 # Environment variables for PEER0 in Org2
 #setGlobals 0 2
 #peer lifecycle chaincode install ${name}.tar.gz
@@ -35,7 +35,7 @@ queryInstalled() {
   echo
 }
 queryInstalled 0 1
-queryInstalled 1 1
+#queryInstalled 1 1
 #env peer0.org1
 setGlobals 0 1
 #approve peer0.org1

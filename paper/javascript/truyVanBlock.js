@@ -64,8 +64,8 @@ async function main(blockID,dinhdanh){
        return false;
     }
 }
-//module.exports = main
-main('4','appUser')
+module.exports = main
+//main('4','appUser')
 //async function temp(blockID, dinhdanh){
     
 	// main('0', 'appUser')
