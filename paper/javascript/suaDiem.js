@@ -6,11 +6,8 @@
 const { Gateway, Wallets } = require('fabric-network');
 const fs = require('fs');
 const path = require('path');
-
 //exports.submitPaper= async function(mssv, name, year, type) {
- async function main (mssv,ki,maLopHocPhan, diemmoi, dinhdanh) {
-   // let response = {}
-//  async function main() {
+ async function main (dinhdanh) {
     try {
         // load the network configuration
        // const ccpPath = path.resolve(__dirname, '..', '..','test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
@@ -36,41 +33,25 @@ const path = require('path');
 
         // Get the network (channel) our contract is deployed to.
         const network = await gateway.getNetwork('mychannel');
-
-
-
-
         // Get the contract from the network.
         const contract = network.getContract('paper');
-
-        // Submit the specified transaction.
-        // createCar transaction - requires 5 argument, ex: ('createCar', 'CAR12', 'Honda', 'Accord', 'Black', 'Tom')
-        // changeCarOwner transaction - requires 2 args , ex: ('changeCarOwner', 'CAR12', 'Dave')
-        // await contract.submitTransaction('submitPaper', mssv , name , year , type);
-        //  await contract.submitTransaction('submitPaper', "B1609550" , "Thao" , "2020" , "Kha")
-         await contract.submitTransaction('choDiem',mssv, ki, maLopHocPhan, diemmoi);
+         await contract.submitTransaction('choDiem','B1609549','hocki1nam1','QP003','A')
+         await contract.submitTransaction('choDiem','B1609549','hocki1nam1','QP004', 'A')
+         await contract.submitTransaction('choDiem','B1609549','hocki1nam2','QP005', 'B+')
+        await contract.submitTransaction('choDiem','B1609549','hocki2nam2','TN001', 'A')
          console.log('Transaction has been submitted');
-
         // Disconnect from the gateway.
         await gateway.disconnect();
         //response.msg ='submitPaper Transaction has been submitted'
-	    return "Sua diem oke"+diemmoi
+	    //return "Sua diem oke"+diemmoi
 
     } catch (error) {
         console.error(`Failed to submit transaction: ${error}`);
-        //response.error = error.message
-       // return response
-        //process.exit(1);
         return false;
-        //return response;
     }
 }
-let mssv='B1609548';
-let ki ='hocki1nam1'
-let maLopHocPhan='QP003'
-let diemmoi='8'
 let dinhdanh='appUser';
-main(mssv,ki, maLopHocPhan, diemmoi, dinhdanh);
+main(dinhdanh);
 //module.exports = main;
 
 // buong di, a sua cho

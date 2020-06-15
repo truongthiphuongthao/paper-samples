@@ -38,19 +38,15 @@ describe ('Test Mychaincode', () => {
      await chaincode.khoiTaoGiangVien({stub: mockStub}, 
         Buffer.from(JSON.stringify({
           "QP003" : {
-             "tengv" : "Khoai Lang",
              "magv" : "GV001"
           },
           "QP004" : {
-            "tengv" : "Khoai Lang",
             "magv" : "GV001"
           },
           "QP005" : {
-            "tengv" : "Khoai Mon",
             "magv" : "GV003"
           },
           "TN001" : {
-            "tengv" : "Khoai So",
             "magv" : "GV004"
           }
         }))
@@ -60,23 +56,34 @@ describe ('Test Mychaincode', () => {
    // await chaincode.truyVanGV({stub:mockStub},'GV005')
    await chaincode.themSinhVien({stub: mockStub}, 'B1609549', 'Phuong Thao', '362')
 	});
-  // Dang ky hoc phan
+ // Dang ky hoc phan
   it('should dangKiHocPhan initialized records', async()=>{
-     await chaincode.dangKyHocPhan({stub:mockStub},'B1609549','hocki1nam1',{'QP003':{diem: -1, magv: null, tengv : null},'QP004':{diem: -1, magv: null, tengv: null}})
-     await chaincode.dangKyHocPhan({stub:mockStub},'B1609549','hocki2nam1',{'QP005':{diem: -1, magv: null, tengv: null},'TN001':{diem: -1, magv: null, tengv: null}})
+    console.log("Dang ky hoc phan")
+     await chaincode.dangKyHocPhan({stub:mockStub},'B1609549','hocki1nam1',{'QP003':{diem: -1, magv: null},'QP004':{diem: -1, magv: null}})
+     await chaincode.dangKyHocPhan({stub:mockStub},'B1609549','hocki2nam1',{'QP005':{diem: -1, magv: null},'TN001':{diem: -1, magv: null}})
   })  
-
+  // it('should truyVanGiangVien initialized records', async()=>{
+  //     console.log("Truy van giang vien")
+  //     const truyVanGV = await chaincode.truyVanGV({stub:mockStub},'GV005')
+  //      // console.log(ketQuaDiem)
+  //       //assert.equal(paperResult != "", true)
+  // }) 
 
   // Truy van sinh vien
 	it('should truyVan initialized records', async()=>{
+      console.log("Truy van sinh vien")
       const truyVan = await chaincode.truyVan({stub:mockStub},'B1609549')
        // console.log(ketQuaDiem)
         //assert.equal(paperResult != "", true)
   })  
 
-  it('should give access to maGv for subject class idenitfied by mahp', async()=>{
-    await chaincode.themGiangVien({stub:mockStub}, 'QP003','GV001')
-  })  
+  // it('should give access to maGv for subject class idenitfied by mahp', async()=>{
+  //   console.log("them giang vien")
+  //   // await chaincode.themGiangVien({stub:mockStub}, 'QP003','GV001')
+  //   // await chaincode.themGiangVien({stub:mockStub},'QP004','GV002')
+  //   // await chaincode.themGiangVien({stub:mockStub},'QP005','GV003')
+  //   await chaincode.themGiangVien({stub:mockStub},'TN006','GV005')
+  // })  
 	// Cho diem
   it('should choDiem initialized records', async()=>{
      await chaincode.choDiem({stub:mockStub},'B1609549', 'hocki1nam1', 'QP003', 'A')
@@ -85,15 +92,20 @@ describe ('Test Mychaincode', () => {
      await chaincode.choDiem({stub:mockStub},'B1609549', 'hocki2nam1', 'TN001', 'A')
   })
 
-	  // it('should tinhtichLuy initialized records', async()=>{
-   //   	 await chaincode.tinhTichLuy({stub:mockStub},'B1609549','hocki1nam1')
-   //     await chaincode.tinhTichLuy({stub:mockStub},'B1609549','hocki2nam1')
-   //   })
+
+	  it('should tinhtichLuy initialized records', async()=>{
+     	 await chaincode.tinhTichLuy({stub:mockStub},'B1609549')
+       // await chaincode.tinhTichLuy({stub:mockStub},'B1609549','hocki2nam1')
+     })
+    it('should tinhDiemTBHocKy initialized records', async()=>{
+        await chaincode.tinhTrungBinhHocKy({stub:mockStub},'B1609549','hocki1nam1')
+        await chaincode.tinhTrungBinhHocKy({stub:mockStub},'B1609549','hocki2nam1')
+     })
     // xet tot nghiep
-    // it('should xetTotNghiep initialized records', async()=>{
+    it('should xetTotNghiep initialized records', async()=>{
       
-    //   const xetTotNghiep = await chaincode.xetTotNghiep({stub:mockStub},'B1609549')
-    //  })  
+      const xetTotNghiep = await chaincode.xetTotNghiep({stub:mockStub},'B1609549')
+     })  
 	 // it('should getIdentity initialized records', async()=>{
   //   	const getIdentity = await chaincode.getIdentity({stub:mockStub})
   //      // console.log(suaDiem)

@@ -8,8 +8,6 @@ const path = require('path');
 const hocphan = require('./dulieu/hocphan.json')
 //exports.submitPaper= async function(mssv, name, year, type) {
 async function main () {
-   // let response = {}
-//  async function main() {
     try {
         let dinhdanh = 'admin'
         // load the network configuration
@@ -37,13 +35,14 @@ async function main () {
         const network = await gateway.getNetwork('mychannel');
         // Get the contract from the network.
         const contract = network.getContract('paper');
-        console.log(hocphan)
-        await contract.submitTransaction('khoiTaoCacHocPhan', JSON.stringify(hocphan));
+        // console.log(hocphan)
+        const  result =  await contract.createTransaction('khoiTaoCacHocPhan',Buffer.from(JSON.stringify(hocphan)))
+       console.log(JSON.stringify(result))
         console.log('Transaction has been submitted');
 
         // Disconnect from the gateway.
         await gateway.disconnect();
-        return true
+        return result
         //response.msg ='submitPaper Transaction has been submitted'
 		// return 'Successfully added student ' + mssv;
     } catch (error) {
@@ -51,5 +50,6 @@ async function main () {
         return false;
     }
 }
-module.exports = main;
+main()
+//module.exports = main;
 

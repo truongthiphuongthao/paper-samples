@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const sinhvien = require('./dulieu/sinhvien.json')
 //exports.submitPaper= async function(mssv, name, year, type) {
-async function main (mssv,hocki,hocphan) {
+async function main () {
    // let response = {}
 //  async function main() {
     try {
@@ -38,7 +38,8 @@ async function main (mssv,hocki,hocphan) {
         // Get the contract from the network.
         const contract = network.getContract('paper');
         //await contract.submitTransaction('dangKyHocPhan','B1609548',JSON.stringify(sinhvien))
-        const dangky =  await contract.submitTransaction('dangKyHocPhan',mssv, hocki, hocphan)
+        await contract.submitTransaction('dangKyHocPhan','B1609549','hocki1nam1',{'QP003':{diem: -1, magv: null},'QP004':{diem: -1, magv: null}})
+         await contract.submitTransaction('dangKyHocPhan','B1609549','hocki2nam1',{'QP005':{diem: -1, magv: null},'TN001':{diem: -1, magv: null}})
         //et monhoc = await contract.submitTransaction('dangKyHocPhan',)
         console.log('Transaction has been submitted');
 
@@ -52,15 +53,7 @@ async function main (mssv,hocki,hocphan) {
         return false;
     }
 }
-let mssv = 'B1609549'
-let hocki = 'hocki1nam1'
-let hocphan =
- {'QP003':{
-    diem : -1,
-    tengv : null,
-    magv : null
- }
-}
- main(mssv, hocki, hocphan)
+
+ main()
 // module.exports = main
 

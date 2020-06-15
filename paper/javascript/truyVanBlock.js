@@ -53,7 +53,7 @@ async function main(blockID,dinhdanh){
         // console.log('=======> OK'   )
          const result = await contract.evaluateTransaction('GetBlockByNumber', "mychannel",blockID)//, blockID);
          let blockInfo = BlockDecoder.decode(result)
-
+         console.log(blockInfo)
          return blockInfo
 
     } catch (error) {
@@ -64,7 +64,9 @@ async function main(blockID,dinhdanh){
        return false;
     }
 }
-module.exports = main
+let blockID ='1'
+let dinhdanh = 'appUser'
+main(blockID, dinhdanh)
 //main('4','appUser')
 //async function temp(blockID, dinhdanh){
     

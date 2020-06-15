@@ -122,6 +122,5 @@ app.listen(port, async() => {
   await registerUser('appUser')
   await khoiTaoCacHocPhan()
   await khoiTaoGiangVien()
-  await dangKyHocPhan()
   console.log(`Example app listening at http://localhost:${port}`)
 });

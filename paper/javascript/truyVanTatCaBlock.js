@@ -10,9 +10,6 @@ const { BlockDecoder} = require('fabric-common')
 const path = require('path');
 const fs = require('fs');
 var Marshal = require('marshal');
-
-
-//exports.queryPaper = async function(mssv) 
 async function main(dinhdanh){
    // let response = {}
     try {
@@ -59,13 +56,13 @@ async function main(dinhdanh){
                  const result = await contract.evaluateTransaction('GetBlockByNumber', "mychannel",blockID)//, blockID);
                  blockInfo = BlockDecoder.decode(result)
                  blockArray.push(blockInfo)
-                 console.log(blockArray)
                   blockID++
             }catch(e){
                 break;
 
             }
         }
+        console.log(blockArray)
         return blockArray
 
     } catch (error) {
@@ -76,7 +73,9 @@ async function main(dinhdanh){
        return false;
     }
 }
-module.exports = main
+let dinhdanh = 'appUser'
+main(dinhdanh)
+//module.exports = main
 //module.exports = main
 //async function temp(blockID, dinhdanh){
     

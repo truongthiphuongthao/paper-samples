@@ -8,8 +8,6 @@ const path = require('path');
 const giangvien = require('./dulieu/giangvien.json')
 //exports.submitPaper= async function(mssv, name, year, type) {
 async function main () {
-   // let response = {}
-//  async function main() {
     try {
         let dinhdanh = 'admin'
         // load the network configuration
@@ -51,6 +49,6 @@ async function main () {
         return false;
     }
 }
-// main()
-module.exports = main
+ main()
+// module.exports = main
 
