@@ -44,7 +44,7 @@ async function main(mssv, dinhdanh){
        return false;
     }
 }
- let dinhdanh ='appUser';
- let mssv = 'B1609549';
- main(mssv,dinhdanh);
-//module.exports = main
+ // let dinhdanh ='appUser';
+ // let mssv = 'B1609549';
+ // main(mssv,dinhdanh);
+module.exports = main

@@ -2,11 +2,12 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <title> Query All Block </title>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <title> Xet tot nghiep </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+
 <style type="text/css">
       header{
         background-color: lightgray;
@@ -56,33 +57,28 @@
           background-color: #dddddd;
       }
     </style>
-  <script>
-      function truyVanTatCaBlock(){
-      // alert('Pressed');
-      var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function(){
-          if(this.readyState ==4 && this.status ==200){
-            document.getElementById('text').innerText =xhttp.responseText 
-          }
-      };
-      //var blockID = document.getElementById('blockID').value;
-      xhttp.open("GET","/truyVanTatCaBlock",true);
-      xhttp.send();
-      return false;
-  }
-     
-  </script>
 </head>
 
-<body onload="truyVanTatCaBlock()">
+<body>
     <div class="form-group">
+    <form method="POST" action="/xetTotNghiep" name="xetTotNghiepForm">
+        <table class="table">
+            <tr>
+            
+                <td><label for="mssv">Mã số Sinh Viên</label></td>
+                <td><input class="form-control" type="text" id="mssv" name="mssv" placeholder="B1609523" required></td>
+            
+            </tr>
 
-      <textarea rows="40" cols="200" name="text" id="text"></textarea>
-
+             <tr>
+                 <td></td>
+                <td><button name="query" value="submitQuery" class="btn btn-primary">Xác nhận </button></td>
+             </tr>
+        </table>
+    </form>
     </div>
 
 </body>
 
 </html>
-
 

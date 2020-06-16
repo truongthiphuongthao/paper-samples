@@ -66,6 +66,6 @@ async function main(dinhDanh) {
         await wallet.put(dinhDanh, x509Identity);
         console.log(`Successfully registered and enrolled admin user "${dinhDanh}" and imported it into the wallet`);
 }
-let dinhDanh = 'appUser';
-main(dinhDanh)
-//module.exports = main
+// let dinhDanh = 'appUser';
+// main(dinhDanh)
+module.exports = main

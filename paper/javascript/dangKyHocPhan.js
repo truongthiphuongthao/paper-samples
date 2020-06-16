@@ -58,8 +58,7 @@ async function main () {
             )
         )
         //et monhoc = await contract.submitTransaction('dangKyHocPhan',)
-        console.log('Transaction has been submitted');
-
+        console.log('Transaction has been submitted dang ky hoc phan');
         // Disconnect from the gateway.
         await gateway.disconnect();
         return true
@@ -70,7 +69,6 @@ async function main () {
         return false;
     }
 }
-
- main()
-// module.exports = main
+// main()
+ module.exports = main
 

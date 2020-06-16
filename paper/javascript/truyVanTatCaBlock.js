@@ -11,7 +11,6 @@ const path = require('path');
 const fs = require('fs');
 var Marshal = require('marshal');
 async function main(dinhdanh){
-   // let response = {}
     try {
         // load the network configuration
         //const ccpPath = path.resolve(__dirname, '..', '..','test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
@@ -39,21 +38,12 @@ async function main(dinhdanh){
         const network = await gateway.getNetwork('mychannel');
         // Get the contract from the network.
         const contract = network.getContract('qscc');
-    //    const channel = client.getChannel("mychannel")
-        //console.log(network)
-        // console.log(network);
-        // const channel = network.realtimeFullBlockEventSource.eventServiceManager.channel
-
-        // Evaluate the specified transaction.
-        // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
-        // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
-        // console.log('=======> OK'   )
         let blockID=0;
         let blockInfo
         let blockArray=[]
         while(true){
             try{
-                 const result = await contract.evaluateTransaction('GetBlockByNumber', "mychannel",blockID)//, blockID);
+                 const result = await contract.evaluateTransaction('GetBlockByNumber', "mychannel",blockID)
                  blockInfo = BlockDecoder.decode(result)
                  blockArray.push(blockInfo)
                   blockID++
@@ -73,10 +63,9 @@ async function main(dinhdanh){
        return false;
     }
 }
-let dinhdanh = 'appUser'
-main(dinhdanh)
-//module.exports = main
-//module.exports = main
+// let dinhdanh = 'appUser'
+// main(dinhdanh)
+module.exports = main
 //async function temp(blockID, dinhdanh){
     
 	// main('0', 'appUser')

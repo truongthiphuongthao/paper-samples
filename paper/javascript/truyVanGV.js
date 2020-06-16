@@ -43,7 +43,7 @@ async function main(magv, dinhdanh){
        return false;
     }
 }
- let dinhdanh ='appUser';
- let magv = 'GV001';
- main(magv,dinhdanh);
-//module.exports = main
+ // let dinhdanh ='appUser';
+ // let magv = 'GV001';
+ // main(magv,dinhdanh);
+module.exports = main

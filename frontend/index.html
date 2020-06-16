@@ -59,8 +59,7 @@
     </style>
     <script>
     // document.getElementById('tinhtrang-wrapper').style.display="none";	
-    function truyVanTotNghiep(){
-    	// alert('Pressed');
+    function xetTotNghiep(){
 	    var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
         	if(this.readyState ==4 && this.status ==200){
@@ -68,7 +67,7 @@
 	      }
 	    };
 	    var mssv = document.getElementById('mssv').value;
-	    xhttp.open("GET","/truyVanTotNghiep?mssv="+mssv,true);
+	    xhttp.open("GET","/xetTotNghiep?mssv="+mssv,true);
 	    xhttp.send();
 	    return false;
 	}
@@ -89,8 +88,8 @@
 		    xhttp1.send();
 	}
 	function queryAll(){
-		truyVanTotNghiep()
-		truyVan()
+    xetTotNghiep()
+    truyVan()
 	}
 
     </script>
@@ -109,7 +108,7 @@
 
              <tr>
                 <td></td>
-                <td><button onclick="queryAll()" name="query" class="btn btn-primary"> Xem van bang </button></td>
+                <td><button onclick="queryAll()" name="query" class="btn btn-primary"> Kết quả </button></td>
              </tr>
         </table>
     </div>

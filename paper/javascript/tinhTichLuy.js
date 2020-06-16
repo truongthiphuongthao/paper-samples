@@ -8,7 +8,7 @@ const { Gateway, Wallets } = require('fabric-network');
 const path = require('path');
 const fs = require('fs');
 //exports.queryPaper = async function(mssv) 
-async function main(dinhdanh){
+async function main(mssv,dinhdanh){
    // let response = {}
     try {
         // load the network configuration
@@ -33,17 +33,17 @@ async function main(dinhdanh){
         const network = await gateway.getNetwork('mychannel');
         // Get the contract from the network.
         const contract = network.getContract('paper');
-        const result =  await contract.submitTransaction('tinhTichLuy', 'B1609549')
+        const result =  await contract.submitTransaction('tinhTichLuy', mssv)
         // console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
         //let b_result = Buffer.from(JSON.parse(result).data)
         console.log(result.toString())
-        return result
+        return result.toString()
 
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`);
        return false;
     }
 }
- let dinhdanh ='appUser';
- main(dinhdanh);
-//module.exports = main
+ // let dinhdanh ='appUser';
+ // main(dinhdanh);
+module.exports = main

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <title> Add Student </title>
+    <title> Cho Diem </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -61,7 +61,7 @@
 
 <body>
     <div class="form-group">
-    <form method="POST" action="/themDiem" name="themDiemForm">
+    <form method="POST" action="/tinhTichLuy" name="tinhTichLuy">
         <table class="table">
             <tr>
             
@@ -69,22 +69,11 @@
                 <td><input class="form-control" type="text" id="mssv" name="mssv" placeholder="B1609523" required></td>
             
             </tr>
+             <tr> 
 
-             <tr>
-            
-                <td><label for="maLopHocPhan">Mã học phần</label></td>
-                <td><input class="form-control" type="text" id="maLopHocPhan" name="maLopHocPhan" placeholder="CT222" required></td>
-           
-             </tr>
-             <tr>
-            
-                <td><label for="diemmoi">Điểm</label></td>
-                <td><input class="form-control" type="text" id="diemmoi" name="diemmoi" placeholder="9" required></td>
-           
-             </tr>
-             <tr>
-                 <td></td>
-                <td><button name="submitScore" value="submitScore" class="btn btn-primary">Thêm </button></td>
+                <td> </td>
+                <td><button name="submitScore" value="submitScore" class="btn btn-primary">Tính</button></td>
+
              </tr>
         </table>
     </form>

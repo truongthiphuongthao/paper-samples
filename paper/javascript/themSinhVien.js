@@ -50,10 +50,10 @@ async function main (mssv, ten, cmnd, dinhdanh) {
         return false;
     }
 }
-let mssv = 'B1609549'
-let ten = 'Phuong Thao'
-let cmnd = '092198000255'
-let dinhdanh = 'appUser';
-main(mssv, ten , cmnd , dinhdanh);
-//module.exports = main;
+// let mssv = 'B1609549'
+// let ten = 'Phuong Thao'
+// let cmnd = '092198000255'
+// let dinhdanh = 'appUser';
+//main(mssv, ten , cmnd , dinhdanh);
+module.exports = main;
 

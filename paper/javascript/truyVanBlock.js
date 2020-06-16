@@ -42,15 +42,6 @@ async function main(blockID,dinhdanh){
         const network = await gateway.getNetwork('mychannel');
         // Get the contract from the network.
         const contract = network.getContract('qscc');
-    //    const channel = client.getChannel("mychannel")
-        //console.log(network)
-        // console.log(network);
-        // const channel = network.realtimeFullBlockEventSource.eventServiceManager.channel
-
-        // Evaluate the specified transaction.
-        // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
-        // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
-        // console.log('=======> OK'   )
          const result = await contract.evaluateTransaction('GetBlockByNumber', "mychannel",blockID)//, blockID);
          let blockInfo = BlockDecoder.decode(result)
          console.log(blockInfo)
@@ -64,9 +55,10 @@ async function main(blockID,dinhdanh){
        return false;
     }
 }
-let blockID ='1'
-let dinhdanh = 'appUser'
-main(blockID, dinhdanh)
+// let blockID ='1'
+// let dinhdanh = 'appUser'
+// main(blockID, dinhdanh)
+module.exports = main
 //main('4','appUser')
 //async function temp(blockID, dinhdanh){
     

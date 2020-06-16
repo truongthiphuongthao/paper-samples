@@ -38,7 +38,6 @@ async function main () {
         // console.log(hocphan)
         const result =  await contract.submitTransaction('khoiTaoCacHocPhan',Buffer.from(JSON.stringify(hocphan)))
         console.log(hocphan) 
-
         console.log('Transaction has been submitted');
         // Disconnect from the gateway.
         await gateway.disconnect();
@@ -50,6 +49,6 @@ async function main () {
         return false;
     }
 }
-main()
-//module.exports = main;
+//main()
+module.exports = main;
 

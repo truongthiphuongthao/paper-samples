@@ -61,8 +61,6 @@ class QuanLyDiem extends Contract {
 
 	//them giang vien vao LOP hoc phan 
 	async themGiangVien(ctx, mahp, magv){ 
-		 // let tatCaGiangVien = JSON.parse(await ctx.stub.getState('__giangvien__'))
-		 // let gvinfo = JSON.parse(tatCaGiangVien)
 		let tatCaGiangVien = await ctx.stub.getState('__giangvien__') 
 		const gvinfo = JSON.parse(tatCaGiangVien)
 		console.log("Giang vien",gvinfo)

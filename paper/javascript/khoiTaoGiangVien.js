@@ -49,6 +49,6 @@ async function main () {
         return false;
     }
 }
- main()
-// module.exports = main
+//main()
+ module.exports = main
 
