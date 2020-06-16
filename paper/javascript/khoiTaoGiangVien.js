@@ -6,7 +6,6 @@ const { Gateway, Wallets } = require('fabric-network');
 const fs = require('fs');
 const path = require('path');
 const giangvien = require('./dulieu/giangvien.json')
-//exports.submitPaper= async function(mssv, name, year, type) {
 async function main () {
     try {
         let dinhdanh = 'admin'
@@ -36,7 +35,8 @@ async function main () {
         // Get the contract from the network.
         const contract = network.getContract('paper');
         console.log(giangvien)
-        await contract.submitTransaction('khoiTaoGiangVien', JSON.stringify(giangvien));
+        await contract.submitTransaction('khoiTaoGiangVien',
+            Buffer.from(JSON.stringify(giangvien)));
         console.log('Transaction has been submitted');
 
         // Disconnect from the gateway.

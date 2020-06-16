@@ -34,10 +34,10 @@ async function main(mssv, dinhdanh){
         // Get the contract from the network.
         const contract = network.getContract('paper');
         const result = await contract.evaluateTransaction('truyVan', mssv);
-        const re_info = JSON.stringify(result.toString())
-        console.log(re_info)
-        // console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
-        return result
+        let b_result = Buffer.from(JSON.parse(result).data)
+        console.log(b_result.toString('utf8'))
+        console.log(`Transaction has been evaluated`);
+        return b_result.toString('utf8')
 
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`);

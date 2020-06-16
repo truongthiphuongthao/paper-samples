@@ -41,7 +41,7 @@ describe ('Test Mychaincode', () => {
              "magv" : "GV001"
           },
           "QP004" : {
-            "magv" : "GV001"
+            "magv" : "GV002"
           },
           "QP005" : {
             "magv" : "GV003"
@@ -51,68 +51,70 @@ describe ('Test Mychaincode', () => {
           }
         }))
     )
-     // them giang vien
-  //await chaincode.themGiangVien({stub:mockStub},'TN006','Khoai','GV005')
-   // await chaincode.truyVanGV({stub:mockStub},'GV005')
-   await chaincode.themSinhVien({stub: mockStub}, 'B1609549', 'Phuong Thao', '362')
+    await chaincode.themSinhVien({stub: mockStub}, 'B1609549', 'Phuong Thao', '362')
 	});
  // Dang ky hoc phan
   it('should dangKiHocPhan initialized records', async()=>{
     console.log("Dang ky hoc phan")
-     await chaincode.dangKyHocPhan({stub:mockStub},'B1609549','hocki1nam1',{'QP003':{diem: -1, magv: null},'QP004':{diem: -1, magv: null}})
-     await chaincode.dangKyHocPhan({stub:mockStub},'B1609549','hocki2nam1',{'QP005':{diem: -1, magv: null},'TN001':{diem: -1, magv: null}})
+    await chaincode.dangKyHocPhan({stub:mockStub},'B1609549','hocki1nam1',
+        JSON.stringify({'QP003':{diem: -1, magv: null},'QP004':{diem: -1, magv: null}}))
+
+    await chaincode.dangKyHocPhan({stub:mockStub},'B1609549','hocki2nam1',
+        JSON.stringify({'QP005':{diem: -1, magv: null},'TN001':{diem: -1, magv: null}}))
   })  
-  // it('should truyVanGiangVien initialized records', async()=>{
-  //     console.log("Truy van giang vien")
-  //     const truyVanGV = await chaincode.truyVanGV({stub:mockStub},'GV005')
-  //      // console.log(ketQuaDiem)
-  //       //assert.equal(paperResult != "", true)
-  // }) 
+  it('should truyVanGiangVien initialized records', async()=>{
+      console.log("Truy van giang vien")
+      const truyVanGV = await chaincode.truyVanGV({stub:mockStub},'GV001')
+      console.log(truyVanGV)
+  })      
 
   // Truy van sinh vien
 	it('should truyVan initialized records', async()=>{
       console.log("Truy van sinh vien")
       const truyVan = await chaincode.truyVan({stub:mockStub},'B1609549')
-       // console.log(ketQuaDiem)
-        //assert.equal(paperResult != "", true)
+      console.log(
+        JSON.stringify(JSON.parse(truyVan), null, 4)
+      )
+      assert.equal(JSON.stringify(JSON.parse(truyVan).hocki.hocki1nam1), JSON.stringify({'QP003':{diem: -1, magv: null},'QP004':{diem: -1, magv: null}}))
   })  
 
-  // it('should give access to maGv for subject class idenitfied by mahp', async()=>{
-  //   console.log("them giang vien")
-  //   // await chaincode.themGiangVien({stub:mockStub}, 'QP003','GV001')
-  //   // await chaincode.themGiangVien({stub:mockStub},'QP004','GV002')
-  //   // await chaincode.themGiangVien({stub:mockStub},'QP005','GV003')
-  //   await chaincode.themGiangVien({stub:mockStub},'TN006','GV005')
-  // })  
+  it('should give access to maGv for subject class idenitfied by mahp', async()=>{
+    console.log("them giang vien")
+    await chaincode.themGiangVien({stub:mockStub}, 'QP006','GV005')
+  }) 
 	// Cho diem
-  it('should choDiem initialized records', async()=>{
-     await chaincode.choDiem({stub:mockStub},'B1609549', 'hocki1nam1', 'QP003', 'A')
-     await chaincode.choDiem({stub:mockStub},'B1609549', 'hocki1nam1', 'QP004', 'A')
-     await chaincode.choDiem({stub:mockStub},'B1609549', 'hocki2nam1', 'QP005', 'B+')
-     await chaincode.choDiem({stub:mockStub},'B1609549', 'hocki2nam1', 'TN001', 'A')
+  it('should choDiem initialized records', async()=>{ 
+    await chaincode.choDiem({stub:mockStub},'B1609549', 'hocki1nam1', 'QP003', 'A')
+    await chaincode.choDiem({stub:mockStub},'B1609549', 'hocki1nam1', 'QP004', 'A')
+    await chaincode.choDiem({stub:mockStub},'B1609549', 'hocki2nam1', 'QP005', 'B+')
+    await chaincode.choDiem({stub:mockStub},'B1609549', 'hocki2nam1', 'TN001', 'A')
+  })
+  it('should truyVan initialized records', async()=>{
+    console.log("Truy van sinh vien")
+    const truyVan = await chaincode.truyVan({stub:mockStub},'B1609549')
+    console.log(
+      JSON.stringify(JSON.parse(truyVan), null, 4)
+    )
+    // console.log()
+    assert.equal(JSON.stringify(JSON.parse(truyVan).hocki.hocki1nam1), JSON.stringify({'QP003':{diem: 'A', magv: 'GV001'},'QP004':{diem: 'A', magv: 'GV002'}}))
+    // assert.equal(truyVan/ != "", true)
+  })  
+
+
+  it('should tinhtichLuy initialized records', async()=>{
+  	 await chaincode.tinhTichLuy({stub:mockStub},'B1609549')
   })
 
-
-	  it('should tinhtichLuy initialized records', async()=>{
-     	 await chaincode.tinhTichLuy({stub:mockStub},'B1609549')
-       // await chaincode.tinhTichLuy({stub:mockStub},'B1609549','hocki2nam1')
-     })
-    it('should tinhDiemTBHocKy initialized records', async()=>{
-        await chaincode.tinhTrungBinhHocKy({stub:mockStub},'B1609549','hocki1nam1')
-        await chaincode.tinhTrungBinhHocKy({stub:mockStub},'B1609549','hocki2nam1')
-     })
-    // xet tot nghiep
-    it('should xetTotNghiep initialized records', async()=>{
-      
-      const xetTotNghiep = await chaincode.xetTotNghiep({stub:mockStub},'B1609549')
-     })  
-	 // it('should getIdentity initialized records', async()=>{
-  //   	const getIdentity = await chaincode.getIdentity({stub:mockStub})
-  //      // console.log(suaDiem)
-  //       //assert.equal(paperResult != "", true)
-  //   })	
-  // Dang ki hoc phan
-   
+  it('should tinhDiemTBHocKy initialized records', async()=>{
+    await chaincode.tinhTrungBinhHocKy({stub:mockStub},'B1609549','hocki1nam1')
+    await chaincode.tinhTrungBinhHocKy({stub:mockStub},'B1609549','hocki2nam1')
+  })
   
+  //  // xet tot nghiep
+  it('should xetTotNghiep initialized records', async()=>{
+
+    const xetTotNghiep = await chaincode.xetTotNghiep({stub:mockStub},'B1609549')
+    console.log(xetTotNghiep)
+  })
 })
 module.exports = QuanLyDiem;

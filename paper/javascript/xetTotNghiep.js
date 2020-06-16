@@ -44,7 +44,7 @@ async function main (mssv, dinhdanh){
         // Evaluate the specified transaction.
         // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
         // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
-        const result = await contract.evaluateTransaction('truyVanTotNghiep', mssv);
+        const result = await contract.evaluateTransaction('xetTotNghiep', mssv);
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
         return result
     } catch (error) {
@@ -55,8 +55,8 @@ async function main (mssv, dinhdanh){
         return false
     }
 }
-/*let dinhdanh ='appUser';
-let mssv = 'B1609548';
-main(mssv,dinhdanh);*/
-module.exports = main;
+let dinhdanh ='appUser';
+let mssv = 'B1609549';
+main(mssv,dinhdanh);
+//module.exports = main;
 

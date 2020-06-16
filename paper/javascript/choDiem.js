@@ -35,11 +35,12 @@ const path = require('path');
         const network = await gateway.getNetwork('mychannel');
         // Get the contract from the network.
         const contract = network.getContract('paper');
-         await contract.submitTransaction('choDiem','B1609549','hocki1nam1','QP003','A')
-         await contract.submitTransaction('choDiem','B1609549','hocki1nam1','QP004', 'A')
-         await contract.submitTransaction('choDiem','B1609549','hocki1nam2','QP005', 'B+')
-        await contract.submitTransaction('choDiem','B1609549','hocki2nam2','TN001', 'A')
-         console.log('Transaction has been submitted');
+        await contract.submitTransaction('choDiem','B1609549','hocki1nam1','QP003', 'A')
+        await contract.submitTransaction('choDiem','B1609549','hocki1nam1','QP004', 'A')
+        await contract.submitTransaction('choDiem','B1609549','hocki2nam1','QP005', 'B+')
+        await contract.submitTransaction('choDiem','B1609549','hocki2nam1','TN001', 'A')
+
+        console.log('Transaction has been submitted');
         // Disconnect from the gateway.
         await gateway.disconnect();
         //response.msg ='submitPaper Transaction has been submitted'
@@ -50,8 +51,6 @@ const path = require('path');
         return false;
     }
 }
-let dinhdanh='appUser';
+let dinhdanh='admin';
 main(dinhdanh);
 //module.exports = main;
-
-// buong di, a sua cho

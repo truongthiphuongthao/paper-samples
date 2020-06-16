@@ -5,11 +5,7 @@
 const { Gateway, Wallets } = require('fabric-network');
 const fs = require('fs');
 const path = require('path');
-const sinhvien = require('./dulieu/sinhvien.json')
-//exports.submitPaper= async function(mssv, name, year, type) {
 async function main () {
-   // let response = {}
-//  async function main() {
     try {
         let dinhdanh = 'admin'
         // load the network configuration
@@ -38,8 +34,29 @@ async function main () {
         // Get the contract from the network.
         const contract = network.getContract('paper');
         //await contract.submitTransaction('dangKyHocPhan','B1609548',JSON.stringify(sinhvien))
-        await contract.submitTransaction('dangKyHocPhan','B1609549','hocki1nam1',{'QP003':{diem: -1, magv: null},'QP004':{diem: -1, magv: null}})
-         await contract.submitTransaction('dangKyHocPhan','B1609549','hocki2nam1',{'QP005':{diem: -1, magv: null},'TN001':{diem: -1, magv: null}})
+        await contract.submitTransaction(
+            'dangKyHocPhan',
+            'B1609549',
+            'hocki1nam1',
+            JSON.stringify(
+                {
+                    'QP003':{diem: -1, magv: null},
+                    'QP004':{diem: -1, magv: null}
+                }
+            )
+        )
+        
+        await contract.submitTransaction(
+            'dangKyHocPhan',
+            'B1609549',
+            'hocki2nam1',
+            JSON.stringify(
+                {
+                    'QP005':{diem: -1, magv: null},
+                    'TN001':{diem: -1, magv: null}
+                }
+            )
+        )
         //et monhoc = await contract.submitTransaction('dangKyHocPhan',)
         console.log('Transaction has been submitted');
 

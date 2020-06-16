@@ -59,35 +59,32 @@ class QuanLyDiem extends Contract {
 		ctx.stub.putState("__giangvien__", giangvien)		
 	}
 
-	// them giang vien vao LOP hoc phan 
-	// async themGiangVien(ctx, mahp, magv){ 
-	// 	 // let tatCaGiangVien = JSON.parse(await ctx.stub.getState('__giangvien__'))
-	// 	 // let gvinfo = JSON.parse(tatCaGiangVien)
-	// 	let tatCaGiangVien = await ctx.stub.getState('__giangvien__') 
-	// 	const gvinfo = JSON.parse(tatCaGiangVien)
-	// 	console.log("Giang vien",gvinfo)
-	// 	gvinfo[mahp] = magv
-	//     const result = await ctx.stub.putState(magv, Buffer.from(JSON.stringify(gvinfo)));
-	//     console.log("them giang vien thanh cong cho hoc phan " + mahp)
-	// }
+	//them giang vien vao LOP hoc phan 
+	async themGiangVien(ctx, mahp, magv){ 
+		 // let tatCaGiangVien = JSON.parse(await ctx.stub.getState('__giangvien__'))
+		 // let gvinfo = JSON.parse(tatCaGiangVien)
+		let tatCaGiangVien = await ctx.stub.getState('__giangvien__') 
+		const gvinfo = JSON.parse(tatCaGiangVien)
+		console.log("Giang vien",gvinfo)
+		gvinfo[mahp] = magv
+	    const result = await ctx.stub.putState(magv, Buffer.from(JSON.stringify(gvinfo)));
+	    console.log("them giang vien thanh cong cho hoc phan " + mahp)
+	}
 
 
 	//truy van giang vien
-	// async truyVanGV(ctx, magv){ // truy van cac hoc phan ma giang vien day:
-	// 	const gv = JSON.parse(await ctx.stub.getState('__giangvien__'))
-	// 	let cacHocPhan = []   
-	// 	for(let key in gv) { // TODO: fix this bad practice
-	// 		if (gv[key] == magv) cacHocPhan.push(key)
-	// 	}
-	// 	return JSON.stringify(cacHocPhan)
-	// }
+	async truyVanGV(ctx, magv){ // truy van cac hoc phan ma giang vien day:
+		const gv = JSON.parse(await ctx.stub.getState('__giangvien__'))
+		let cacHocPhan = []   
+		for(let key in gv) { // TODO: fix this bad practice
+			if (gv[key].magv == magv) cacHocPhan.push(key)
+		}
+		return JSON.stringify(cacHocPhan)
+	}
 
 	async themSinhVien(ctx, mssv, ten, cmnd) {
-		// console.log(ctx.stub.getState('__hocphan__'))
 		let tatCaHocPhan = await ctx.stub.getState('__hocphan__')
-		// let tatCaSinhVien = JSON.parse(await ctx.stub.getState('__sinhvien__')) // e ko can lam cai nay
 		// TODO: add middleware
-
 		const sinhvien = {
 			'ten': ten,
 			'cmnd': cmnd,
@@ -138,8 +135,6 @@ class QuanLyDiem extends Contract {
 		console.log("them sinh vien thanh cong")
 	}
 
-
-
 	// Giang vien cho diem
 	async choDiem(ctx, mssv, ki, maLopHocPhan, diemmoi){
 		//const identity = await this.getIdentity(ctx)
@@ -149,14 +144,14 @@ class QuanLyDiem extends Contract {
 	    const gv = await ctx.stub.getState('__giangvien__')
 	    const gvinfo = JSON.parse(gv)
 	    
-    	// if (gv[maLopHocPhan] == undefined) {// TODO: Add condition as CID reveals who he/she is
+    	// if (gv[maLopHocPhan].magv == undefined) {// TODO: Add condition as CID reveals who he/she is
     	// 	throw "Giao vien khong the sua diem hoc phan nay"}
         // console.log(GV[maLopHocPhan].magv,null,4)
 	    for(let hocki in svinfo.hocki){
 	    	if (svinfo.hocki[ki][maLopHocPhan] != undefined) {
 	    		svinfo.hocki[ki][maLopHocPhan] = {
 	    			'diem' : diemmoi,
-	    			'magv' : gv[maLopHocPhan]	    			
+	    			'magv' : gvinfo[maLopHocPhan].magv	    			
 	    		}
 	    	}
 	    }
@@ -167,7 +162,7 @@ class QuanLyDiem extends Contract {
     async truyVan(ctx, mssv){ // truy van cac diem cua sinh vien
 		const sv = await ctx.stub.getState(mssv)
 		console.log("Sinh vien:"+sv)
-		return sv.toString()
+		return sv
 	}
 	
 	async dangKyHocPhan(ctx, mssv, hocki, hocphan) {
@@ -176,9 +171,9 @@ class QuanLyDiem extends Contract {
 		console.log(svinfo.hocki[hocki])
 		// todo: Kiem tra hocphan xem hop le k
 		if (svinfo.hocki[hocki] != undefined){
-			svinfo.hocki[hocki] = hocphan
+			svinfo.hocki[hocki] = JSON.parse(hocphan)
 			await ctx.stub.putState(mssv, Buffer.from(JSON.stringify(svinfo)));
-		} 
+		}
 		else throw 'khong the dang ky duoc nua'
 	}
 
@@ -272,9 +267,7 @@ class QuanLyDiem extends Contract {
 		        'tongSoChi' : tongSoChi,
 		       	'kq' : kq 
 			} 
-		//console.log(ketqua)
-
-		 return JSON.stringify(ketqua)
+		return JSON.stringify(ketqua)
 	}
 }	    
 module.exports = QuanLyDiem;

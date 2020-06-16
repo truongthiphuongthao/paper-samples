@@ -36,10 +36,10 @@ async function main () {
         // Get the contract from the network.
         const contract = network.getContract('paper');
         // console.log(hocphan)
-        const  result =  await contract.createTransaction('khoiTaoCacHocPhan',Buffer.from(JSON.stringify(hocphan)))
-       console.log(JSON.stringify(result))
-        console.log('Transaction has been submitted');
+        const result =  await contract.submitTransaction('khoiTaoCacHocPhan',Buffer.from(JSON.stringify(hocphan)))
+        console.log(hocphan) 
 
+        console.log('Transaction has been submitted');
         // Disconnect from the gateway.
         await gateway.disconnect();
         return result
