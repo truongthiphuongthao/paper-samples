@@ -123,7 +123,7 @@ if [ "${NO_CHAINCODE}" != "true" ]; then
 
 	## now that we know for sure both orgs have approved, commit the definition
 	#commitChaincodeDefinition 1 0 1 0 2
-         commitChaincodeDefinition 1 0 1 
+    commitChaincodeDefinition 1 0 1 
 
 	## query on both orgs to see that the definition committed successfully
 	queryCommitted 1 0 1
