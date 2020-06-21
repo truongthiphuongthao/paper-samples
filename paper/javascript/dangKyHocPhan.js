@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 async function main () {
     try {
-        let dinhdanh = 'admin'
+        let dinhdanh = 'appUser'
         // load the network configuration
         const ccpPath = path.resolve(__dirname, '..', '..','first-network', 'connection-org1.json');
         let ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
@@ -37,38 +37,44 @@ async function main () {
         await contract.submitTransaction(
             'dangKyHocPhan',
             'B1609549',
-            'hocki1nam1',
+            'hocki1',
             JSON.stringify(
                 {
-                    'QP003':{diem: -1, magv: null},
-                    'QP004':{diem: -1, magv: null}
+                    'CT001':{diem: -1, magv: null},
+                    'CT002':{diem: -1, magv: null},
+                    'CT003':{diem: -1, magv: null}
                 }
-            )
-        )
-        
-        await contract.submitTransaction(
-            'dangKyHocPhan',
-            'B1609549',
-            'hocki2nam1',
-            JSON.stringify(
-                {
-                    'QP005':{diem: -1, magv: null},
-                    'TN001':{diem: -1, magv: null}
-                }
-            )
-        )
+            ))
+        // await contract.submitTransaction(
+        //     'dangKyHocPhan',
+        //     'B1609549',
+        //     'hocki2',
+        //     JSON.stringify(
+        //         {
+        //             'CT003':{diem: -1, magv: null},
+        //             'CT004':{diem: -1, magv: null}
+        //         }
+        //     ))
+        // await contract.submitTransaction(
+        //     'dangKyHocPhan',
+        //     'B1609549',
+        //     'hocki3',
+        //     JSON.stringify(
+        //         {
+        //             'CT005':{diem: -1, magv: null},
+        //             'CT006':{diem: -1, magv: null}
+        //         }
+        //     ))
         //et monhoc = await contract.submitTransaction('dangKyHocPhan',)
-        console.log('Transaction has been submitted dang ky hoc phan');
+        console.log('Transaction has been submitted dangKyHocPhan');
         // Disconnect from the gateway.
         await gateway.disconnect();
         return true
-        //response.msg ='submitPaper Transaction has been submitted'
-		// return 'Successfully added student ' + mssv;
     } catch (error) {
         console.error(`Failed to submit transaction: ${error}`);
         return false;
     }
 }
-// main()
- module.exports = main
+ //main()
+module.exports = main
 

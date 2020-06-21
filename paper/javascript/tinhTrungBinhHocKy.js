@@ -7,9 +7,7 @@
 const { Gateway, Wallets } = require('fabric-network');
 const path = require('path');
 const fs = require('fs');
-//exports.queryPaper = async function(mssv) 
 async function main(mssv, hocki, dinhdanh){
-   // let response = {}
     try {
         // load the network configuration
         //const ccpPath = path.resolve(__dirname, '..', '..','test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
@@ -44,6 +42,8 @@ async function main(mssv, hocki, dinhdanh){
        return false;
     }
 }
+ // let mssv ='B1609549'
+ // let hocki = 'hocki1'
  // let dinhdanh ='appUser';
- // main(dinhdanh);
+ // main(mssv, hocki, dinhdanh);
 module.exports = main

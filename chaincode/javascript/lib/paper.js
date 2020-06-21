@@ -2,7 +2,6 @@
 const { Contract } = require('fabric-contract-api');
 const ClientIdentity = require('fabric-shim').ClientIdentity;
 class QuanLyDiem extends Contract {
-	
 	async getIdentity(ctx) { 
 		let cid = new ClientIdentity(ctx.stub)
 		let id = cid.getAttributeValue('name')
@@ -13,8 +12,8 @@ class QuanLyDiem extends Contract {
 		const obj_sv = 
 		{
 			"B1609548":{
-				"ten": "Truong Thi Phuong Thao",
-				"cmnd": "092198000255",
+				"ten": "Le Van A",
+				"cmnd": "001",
 				"hocphan":{
 				    "CT173-01":{
 				    	"diem": 7,
@@ -63,20 +62,22 @@ class QuanLyDiem extends Contract {
 	async themGiangVien(ctx, mahp, magv){ 
 		let tatCaGiangVien = await ctx.stub.getState('__giangvien__') 
 		const gvinfo = JSON.parse(tatCaGiangVien)
-		console.log("Giang vien",gvinfo)
-		gvinfo[mahp] = magv
-	    const result = await ctx.stub.putState(magv, Buffer.from(JSON.stringify(gvinfo)));
-	    console.log("them giang vien thanh cong cho hoc phan " + mahp)
-	}
-
+		gvinfo[mahp] = {magv: magv} // moi hoc phan chi dc 1 giang vien day
+		// console.log('------>', gvinfo[mahp]) 
+	    await ctx.stub.putState('__giangvien__', Buffer.from(JSON.stringify(gvinfo)));
+    }
 
 	//truy van giang vien
 	async truyVanGV(ctx, magv){ // truy van cac hoc phan ma giang vien day:
 		const gv = JSON.parse(await ctx.stub.getState('__giangvien__'))
-		let cacHocPhan = []   
+		// console.log(gv)
+		let cacHocPhan  = []
+		// console.log("giang vien ",gv)
 		for(let key in gv) { // TODO: fix this bad practice
-			if (gv[key].magv == magv) cacHocPhan.push(key)
+			if (gv[key].magv == magv) 
+				cacHocPhan.push(key)
 		}
+		console.log(cacHocPhan)
 		return JSON.stringify(cacHocPhan)
 	}
 
@@ -87,43 +88,13 @@ class QuanLyDiem extends Contract {
 			'ten': ten,
 			'cmnd': cmnd,
 			'hocki' : {
-				'hocki1nam1' : {
+				'hocki1' : {
 					
 				},
-				'hocki2nam1' : {
+				'hocki2' : {
 
 				},
-				'hocki3nam1' : {
-
-				},
-				'hocki1nam2' : {
-
-				},
-				'hocki2nam2' : {
-
-				},
-				'hocki3nam2' : {
-
-				},
-				'hocki1nam3' : {
-
-				},
-				'hocki2nam3' : {
-
-				},
-				'hocki3nam3' : {
-
-				},
-				'hocki4nam1' : {
-
-				},
-				'hocki4nam2' : {
-
-				},
-				'hocki4nam3' : {
-
-				},
-				'hocki5nam1' : {
+				'hocki3' : {
 
 				}
 			} 
@@ -134,7 +105,7 @@ class QuanLyDiem extends Contract {
 	}
 
 	// Giang vien cho diem
-	async choDiem(ctx, mssv, ki, maLopHocPhan, diemmoi){
+	/*async choDiem(ctx, mssv, ki, maLopHocPhan, diemmoi){
 		//const identity = await this.getIdentity(ctx)
 		const identity = 'test'
 	    const sv = await ctx.stub.getState(mssv);
@@ -155,14 +126,7 @@ class QuanLyDiem extends Contract {
 	    }
 	    const result = await ctx.stub.putState(mssv, Buffer.from(JSON.stringify(svinfo)))
 	    console.log("Ket qua cho diem:",JSON.stringify(svinfo, null, 4))
-	}
-
-    async truyVan(ctx, mssv){ // truy van cac diem cua sinh vien
-		const sv = await ctx.stub.getState(mssv)
-		console.log("Sinh vien:"+sv)
-		return sv
-	}
-	
+	}*/
 	async dangKyHocPhan(ctx, mssv, hocki, hocphan) {
 		const sv = await ctx.stub.getState(mssv);
 		const svinfo = JSON.parse(sv);
@@ -174,8 +138,22 @@ class QuanLyDiem extends Contract {
 		}
 		else throw 'khong the dang ky duoc nua'
 	}
+	async choDiem(ctx, mssv, ki, maLopHocPhan){
+		const sv = await ctx.stub.getState(mssv);
+	    const svinfo = JSON.parse(sv); 
+	    const gv = await ctx.stub.getState('__giangvien__')
+	    const gvinfo = JSON.parse(gv)
+	    if(svinfo.hocki[ki] != undefined){
+	    	svinfo.hocki[ki] = JSON.parse(maLopHocPhan)
+	    }
+	    await ctx.stub.putState(mssv, Buffer.from(JSON.stringify(svinfo)));
+	}
 
-
+    async truyVan(ctx, mssv){ // truy van cac diem cua sinh vien
+		const sv = await ctx.stub.getState(mssv)
+		console.log("Sinh vien:"+sv)
+		return sv
+	}
 	async tinhTrungBinhHocKy(ctx, mssv, hocki){// tinh diem trung binh hoc ki
 		// lay ra sinh vien
 		const sv = await ctx.stub.getState(mssv) 
@@ -219,6 +197,7 @@ class QuanLyDiem extends Contract {
 		const hp = await ctx.stub.getState('__hocphan__')
 		const hpinfo = JSON.parse(hp)
 		let sinhvien = svinfo
+		console.log(JSON.stringify(sinhvien))
 		let tthp = hpinfo
 		let tong = 0;
 		let tongSoChiTL = 0;
@@ -249,6 +228,7 @@ class QuanLyDiem extends Contract {
 		       'sochi' : tongSoChiTL
 			}
 		)
+
 	}
 
 	async xetTotNghiep(ctx, mssv){ // xet xem sinh vien co tot nghiep khong 
@@ -259,7 +239,7 @@ class QuanLyDiem extends Contract {
 		let tichLuy = JSON.parse(await this.tinhTichLuy(ctx, mssv))
 		let tongSoChi = tichLuy.sochi
 		let diemTotNghiep = tichLuy.diem
-		let kq = tongSoChi>=145 ? "Da tot nghiep" : "Chua tot nghiep"
+		let kq = tongSoChi>=10 ? "Da tot nghiep" : "Chua tot nghiep"
 		let ketqua = { 
 				'diemTotNghiep' : diemTotNghiep,
 		        'tongSoChi' : tongSoChi,

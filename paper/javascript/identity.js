@@ -62,6 +62,6 @@ async function main(dinhdanh){
 // let dinhdanh ='appUser';
 // let mssv = 'B1609548';
 // main(mssv,dinhdanh);
-let dinhdanh ='appUser'
-main(dinhdanh)
-//module.exports = main
+// let dinhdanh ='appUser'
+// main(dinhdanh)
+module.exports = main

@@ -6,9 +6,7 @@
 const { Gateway, Wallets } = require('fabric-network');
 const fs = require('fs');
 const path = require('path');
-
-//exports.submitPaper= async function(mssv, name, year, type) {
-async function main (mssv, ten, cmnd, dinhdanh) {
+async function main (dinhdanh) {
     try {
         // load the network configuration
         const ccpPath = path.resolve(__dirname, '..', '..','first-network', 'connection-org1.json');
@@ -35,18 +33,14 @@ async function main (mssv, ten, cmnd, dinhdanh) {
         const network = await gateway.getNetwork('mychannel');
         // Get the contract from the network.
         const contract = network.getContract('paper');
-        let sinhvien = await contract.submitTransaction('themSinhVien', mssv ,ten, cmnd);
-         console.log('Transaction has been submitted');
+        let sinhvien = await contract.submitTransaction('themSinhVien', 'B1609549' ,'Phuong Thao', '001');
+         console.log('Transaction has been submitted themSinhVien');
         // Disconnect from the gateway.
         await gateway.disconnect();
         //response.msg ='submitPaper Transaction has been submitted'
-		return 'Successfully added student ' + mssv;
+		return 'Successfully added student ';
     } catch (error) {
         console.error(`Failed to submit transaction: ${error}`);
-        //response.error = error.message
-       // return response
-        //process.exit(1);
-        //return response;
         return false;
     }
 }
@@ -54,6 +48,6 @@ async function main (mssv, ten, cmnd, dinhdanh) {
 // let ten = 'Phuong Thao'
 // let cmnd = '092198000255'
 // let dinhdanh = 'appUser';
-//main(mssv, ten , cmnd , dinhdanh);
+// main(mssv, ten , cmnd , dinhdanh);
 module.exports = main;
 

@@ -56,10 +56,7 @@ async function main(dinhdanh){
         return blockArray
 
     } catch (error) {
-        console.error(`Failed to evaluate transaction: ${error}`);
-        //response.error = error.message
-       // return response
-       // process.exit(1);
+       console.error(`Failed to evaluate transaction: ${error}`);
        return false;
     }
 }
@@ -88,4 +85,4 @@ module.exports = main
    //     console.log(blockInfo)
     	
   //  }
-  //  module.exports = temp;
+ //   module.exports = temp;

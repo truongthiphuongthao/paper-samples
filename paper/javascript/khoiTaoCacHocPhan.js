@@ -6,7 +6,6 @@ const { Gateway, Wallets } = require('fabric-network');
 const fs = require('fs');
 const path = require('path');
 const hocphan = require('./dulieu/hocphan.json')
-//exports.submitPaper= async function(mssv, name, year, type) {
 async function main () {
     try {
         let dinhdanh = 'admin'
@@ -37,13 +36,11 @@ async function main () {
         const contract = network.getContract('paper');
         // console.log(hocphan)
         const result =  await contract.submitTransaction('khoiTaoCacHocPhan',Buffer.from(JSON.stringify(hocphan)))
-        console.log(hocphan) 
-        console.log('Transaction has been submitted');
+        console.log(hocphan)
+        console.log('Transaction has been submitted khoiTaoCacHocPhan');
         // Disconnect from the gateway.
         await gateway.disconnect();
-        return result
-        //response.msg ='submitPaper Transaction has been submitted'
-		// return 'Successfully added student ' + mssv;
+        return true
     } catch (error) {
         console.error(`Failed to submit transaction: ${error}`);
         return false;

@@ -34,14 +34,10 @@ const path = require('path');
 
         // Get the network (channel) our contract is deployed to.
         const network = await gateway.getNetwork('mychannel');
-
-
-
-
         // Get the contract from the network.
         const contract = network.getContract('paper');
         let result = await contract.submitTransaction('themGiangVien', mahp, magv);
-        console.log('Transaction has been submitted');
+        console.log('Transaction has been submitted themGiangVien');
 
         // Disconnect from the gatessssway.
         await gateway.disconnect();
@@ -50,15 +46,12 @@ const path = require('path');
 
     } catch (error) {
         console.error(`Failed to submit transaction: ${error}`);
-        //response.error = error.message
-       // return response
-        //process.exit(1);
-          return false;
-        //return response;
+        return false;
     }
 }
-/*let maGiangVien='GV-004-PTTai'
-let dinhdanh='appUser';*/
-module.exports = main;
-//main(maGiangVien, dinhdanh);
+let magv = 'PXDiem'
+let mahp = 'CT010'
+let dinhdanh='admin';
+main(mahp, magv, dinhdanh);
+//module.exports = main;
 

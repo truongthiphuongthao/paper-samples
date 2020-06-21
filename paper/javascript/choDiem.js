@@ -6,8 +6,7 @@
 const { Gateway, Wallets } = require('fabric-network');
 const fs = require('fs');
 const path = require('path');
-//exports.submitPaper= async function(mssv, name, year, type) {
- async function main (mssv, ki, maLopHocPhan, diemmoi, dinhdanh) {
+ async function main (dinhdanh) {
     try {
 
         // load the network configuration
@@ -30,29 +29,30 @@ const path = require('path');
 
         // Create a new gateway for connecting to our peer node.
         const gateway = new Gateway();
-        await gateway.connect(ccp, { wallet, identity: dinhdanh, discovery: { enabled: true, asLocalhost: true } });
+        await gateway.connect(ccp, { wallet, identity: dinhdanh, discovery: { enabled: true, asLocalhost: true } })
 
         // Get the network (channel) our contract is deployed to.
-        const network = await gateway.getNetwork('mychannel');
+        const network = await gateway.getNetwork('mychannel')
         // Get the contract from the network.
-        const contract = network.getContract('paper');
-        await contract.submitTransaction('choDiem',mssv,ki,maLopHocPhan, diemmoi)
-        // await contract.submitTransaction('choDiem','B1609549','hocki1nam1','QP004', 'A')
-        // await contract.submitTransaction('choDiem','B1609549','hocki2nam1','QP005', 'B+')
-        // await contract.submitTransaction('choDiem','B1609549','hocki2nam1','TN001', 'A')
+        const contract = network.getContract('paper')
+        await contract.submitTransaction('choDiem','B1609549','hocki1',
+            JSON.stringify(
+                {
+                'CT001':{diem: 'A', magv: 'TVChau'},
+                'CT002':{diem: 'A', magv: 'PHCuong'},
+                'CT003':{diem: 'A' ,magv: 'TCDe'}
+                }))
 
-        console.log('Transaction has been submitted');
+        console.log('Transaction has been submitted choDiem');
         // Disconnect from the gateway.
-        await gateway.disconnect();
-        //response.msg ='submitPaper Transaction has been submitted'
-	    //return "Sua diem oke"+diemmoi
-        return "cho diem oke "+diemmoi
+        await gateway.disconnect()
+        //return "cho diem oke "+diemmoi
 
     } catch (error) {
-        console.error(`Failed to submit transaction: ${error}`);
+        console.error(`Failed to submit transaction: ${error}`)
         return false;
     }
 }
-// let dinhdanh='admin';
+// let dinhdanh='appUser'
 // main(dinhdanh);
 module.exports = main;

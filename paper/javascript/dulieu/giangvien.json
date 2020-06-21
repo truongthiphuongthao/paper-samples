@@ -1,14 +1,29 @@
 {
-	"QP003" : {
-		"magv" : "GV001"
+	"CT001" : {
+		"magv" : "TVChau"
 	},
-	"QP004" : {
+	"CT002" : {
+		"magv" : "PHCuong"
+	},
+	"CT003" : {
+		"magv" : "TCDe"
+	},
+	"CT004" : {
 		"magv" : "PTCang"
 	},
-	"QP005" : {
-		"magv" : "NTNghe"
-	},
-	"TN001" : {
+	"CT005" : {
 		"magv" : "NCHuy"
+	},
+	"CT006" : {
+		"magv" : "NCHNgoc"
+	},
+	"CT007" : {
+		"magv" : "LQThang"
+	},
+	"CT008" : {
+		"magv" : "LDThang"
+	},
+	"CT009" : {
+		"magv" : "TCAn"
 	}
 }

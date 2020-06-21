@@ -37,18 +37,16 @@ async function main () {
         console.log(giangvien)
         await contract.submitTransaction('khoiTaoGiangVien',
             Buffer.from(JSON.stringify(giangvien)));
-        console.log('Transaction has been submitted');
+        console.log('Transaction has been submitted khoiTaoGiangVien');
 
         // Disconnect from the gateway.
         await gateway.disconnect();
         return true
-        //response.msg ='submitPaper Transaction has been submitted'
-		// return 'Successfully added student ' + mssv;
     } catch (error) {
         console.error(`Failed to submit transaction: ${error}`);
         return false;
     }
 }
 //main()
- module.exports = main
+module.exports = main
 

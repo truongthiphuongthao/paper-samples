@@ -8,7 +8,6 @@ const { Gateway, Wallets } = require('fabric-network');
 const path = require('path');
 const fs = require('fs');
 
-
 //exports.queryPaper = async function(mssv) 
 async function main (mssv, dinhdanh){
    // let response = {}
@@ -49,13 +48,10 @@ async function main (mssv, dinhdanh){
         return result.toString()
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`);
-        //response.error = error.message
-       // return response
-        // process.exit(1);
         return false
     }
 }
-// let dinhdanh ='appUser';
+// let dinhdanh ='admin';
 // let mssv = 'B1609549';
 // main(mssv,dinhdanh);
 module.exports = main;

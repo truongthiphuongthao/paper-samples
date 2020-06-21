@@ -7,7 +7,6 @@
 const { Gateway, Wallets } = require('fabric-network');
 const path = require('path');
 const fs = require('fs');
-//exports.queryPaper = async function(mssv) 
 async function main(mssv, dinhdanh){
    // let response = {}
     try {
@@ -36,7 +35,7 @@ async function main(mssv, dinhdanh){
         const result = await contract.evaluateTransaction('truyVan', mssv);
         let b_result = Buffer.from(JSON.parse(result).data)
         console.log(b_result.toString('utf8'))
-        console.log(`Transaction has been evaluated`);
+        console.log(`Transaction has been evaluated truyVan`);
         return b_result.toString('utf8')
 
     } catch (error) {

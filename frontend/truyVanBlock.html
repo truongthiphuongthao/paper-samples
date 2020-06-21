@@ -55,6 +55,39 @@
       tr:nth-child(even) {
           background-color: #dddddd;
       }
+      #container {
+        text-shadow: none;
+        background: #ffffff;
+        padding: 1em;
+      }
+      .renderjson a {
+          text-decoration: none;
+      }
+      .renderjson .disclosure {
+        color: crimson;
+        font-size: 150%;
+      }
+      .renderjson .string {
+        color: red;
+      }
+      .renderjson .number {
+        color: cyan;
+      }
+      .renderjson .boolean {
+        color: plum;
+      }
+      .renderjson .key {
+        color: #053c4e;
+      }
+      .render.json .keyword {
+        color: lightgoldenrodyellow;
+      }
+      .render.json .object.syntax {
+        color: lightseagreen;
+      }
+      .render.json .array.syntax {
+        color: lightsalmon;
+      }
     </style>
   <script>
      function layBlock(){
@@ -64,7 +97,10 @@
           if(this.readyState ==4 && this.status ==200){
             var thongTin = JSON.parse(xhttp.responseText)
             console.log(thongTin)
-            document.getElementById('vb-block').value =xhttp.responseText 
+            document.getElementById('container').value =xhttp.responseText 
+            document.getElementById('container').appendChild(
+                  renderjson(thongTin)
+              );
           }
       };
       var blockID = document.getElementById('blockID').value;
@@ -73,6 +109,7 @@
       return false;
   }
   </script>
+  <script src="https://cdn.rawgit.com/caldwell/renderjson/master/renderjson.js"></script>
 </head>
 
 <body>
@@ -91,9 +128,8 @@
              </tr>
         </table>
     </div>
-    <div class="form-group">
+    <div id="container">
 
-    	<textarea rows="40" cols="200" name="vb-block" id="vb-block"></textarea>
 
     </div>
 

@@ -7,9 +7,7 @@
 const { Gateway, Wallets } = require('fabric-network');
 const path = require('path');
 const fs = require('fs');
-//exports.queryPaper = async function(mssv) 
 async function main(magv, dinhdanh){
-   // let response = {}
     try {
         // load the network configuration
         //const ccpPath = path.resolve(__dirname, '..', '..','test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
@@ -33,7 +31,7 @@ async function main(magv, dinhdanh){
         const network = await gateway.getNetwork('mychannel');
         // Get the contract from the network.
         const contract = network.getContract('paper');
-        const result = await contract.evaluateTransaction('truyVanGV', magv);
+        const result = await contract.evaluateTransaction('truyVanGV', magv)
         console.log(result.toString())
         console.log(`Transaction has been evaluated`);
         return result.toString()
@@ -43,7 +41,7 @@ async function main(magv, dinhdanh){
        return false;
     }
 }
- // let dinhdanh ='appUser';
- // let magv = 'GV001';
- // main(magv,dinhdanh);
-module.exports = main
+ let magv = 'PXDiem'
+ let dinhdanh ='admin';
+ main(magv,dinhdanh);
+//module.exports = main
