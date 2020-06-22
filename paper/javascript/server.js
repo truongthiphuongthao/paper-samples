@@ -14,7 +14,6 @@ var tinhTrungBinhHocKy = require('./tinhTrungBinhHocKy.js')
 var tinhTichLuy = require('./tinhTichLuy.js')
 var xetTotNghiep = require('./xetTotNghiep.js')
 var truyVan = require('./truyVan.js')
-var themGiangVien = require('./themGiangVien.js')
 var truyVanGV = require('./truyVanGV.js')
 var truyVanBlock = require('./truyVanBlock.js')
 var truyVanTatCaBlock = require('./truyVanTatCaBlock.js')
@@ -57,14 +56,6 @@ app.get('/truyVan',async(req, res) =>{
     let response = await truyVan(mssv,'appUser')
     console.log(response)
     res.send(response.toString())
-})
-//Nha truong them giang vien
-app.post('/themGiangVien', async(req, res)=>{
-  let mahp = req.body.mahp
-  let magv = req.body.magv
-  let response = await themGiangVien(mahp, magv,'appUser')
-  res.send(response)
-  console.log(response)
 })
 //Nha truong truy van giang vien day mon nao
 app.get('/truyVanGV', async(req, res)=>{

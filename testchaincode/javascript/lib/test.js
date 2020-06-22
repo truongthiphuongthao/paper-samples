@@ -81,11 +81,6 @@ describe ('Test Mychaincode', () => {
     await chaincode.choDiem({stub:mockStub},'B1609549','hocki2', JSON.stringify({'CT003':{diem: 'B+', magv: 'TCDe'},'CT004':{diem: 'A', magv: 'PTCang'}}))
   })
 
-  it('should give access to maGv for subject class idenitfied by mahp', async()=>{
-    console.log("them giang vien")
-    await chaincode.themGiangVien({stub:mockStub}, 'CT007','LQT')
-  }) 
-
   it('should truyVanGiangVien records', async()=>{
       console.log("Truy van giang vien")
       const truyVanGV = await chaincode.truyVanGV({stub:mockStub},'TVChau')

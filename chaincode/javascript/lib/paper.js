@@ -57,22 +57,10 @@ class QuanLyDiem extends Contract {
 	async khoiTaoGiangVien(ctx, giangvien){
 		ctx.stub.putState("__giangvien__", giangvien)		
 	}
-
-	//them giang vien vao LOP hoc phan 
-	async themGiangVien(ctx, mahp, magv){ 
-		let tatCaGiangVien = await ctx.stub.getState('__giangvien__') 
-		const gvinfo = JSON.parse(tatCaGiangVien)
-		gvinfo[mahp] = {magv: magv} // moi hoc phan chi dc 1 giang vien day
-		// console.log('------>', gvinfo[mahp]) 
-	    await ctx.stub.putState('__giangvien__', Buffer.from(JSON.stringify(gvinfo)));
-    }
-
 	//truy van giang vien
 	async truyVanGV(ctx, magv){ // truy van cac hoc phan ma giang vien day:
 		const gv = JSON.parse(await ctx.stub.getState('__giangvien__'))
-		// console.log(gv)
 		let cacHocPhan  = []
-		// console.log("giang vien ",gv)
 		for(let key in gv) { // TODO: fix this bad practice
 			if (gv[key].magv == magv) 
 				cacHocPhan.push(key)
@@ -80,7 +68,7 @@ class QuanLyDiem extends Contract {
 		console.log(cacHocPhan)
 		return JSON.stringify(cacHocPhan)
 	}
-
+	// Nha truong them sinh vien
 	async themSinhVien(ctx, mssv, ten, cmnd) {
 		let tatCaHocPhan = await ctx.stub.getState('__hocphan__')
 		// TODO: add middleware
@@ -103,30 +91,7 @@ class QuanLyDiem extends Contract {
 		await ctx.stub.putState(mssv, Buffer.from(JSON.stringify(sinhvien)));
 		console.log("them sinh vien thanh cong")
 	}
-
-	// Giang vien cho diem
-	/*async choDiem(ctx, mssv, ki, maLopHocPhan, diemmoi){
-		//const identity = await this.getIdentity(ctx)
-		const identity = 'test'
-	    const sv = await ctx.stub.getState(mssv);
-	    const svinfo = JSON.parse(sv); 
-	    const gv = await ctx.stub.getState('__giangvien__')
-	    const gvinfo = JSON.parse(gv)
-	    
-    	// if (gv[maLopHocPhan].magv == undefined) {// TODO: Add condition as CID reveals who he/she is
-    	// 	throw "Giao vien khong the sua diem hoc phan nay"}
-        // console.log(GV[maLopHocPhan].magv,null,4)
-	    for(let hocki in svinfo.hocki){
-	    	if (svinfo.hocki[ki][maLopHocPhan] != undefined) {
-	    		svinfo.hocki[ki][maLopHocPhan] = {
-	    			'diem' : diemmoi,
-	    			'magv' : gvinfo[maLopHocPhan].magv	    			
-	    		}
-	    	}
-	    }
-	    const result = await ctx.stub.putState(mssv, Buffer.from(JSON.stringify(svinfo)))
-	    console.log("Ket qua cho diem:",JSON.stringify(svinfo, null, 4))
-	}*/
+	// Nha truong cho sinh vien dang ky hoc phan
 	async dangKyHocPhan(ctx, mssv, hocki, hocphan) {
 		const sv = await ctx.stub.getState(mssv);
 		const svinfo = JSON.parse(sv);
@@ -138,6 +103,7 @@ class QuanLyDiem extends Contract {
 		}
 		else throw 'khong the dang ky duoc nua'
 	}
+    // Giang vien cho diem tung sinh vien
 	async choDiem(ctx, mssv, ki, maLopHocPhan){
 		const sv = await ctx.stub.getState(mssv);
 	    const svinfo = JSON.parse(sv); 
@@ -148,12 +114,13 @@ class QuanLyDiem extends Contract {
 	    }
 	    await ctx.stub.putState(mssv, Buffer.from(JSON.stringify(svinfo)));
 	}
-
+	// Hien thi len van bang sinh vien
     async truyVan(ctx, mssv){ // truy van cac diem cua sinh vien
 		const sv = await ctx.stub.getState(mssv)
 		console.log("Sinh vien:"+sv)
 		return sv
 	}
+	// Nha truong tinh trung binh tung hoc ki cho sinh vien
 	async tinhTrungBinhHocKy(ctx, mssv, hocki){// tinh diem trung binh hoc ki
 		// lay ra sinh vien
 		const sv = await ctx.stub.getState(mssv) 
@@ -189,6 +156,7 @@ class QuanLyDiem extends Contract {
 	       'sochi' : tongSoChiTB
 		})
 	}
+	// Nha truong tinh tich luy cho tung sinh vien
 	async tinhTichLuy(ctx, mssv){// tinh diem tich luy hien tai
 		// lay ra sinh vien
 		const sv = await ctx.stub.getState(mssv) 
@@ -230,7 +198,7 @@ class QuanLyDiem extends Contract {
 		)
 
 	}
-
+    // Nha truong xet tot nghiep cho sinh vien
 	async xetTotNghiep(ctx, mssv){ // xet xem sinh vien co tot nghiep khong 
 		const sv = await ctx.stub.getState(mssv) 
 		const svinfo = JSON.parse(sv)
@@ -263,12 +231,6 @@ class QuanLyDiem extends Contract {
 		{
 			loai = "Chưa hoàn thành chương trình học"
 		}
-		// let ketqua = { 
-		// 		'diemTotNghiep' : diemTotNghiep,
-		//         'tongSoChi' : tongSoChi,
-		//        	'kq' : kq ,
-		//        	'loai': loai
-		// 	} 
 		return JSON.stringify(
 			{ 
 				'diemTotNghiep' : diemTotNghiep,

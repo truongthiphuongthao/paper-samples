@@ -33,9 +33,9 @@ async function main (dinhdanh) {
         const network = await gateway.getNetwork('mychannel');
         // Get the contract from the network.
         const contract = network.getContract('paper');
-        await contract.submitTransaction('themSinhVien', 'B1609549' ,'Phuong Thao', '001');
+        await contract.submitTransaction('themSinhVien', 'B1609549' ,'Phương Thảo', '001');
         await contract.submitTransaction('themSinhVien', 'B1609550' ,'Quang Huy', '002');
-        await contract.submitTransaction('themSinhVien', 'B1609552' ,'Huynh Hieu', '003');
+        await contract.submitTransaction('themSinhVien', 'B1609552' ,'Huỳnh Hiếu', '003');
          console.log('Transaction has been submitted themSinhVien');
         // Disconnect from the gateway.
         await gateway.disconnect();
