@@ -18,8 +18,11 @@
         margin-bottom: 3%;
       }
       .form-group{
-        width:50%;
-        
+        max-width: 500px;
+        margin: auto;
+        background: white;
+        margin-top: 100px;
+        padding: 10px; 
       }
       #body{
         margin-left:3%;
@@ -62,11 +65,12 @@
 <body>
     <div class="form-group">
     <form method="GET" action="/truyVanGV">
+        <p style="color: blue; text-align: center; margin: 20px; font-size: 16px;"> Nhà trường truy vấn giảng viên dạy học phần nào  </p>
         <table class="table">
             <tr>
             
                 <td><label for="mssv">Mã số Giảng viên </label></td>
-                <td><input class="form-control" type="text" id="magv" name="magv" placeholder="GV001" required></td>
+                <td><input class="form-control" type="text" id="magv" name="magv" placeholder="PTCang" required></td>
             
             </tr>
 

@@ -2,12 +2,16 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <title> Query Student </title>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <title> Tra cứu </title>
+
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
     <base href="http://localhost:3000">
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+
 <style type="text/css">
       header{
         background-color: lightgray;
@@ -18,8 +22,16 @@
         margin-bottom: 3%;
       }
       .form-group{
-        width:50%;
-        
+        max-width: 500px;
+        margin-left: 630px;
+        background: white;
+        padding: 10px;
+        margin-top:-280px;
+      }
+      .form-group1{
+        max-width: 500px;
+        margin-left: 30px;
+        margin-top:100px;
       }
       #body{
         margin-left:3%;
@@ -45,8 +57,7 @@
       table {
           font-family: arial, sans-serif;
           border-collapse: collapse;
-          width: 100%;
-          
+          width: 200%;   
       }
       td, th {
           border: 1px solid #dddddd;
@@ -58,7 +69,6 @@
       }
     </style>
     <script>
-    // document.getElementById('tinhtrang-wrapper').style.display="none";	
     function xetTotNghiep(){
 	    var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
@@ -100,7 +110,7 @@
 </head>
 
 <body>
-    <div class="form-group">
+    <div class="form-group1">
     
         <table class="table">
             <tr>
@@ -109,17 +119,19 @@
                 <td><input class="form-control" type="text" id="mssv" name="mssv" placeholder="B1609523" required></td>
             </tr>
             
-
              <tr>
                 <td></td>
                 <td><button onclick="queryAll()" name="query" class="btn btn-primary"> Kết quả </button></td>
              </tr>
         </table>
+        <p style="color: blue; text-align: center;"> Sinh viên nhập vào MSSV của mình để tra cứu thông tin tốt nghiệp </p>
     </div>
+
     <div class="form-group">
 
     	<table class="table">
-    		<h3> VĂN BẰNG CỦA SINH VIÊN </h3>
+    		<h3 style="text-align: center; color: red; font-style: bold;"> 
+                  VĂN BẰNG CỦA SINH VIÊN </h3>
     		 
     		<tr>
                 <td><label for="vb-mssv"> MSSV</label></td>
@@ -148,12 +160,9 @@
             <tr>
                 <td><label for="vb-tinhtrang">Tình trạng tốt nghiệp </label></td>
                 <td><input class="form-control" type="text" id="vb-tinhtrang" name="tinhtrang" placeholder=""></td>
-            </tr>
-            
+            </tr>          
     	</table>
-
     </div>
-
 </body>
 
 </html>
