@@ -41,7 +41,7 @@ async function main(magv, dinhdanh){
        return false;
     }
 }
- let magv = 'PXDiem'
- let dinhdanh ='admin';
- main(magv,dinhdanh);
-//module.exports = main
+ // let magv = 'PXDiem'
+ // let dinhdanh ='admin';
+ // main(magv,dinhdanh);
+module.exports = main

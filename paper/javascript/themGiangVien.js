@@ -49,9 +49,9 @@ const path = require('path');
         return false;
     }
 }
-let magv = 'PXDiem'
-let mahp = 'CT010'
-let dinhdanh='admin';
-main(mahp, magv, dinhdanh);
-//module.exports = main;
+// let magv = 'PXDiem'
+// let mahp = 'CT010'
+// let dinhdanh='admin';
+// main(mahp, magv, dinhdanh);
+module.exports = main;
 
