@@ -29,7 +29,7 @@ app.get('/tinhTrungBinhHocKy', async(req, res)=>{
   let mssv = req.query.mssv
   let hocki = req.query.hocki
   console.log(req.query)
-  let response = await tinhTrungBinhHocKy(mssv,hocki,'appUser')
+  let response = await tinhTrungBinhHocKy(mssv,hocki,'admin')
   res.send(response)
   console.log(response)
 })
@@ -37,7 +37,7 @@ app.get('/tinhTrungBinhHocKy', async(req, res)=>{
 app.get('/tinhTichLuy', async(req, res)=>{
   let mssv = req.query.mssv
   console.log(req.query)
-  let response = await tinhTichLuy(mssv,'appUser')
+  let response = await tinhTichLuy(mssv,'admin')
   res.send(response)
   console.log(response)
 })
@@ -45,7 +45,7 @@ app.get('/tinhTichLuy', async(req, res)=>{
 app.get('/xetTotNghiep', async(req, res)=> {
   let mssv = req.query.mssv
   console.log(req.query)
-  let response = await xetTotNghiep(mssv,'appUser')
+  let response = await xetTotNghiep(mssv,'admin')
   res.send(response)
   console.log(response)
 })
@@ -53,7 +53,7 @@ app.get('/xetTotNghiep', async(req, res)=> {
 app.get('/truyVan',async(req, res) =>{
     let mssv = req.query.mssv
     console.log(req.query.mssv)
-    let response = await truyVan(mssv,'appUser')
+    let response = await truyVan(mssv,'admin')
     console.log(response)
     res.send(response.toString())
 })
@@ -61,7 +61,7 @@ app.get('/truyVan',async(req, res) =>{
 app.get('/truyVanGV', async(req, res)=>{
   let magv = req.query.magv
   console.log(req.query)
-  let response = await truyVanGV(magv, 'appUser')
+  let response = await truyVanGV(magv, 'admin')
   res.send(response)
   console.log(response)
 })
