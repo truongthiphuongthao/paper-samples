@@ -41,8 +41,74 @@ const path = require('path');
                 'CT001':{diem: 'A', magv: 'TVChau'},
                 'CT002':{diem: 'A', magv: 'PHCuong'},
                 'CT003':{diem: 'A' ,magv: 'TCDe'}
-                }))
-
+                }
+            )
+        )
+        await contract.submitTransaction('choDiem','B1609549', 'hocki2',
+             JSON.stringify(
+                {
+                'CT004':{diem: 'B', magv: 'PTCang'},
+                'CT005':{diem: 'B+', magv: 'NCHuy'},
+                'CT006':{diem: 'A' ,magv: 'NCHNgoc'}
+                }
+            )
+        )
+        await contract.submitTransaction('choDiem','B1609549', 'hocki3',
+             JSON.stringify(
+                {
+                'CT007':{diem: 'A', magv: 'LQThang'},
+                'CT008':{diem: 'B', magv: 'LDThang'},
+                'CT009':{diem: 'B' ,magv: 'TCAn'}
+                }
+            )
+        )
+         // Sinh vien thu 2
+         await contract.submitTransaction('choDiem','B1609550','hocki1',
+            JSON.stringify(
+                {
+                'CT001':{diem: 'B', magv: 'TVChau'},
+                'CT002':{diem: 'A', magv: 'PHCuong'}
+                }
+            )
+        )
+        await contract.submitTransaction('choDiem','B1609550','hocki2',
+            JSON.stringify(
+                {
+                'CT003':{diem: 'A' ,magv: 'TCDe'},
+                'CT004':{diem: 'C', magv: 'PTCang'},
+                'CT005':{diem: 'C+', magv: 'NCHuy'},
+                }
+            )
+        )
+        await contract.submitTransaction('choDiem','B1609550','hocki3',
+            JSON.stringify(
+                {
+                'CT006':{diem: 'B' ,magv: 'NCHNgoc'},
+                'CT007':{diem: 'B+', magv: 'LQThang'},
+                'CT008':{diem: 'C', magv: 'LDThang'},
+                'CT009':{diem: 'A' ,magv: 'TCAn'}
+                }
+            )
+        )
+        // Sinh vien thu 3
+        await contract.submitTransaction('choDiem','B1609552','hocki1',
+            JSON.stringify(
+                {
+                'CT001':{diem: 'B', magv: 'TVChau'},
+                'CT002':{diem: 'C', magv: 'PHCuong'},
+                'CT003':{diem: 'F' ,magv: 'TCDe'}
+                }
+            )
+        )
+        await contract.submitTransaction('choDiem','B1609552','hocki3',
+            JSON.stringify(
+                {
+                'CT004':{diem: 'C', magv: 'PTCang'},
+                'CT005':{diem: 'C+', magv: 'NCHuy'},
+                'CT006':{diem: 'B' ,magv: 'NCHNgoc'}
+                }
+            )
+        )
         console.log('Transaction has been submitted choDiem');
         // Disconnect from the gateway.
         await gateway.disconnect()

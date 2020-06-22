@@ -93,14 +93,14 @@ describe ('Test Mychaincode', () => {
   })      
 
  //Truy van sinh vien
-	// it('should truyVan initialized records', async()=>{
- //      console.log("Truy van sinh vien")
- //      const truyVan = await chaincode.truyVan({stub:mockStub},'B1609549')
- //      console.log(
- //        JSON.stringify(JSON.parse(truyVan), null, 4)
- //      )
- //     // assert.equal(JSON.stringify(JSON.parse(truyVan).hocki.hocki1nam1), JSON.stringify({'QP003':{diem: -1, magv: null},'QP004':{diem: -1, magv: null}}))
- //  })  
+	it('should truyVan initialized records', async()=>{
+      console.log("Truy van sinh vien")
+      const truyVan = await chaincode.truyVan({stub:mockStub},'B1609549')
+      console.log(
+        JSON.stringify(JSON.parse(truyVan), null, 4)
+      )
+     // assert.equal(JSON.stringify(JSON.parse(truyVan).hocki.hocki1nam1), JSON.stringify({'QP003':{diem: -1, magv: null},'QP004':{diem: -1, magv: null}}))
+  })  
 
   
 	
@@ -116,20 +116,19 @@ describe ('Test Mychaincode', () => {
  //  // })  
 
 
- //  it('should tinhtichLuy initialized records', async()=>{
- //  	 await chaincode.tinhTichLuy({stub:mockStub},'B1609549')
- //  })
+  it('should tinhtichLuy initialized records', async()=>{
+  	 await chaincode.tinhTichLuy({stub:mockStub},'B1609549')
+  })
 
- //  it('should tinhDiemTBHocKy initialized records', async()=>{
- //    await chaincode.tinhTrungBinhHocKy({stub:mockStub},'B1609549','hocki1')
- //    //await chaincode.tinhTrungBinhHocKy({stub:mockStub},'B1609549','hocki2')
- //  })
+  it('should tinhDiemTBHocKy initialized records', async()=>{
+    await chaincode.tinhTrungBinhHocKy({stub:mockStub},'B1609549','hocki1')
+    //await chaincode.tinhTrungBinhHocKy({stub:mockStub},'B1609549','hocki2')
+  })
   
- //  //  // xet tot nghiep
- //  it('should xetTotNghiep initialized records', async()=>{
-
- //    const xetTotNghiep = await chaincode.xetTotNghiep({stub:mockStub},'B1609549')
- //    console.log(xetTotNghiep)
- //  })
+  //  // xet tot nghiep
+  it('should xetTotNghiep initialized records', async()=>{
+    const xetTotNghiep = await chaincode.xetTotNghiep({stub:mockStub},'B1609549')
+    console.log(xetTotNghiep)
+  })
 })
 module.exports = QuanLyDiem;

@@ -14,10 +14,8 @@ var tinhTrungBinhHocKy = require('./tinhTrungBinhHocKy.js')
 var tinhTichLuy = require('./tinhTichLuy.js')
 var xetTotNghiep = require('./xetTotNghiep.js')
 var truyVan = require('./truyVan.js')
-//var themGiangVien = require('./themGiangVien.js')
-//var truyVanGV = require('./truyVanGV.js')
-//var truyVan = require('./truyVan.js')
-//var truyVanTotNghiep = require('./truyVanTotNghiep.js')
+var themGiangVien = require('./themGiangVien.js')
+var truyVanGV = require('./truyVanGV.js')
 var truyVanBlock = require('./truyVanBlock.js')
 var truyVanTatCaBlock = require('./truyVanTatCaBlock.js')
 
@@ -27,27 +25,6 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 // Nha truong them sinh vien
 app.use(express.static('../../frontend'))
-// app.post('/themSinhVien', async(req, res) => {
-//    let ten = req.body.ten
-//    let mssv = req.body.mssv
-//    let cmnd = req.body.cmnd
-//    console.log(req.body)
-//    let response = await themSinhVien(mssv, ten, cmnd, 'appUser');
-//    res.send(response)
-//    await dangKyHocPhan()
-//    console.log(response)
-// })
-// Giang vien cho diem sinh vien
-// app.post('/choDiem',async(req, res) => {
-//   let mssv = req.body.mssv
-//   let ki = req.body.ki
-//   let maLopHocPhan = req.body.maLopHocPhan
-//   let diemmoi = req.body.diemmoi
-//   console.log(req.body)
-//   let response = await choDiem(mssv, ki, maLopHocPhan, diemmoi,'appUser')
-//   res.send(response)
-//    console.log(response)
-// })
 // Nha truong tinh diem trung binh hoc ky cho sinh vien
 app.get('/tinhTrungBinhHocKy', async(req, res)=>{
   let mssv = req.query.mssv
@@ -65,38 +42,38 @@ app.get('/tinhTichLuy', async(req, res)=>{
   res.send(response)
   console.log(response)
 })
-//Nha truong xet tot nghiep cho sinh vien
+// //Nha truong xet tot nghiep cho sinh vien
 app.get('/xetTotNghiep', async(req, res)=> {
   let mssv = req.query.mssv
   console.log(req.query)
   let response = await xetTotNghiep(mssv,'appUser')
-  res.send(JSON.parse(response).kq)
+  res.send(response)
   console.log(response)
 })
 // Trang index truy van ket qua van bang cua sinh vien
 app.get('/truyVan',async(req, res) =>{
     let mssv = req.query.mssv
-     console.log(req.query.mssv)
+    console.log(req.query.mssv)
     let response = await truyVan(mssv,'appUser')
     console.log(response)
     res.send(response.toString())
 })
-// Nha truong them giang vien
-// app.post('/themGiangVien', async(req, res)=>{
-//   let mahp = req.body.mahp
-//   let magv = req.body.magv
-//   let response = await themGiangVien(mahp, magv,'appUser')
-//   res.send(response)
-//   console.log(response)
-// })
-// Nha truong truy van giang vien day mon nao
-// app.get('/truyVanGV', async(req, res)=>{
-//   let magv = req.query.magv
-//   console.log(req.query)
-//   let response = await truyVanGV(magv, 'appUser')
-//   res.send(response)
-//   console.log(response)
-// })
+//Nha truong them giang vien
+app.post('/themGiangVien', async(req, res)=>{
+  let mahp = req.body.mahp
+  let magv = req.body.magv
+  let response = await themGiangVien(mahp, magv,'appUser')
+  res.send(response)
+  console.log(response)
+})
+//Nha truong truy van giang vien day mon nao
+app.get('/truyVanGV', async(req, res)=>{
+  let magv = req.query.magv
+  console.log(req.query)
+  let response = await truyVanGV(magv, 'appUser')
+  res.send(response)
+  console.log(response)
+})
 // Lay blockID ra
 app.get('/truyVanBlock', async(req, res)=>{
   let blockID = req.query.blockID;
@@ -113,13 +90,12 @@ app.get('/truyVanTatCaBlock',async(req, res)=>{
 })
 
 app.listen(port, async() => {
+  await enrollAdmin()
   await registerUser('appUser')
   await khoiTaoCacHocPhan()
   await khoiTaoGiangVien()
   await themSinhVien('admin')
   await dangKyHocPhan()
   await choDiem('appUser')
-  //await choDiem('appUser')
- 
   console.log(`Example app listening at http://localhost:${port}`)
 });

@@ -63,7 +63,12 @@
 	    var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
         	if(this.readyState ==4 && this.status ==200){
-       	 	document.getElementById('vb-tinhtrang').value = xhttp.responseText;
+            var totnghiep = JSON.parse(xhttp.responseText)
+            console.log(totnghiep)
+            document.getElementById('vb-diemtotnghiep').value = totnghiep.diemTotNghiep
+            document.getElementById('vb-tongsochi').value = totnghiep.tongSoChi
+            document.getElementById('vb-tinhtrang').value = totnghiep.kq
+            document.getElementById('vb-xeploai').value = totnghiep.loai
 	      }
 	    };
 	    var mssv = document.getElementById('mssv').value;
@@ -76,7 +81,6 @@
 	        xhttp1.onreadystatechange = function(){
 	        	if(this.readyState ==4 && this.status ==200){
 	        	var thongTin = JSON.parse(xhttp1.responseText)
-	        	console.log(thongTin)
 	       	 	document.getElementById('vb-mssv').value = document.getElementById('mssv').value;
 	       	 	document.getElementById('vb-ten').value = thongTin.ten;
 	       	 	document.getElementById('vb-cmnd').value = thongTin.cmnd;
@@ -129,11 +133,23 @@
                 <td><label for="vb-cmnd"> CMND </label></td>
                 <td><input class="form-control" type="text" id="vb-cmnd" name="cmnd" placeholder=""></td>
             </tr>
-
-    		<tr>
-                <td><label for="vb-tinhtrang">Tình trạng tốt nghiệp	</label></td>
+    		     <tr>
+                <td><label for="vb-diemtotnghiep"> Điểm tốt nghiệp </label></td>
+                <td><input class="form-control" type="text" id="vb-diemtotnghiep" name="diemtotnghiep" placeholder=""></td>
+            </tr>
+            <tr>
+                <td><label for="vb-tongsochi"> Số chỉ </label></td>
+                <td><input class="form-control" type="text" id="vb-tongsochi" name="tongsochi" placeholder=""></td>
+            </tr>
+            <tr>
+                <td><label for="vb-xeploai">Xếp loại </label></td>
+                <td><input class="form-control" type="text" id="vb-xeploai" name="xeploai" placeholder=""></td>
+            </tr>
+            <tr>
+                <td><label for="vb-tinhtrang">Tình trạng tốt nghiệp </label></td>
                 <td><input class="form-control" type="text" id="vb-tinhtrang" name="tinhtrang" placeholder=""></td>
             </tr>
+            
     	</table>
 
     </div>

@@ -239,13 +239,44 @@ class QuanLyDiem extends Contract {
 		let tichLuy = JSON.parse(await this.tinhTichLuy(ctx, mssv))
 		let tongSoChi = tichLuy.sochi
 		let diemTotNghiep = tichLuy.diem
-		let kq = tongSoChi>=10 ? "Da tot nghiep" : "Chua tot nghiep"
-		let ketqua = { 
+		let loai
+		let kq = tongSoChi>=24 ? "Đã tốt nghiệp" : "Chưa tốt nghiệp"
+		if(tongSoChi>=24){
+			if(diemTotNghiep >= 3.6)
+			{
+				loai = "Xuất sắc"
+			}
+			else if(diemTotNghiep>=3.2 && diemTotNghiep<3.6)
+			{
+				loai = "Giỏi"
+			}
+			else if(diemTotNghiep>=2.5 && diemTotNghiep<3.2)
+			{
+				loai = "Khá"
+			}
+			else if(diemTotNghiep>=2.0 && diemTotNghiep<2.5)
+			{
+				loai = "Trung bình"
+			}
+		}
+		else 
+		{
+			loai = "Chưa hoàn thành chương trình học"
+		}
+		// let ketqua = { 
+		// 		'diemTotNghiep' : diemTotNghiep,
+		//         'tongSoChi' : tongSoChi,
+		//        	'kq' : kq ,
+		//        	'loai': loai
+		// 	} 
+		return JSON.stringify(
+			{ 
 				'diemTotNghiep' : diemTotNghiep,
 		        'tongSoChi' : tongSoChi,
-		       	'kq' : kq 
+		       	'kq' : kq ,
+		       	'loai': loai
 			} 
-		return JSON.stringify(ketqua)
+		)
 	}
 }	    
 module.exports = QuanLyDiem;
