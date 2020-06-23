@@ -97,11 +97,28 @@
         xhttp.onreadystatechange = function(){
           if(this.readyState ==4 && this.status ==200){
             var thongTin = JSON.parse(xhttp.responseText)
-            console.log(thongTin)
+            // console.log(thongTin)
             document.getElementById('container').value =xhttp.responseText 
+            document.getElementById('container').innerHTML = ''
+
+            let rwInfo = thongTin.data.data[0].payload.data.actions[0].payload.action.proposal_response_payload.extension.results.ns_rwset[1].rwset
+
+           	// let {reads, writes} = rwInfo
+            console.log(rwInfo.reads)
+           	console.log(rwInfo.writes) 
+
+			var label_read = document.createTextNode("Read tx");
+			// document.getElementById("myList").appendChild(node); 
+           	document.getElementById('container').appendChild(label_read)
             document.getElementById('container').appendChild(
-                  renderjson(thongTin)
-              );
+                  renderjson(rwInfo.reads)
+           	)
+			var label_write = document.createTextNode("Write tx");
+           	document.getElementById('container').appendChild(label_write)
+
+			document.getElementById('container').appendChild(
+                  renderjson(rwInfo.writes)
+           	)
           }
       };
       var blockID = document.getElementById('blockID').value;

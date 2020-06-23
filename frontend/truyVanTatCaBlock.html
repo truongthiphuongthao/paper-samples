@@ -98,13 +98,34 @@
       var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
           if(this.readyState ==4 && this.status ==200){
-            var thongTin = JSON.parse(xhttp.responseText)
+            var blocks = JSON.parse(xhttp.responseText)
             document.getElementById('container').value = xhttp.responseText
-            document.getElementById('container').appendChild (
-                renderjson(thongTin)
-              );
-            //document.getElementById('text').innerText =xhttp.responseText 
-          }
+            document.getElementById('container').innerHTML = ''
+            
+
+            for(let i = 0; i<blocks.length; ++i) {
+              let thongTin = blocks[i]
+              let rwInfo
+
+              try {              
+                rwInfo = thongTin.data.data[0].payload.data.actions[0].payload.action.proposal_response_payload.extension.results.ns_rwset[1].rwset
+              } catch(e) {
+                rwInfo = null
+              }
+              if (rwInfo == null) continue;
+
+              var label_read = document.createTextNode(`Read tx block ${i}-th`)
+              document.getElementById('container').appendChild(label_read)
+              document.getElementById('container').appendChild(
+                    renderjson(rwInfo.reads)
+              )
+              var label_write = document.createTextNode(`Write tx block ${i}-th`)
+              document.getElementById('container').appendChild(label_write)
+              document.getElementById('container').appendChild(
+                    renderjson(rwInfo.writes)
+              )
+            }
+          } 
       };
       //var blockID = document.getElementById('blockID').value;
       xhttp.open("GET","/truyVanTatCaBlock",true);
