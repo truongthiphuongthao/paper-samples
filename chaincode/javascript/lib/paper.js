@@ -145,10 +145,8 @@ class QuanLyDiem extends Contract {
 				'F': 0.0
 			}		
 			let diem = diemHocKy[hocphan].diem
-			if(diem != 'F'){
-				tong += bangDiem[diem] * tthp[hocphan].sotinchi
-				tongSoChiTB += tthp[hocphan].sotinchi
-			}
+			tong += bangDiem[diem] * tthp[hocphan].sotinchi
+			tongSoChiTB += tthp[hocphan].sotinchi
 		}
 		let diemTB = tong/tongSoChiTB
 		return JSON.stringify({

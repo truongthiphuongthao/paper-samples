@@ -77,8 +77,8 @@ describe ('Test Mychaincode', () => {
   })  
   // Cho diem
   it('should choDiem initialized records', async()=>{
-    await chaincode.choDiem({stub:mockStub},'B1609549','hocki1',JSON.stringify({'CT001':{diem: 'A', magv: 'TVChau'},'CT002':{diem: 'A', magv: 'PHCuong'}}))
-    await chaincode.choDiem({stub:mockStub},'B1609549','hocki2', JSON.stringify({'CT003':{diem: 'B+', magv: 'TCDe'},'CT004':{diem: 'A', magv: 'PTCang'}}))
+    await chaincode.choDiem({stub:mockStub},'B1609549','hocki1',JSON.stringify({'CT001':{diem: 'A', magv: 'TVChau', dinhdanh:'abc'},'CT002':{diem: 'A', magv: 'PHCuong', dinhdanh:'bcd'}}))
+    await chaincode.choDiem({stub:mockStub},'B1609549','hocki2', JSON.stringify({'CT003':{diem: 'B+', magv: 'TCDe', dinhdanh: 'cdw'},'CT004':{diem: 'A', magv: 'PTCang', dinhdanh:'cfg'}}))
   })
 
   it('should truyVanGiangVien records', async()=>{

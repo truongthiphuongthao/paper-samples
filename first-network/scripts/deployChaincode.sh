@@ -14,6 +14,12 @@ setGlobals 0 1
 # install chaincode on peer0.org1
 peer lifecycle chaincode install ${name}.tar.gz
 
+#Enviroment varibales for peer1.org1
+setGlobals 1 1
+
+# install chaincode on peer1.org1
+peer lifecycle chaincode install ${name}.tar.gz
+
 # Query installed peer
 queryInstalled() {
   PEER=$1
@@ -31,10 +37,9 @@ queryInstalled() {
   echo
 }
 queryInstalled 0 1
-
+queryInstalled 1 1
 #env peer0.org1
 setGlobals 0 1
-
 #approve peer0.org1
 set -x
 peer lifecycle chaincode approveformyorg --channelID $CHANNEL_NAME --name $name --version 1.0 --init-required --package-id $CC_PACKAGE_ID --sequence 1 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
