@@ -60,13 +60,31 @@ class QuanLyDiem extends Contract {
 	//truy van giang vien
 	async truyVanGV(ctx, magv){ // truy van cac hoc phan ma giang vien day:
 		const gv = JSON.parse(await ctx.stub.getState('__giangvien__'))
+		const hocphan = JSON.parse(await ctx.stub.getState('__hocphan__'))
 		let cacHocPhan  = []
 		for(let key in gv) { // TODO: fix this bad practice
 			if (gv[key].magv == magv) 
 				cacHocPhan.push(key)
 		}
-		console.log(cacHocPhan)
-		return JSON.stringify(cacHocPhan)
+		let tenhocphan = []
+		for(let hp in hocphan){
+			if(hp == cacHocPhan){
+				tenhocphan.push(hocphan[hp].ten)
+			}
+		}
+		console.log(
+				{
+					"mahocphan": cacHocPhan,
+					"tenhocphan": tenhocphan
+				}
+			)
+		//console.log(hocphan)
+		return JSON.stringify(
+				{
+					"mahocphan": cacHocPhan,
+					"tenhocphan": tenhocphan
+				}
+			)
 	}
 	// Nha truong them sinh vien
 	async themSinhVien(ctx, mssv, ten, cmnd) {
