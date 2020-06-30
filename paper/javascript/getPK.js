@@ -23,13 +23,14 @@ async function main(magv) {
         return identity.credentials.privateKey
 
     } catch (error) {
+        return false
         //process.exit(1);
     }
 }
-let mssv='B1609577';
-let maLopHocPhan='CT001'
-let diemmoi='A'
-let dinhdanh='TCDe';
-let signature ='MEYCIQDgL3K5sY7eiOoDn5nHVf0XyreJrNxVrnTDW1NcxCQsOwIhAN0sg9D6z+Gt99LVINh7wVIuTAk1ROlpWh5W96JgsGEr'
+//let mssv='B1609577';
+//let maLopHocPhan='CT001'
+//let diemmoi='A'
+//let dinhdanh='TCDe';
+//let signature ='MEYCIQDgL3K5sY7eiOoDn5nHVf0XyreJrNxVrnTDW1NcxCQsOwIhAN0sg9D6z+Gt99LVINh7wVIuTAk1ROlpWh5W96JgsGEr'
 module.exports = main
 //main('TVChau')

@@ -8,7 +8,7 @@ const { KJUR, KEYUTIL, X509 } = require('jsrsasign');
 const CryptoJS = require('crypto-js');
 
 //async function main(dinhDanh, dulieu, signature) {
-exports.validate = async function(dinhDanh, dulieu, signature){
+ async function main(dinhDanh, dulieu, signature){
     try {
 
 	/*const ccpPath = path.resolve(__dirname, '..', '..','first-network', 'connection-org1.json');
@@ -50,8 +50,9 @@ exports.validate = async function(dinhDanh, dulieu, signature){
 
     } catch (error) {
         console.error(`Failed verify: ${error}`);
-        process.exit(1);
+        return false
     }
 }
-let signature ='MEQCIBQA4tZwQWffzcC3lQr8xeX34hpRu+vwtCzQeKH1kekaAiAO5nx/pUlpzNeI8pqUlM25P9BJQbCWZ3uTeGwQlJIwyw==';
+module.exports = main
+//let signature ='MEQCIBQA4tZwQWffzcC3lQr8xeX34hpRu+vwtCzQeKH1kekaAiAO5nx/pUlpzNeI8pqUlM25P9BJQbCWZ3uTeGwQlJIwyw==';
 //main('ptcang','B1609577hocki1CT001Aptcang',signature);

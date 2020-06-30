@@ -121,20 +121,9 @@
               )
               var label_write = document.createTextNode(`Write tx block ${i}-th`)
               document.getElementById('container').appendChild(label_write)
-  	      if (rwInfo.writes.length == 0) {
-			document.getElementById('container').appendChild(
-				renderjson([])
-			)
-		
-			continue
-		}
-
-	      for(let w of rwInfo.writes) { w.value.data = JSON.stringify(w.value.data)
-		console.log(Buffer.from(w.value.data).toString('utf8'))
-		}
               document.getElementById('container').appendChild(
                     renderjson(rwInfo.writes)
-              )
+              )     
             }
           } 
       };

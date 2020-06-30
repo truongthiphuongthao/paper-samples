@@ -9,8 +9,6 @@ const fs = require('fs');
 const path = require('path');
 const { Gateway, Wallets } = require('fabric-network');
 
-
-
 async function main(dinhDanh,msgv) {
    try{  
 	console.log(dinhDanh);
@@ -95,11 +93,11 @@ async function main(dinhDanh,msgv) {
         await wallet.put(dinhDanh, x509Identity);
 	    console.log(`Successfully registered "${dinhDanh}" user and importedit into the wallet\n privateKey: ${x509Identity.credentials.privateKey}`);
         const result = `Successfully registered "${dinhDanh}" user and imported it into the wallet <br> privateKey: ${x509Identity.credentials.privateKey}`;
-	await gateway.disconnect();
-	return result;
+	    await gateway.disconnect();
+	    return result;
    }catch(error){
-	console.error(`Failed:${error}`);
-	//process.exit(1);
+	   console.error(`Failed:${error}`);
+       return false
 	}
 }
 //let dinhdanh='TVChau'

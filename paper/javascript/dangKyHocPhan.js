@@ -133,29 +133,6 @@ async function main () {
             )
         )
 
-
-
-        // await contract.submitTransaction(
-        //     'dangKyHocPhan',
-        //     'B1609549',
-        //     'hocki2',
-        //     JSON.stringify(
-        //         {
-        //             'CT003':{diem: -1, magv: null},
-        //             'CT004':{diem: -1, magv: null}
-        //         }
-        //     ))
-        // await contract.submitTransaction(
-        //     'dangKyHocPhan',
-        //     'B1609549',
-        //     'hocki3',
-        //     JSON.stringify(
-        //         {
-        //             'CT005':{diem: -1, magv: null},
-        //             'CT006':{diem: -1, magv: null}
-        //         }
-        //     ))
-        //et monhoc = await contract.submitTransaction('dangKyHocPhan',)
         console.log('Transaction has been submitted dangKyHocPhan');
         // Disconnect from the gateway.
         await gateway.disconnect();

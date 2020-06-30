@@ -46,7 +46,7 @@ async function main(dinhdanh){
                  const result = await contract.evaluateTransaction('GetBlockByNumber', "mychannel",blockID)
                  blockInfo = BlockDecoder.decode(result)
                  blockArray.push(blockInfo)
-                  blockID++
+                 blockID++
             }catch(e){
                 break;
 
@@ -61,28 +61,6 @@ async function main(dinhdanh){
     }
 }
 // let dinhdanh = 'appUser'
-// main(dinhdanh)
+// main(dinhdanh)  
 module.exports = main
-//async function temp(blockID, dinhdanh){
-    
-	// main('0', 'appUser')
- //  let blk_bytes = await main(blockID,dinhdanh)
 
-    //let blk_bytes = await main(2,'appUser')
-   /* let i=0;
-    	while(true){
-    		try{
-    			let blk_bytes = await main(i,'appUser')
-    			let blockInfo = BlockDecoder.decode(blk_bytes)
-    			console.log(blockInfo)
-    			i++;
-    		}catch(e){
-    			break;
-    		}
-    		
-    	}*/
-   //     let blockInfo = BlockDecoder.decode(blk_bytes)
-   //     console.log(blockInfo)
-    	
-  //  }
- //   module.exports = temp;

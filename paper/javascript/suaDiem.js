@@ -9,7 +9,6 @@ const path = require('path');
 var moduleValid = require('./validate.js');
 var taochuky = require('./genarate.js');
 var laykhoa = require('./getPK.js');
-//exports.changePoint= async function(mssv,ki,maLopHocPhan,diemmoi,dinhdanh, signature) {
 async function main(dinhdanh) {
     try {
         const ccpPath = path.resolve(__dirname, '..', '..','first-network', 'connection-org1.json');
@@ -34,15 +33,8 @@ async function main(dinhdanh) {
 
         // Get the network (channel) our contract is deployed to.
         const network = await gateway.getNetwork('mychannel');
-
-
-
-
         // Get the contract from the network.
         const contract = network.getContract('paper');
-
-	//const data = mssv+ki+maLopHocPhan+diemmoi+dinhdanh
-	//
 	if(true){
 		//var ob = new Object();
 		//ob[maLopHocPhan]={diem:diemmoi, magv:dinhdanh, chuky:signature };
@@ -124,7 +116,6 @@ async function main(dinhdanh) {
         )
 
 		console.log('Transaction has been submitted');
-
 		// Disconnect from the gateway.
 		await gateway.disconnect();
 		var response ='Nhap diem thanh cong! ';
@@ -137,16 +128,13 @@ async function main(dinhdanh) {
 
     } catch (error) {
         console.log(`Failed to submit transaction: ${error}`);
-        //response.error = error.message
-       // return response
-        process.exit(1);
-        //return error;
+        return false
     }
 }
-let mssv='B1609577';
-let maLopHocPhan='CT001'
-let diemmoi='A'
-let dinhdanh='TCDe';
-let signature ='MEYCIQDgL3K5sY7eiOoDn5nHVf0XyreJrNxVrnTDW1NcxCQsOwIhAN0sg9D6z+Gt99LVINh7wVIuTAk1ROlpWh5W96JgsGEr'
+//let mssv='B1609577';
+//let maLopHocPhan='CT001'
+//let diemmoi='A'
+//let dinhdanh='TCDe';
+//let signature ='MEYCIQDgL3K5sY7eiOoDn5nHVf0XyreJrNxVrnTDW1NcxCQsOwIhAN0sg9D6z+Gt99LVINh7wVIuTAk1ROlpWh5W96JgsGEr'
 module.exports = main
 //main('admin')

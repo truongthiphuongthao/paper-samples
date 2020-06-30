@@ -40,22 +40,12 @@ async function main(dinhdanh){
 
         // Get the contract from the network.
         const contract = network.getContract('paper');
-
-        // Evaluate the specified transaction.
-        // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
-        // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
-        // console.log('=======> OK'   )
         const result = await contract.evaluateTransaction('getIdentity');
-        // console.log('=======>', result)
-        // console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
         console.log(result.toString())
         return result
 
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`);
-        //response.error = error.message
-       // return response
-       // process.exit(1);
        return false;
     }
 }
