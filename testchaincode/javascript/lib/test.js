@@ -62,6 +62,7 @@ describe ('Test Mychaincode', () => {
         }))
     )
     await chaincode.themSinhVien({stub: mockStub}, 'B1609549', 'Phuong Thao', '362')
+    await chaincode.themSinhVien({stub: mockStub}, 'B1609520', 'Huynh Hieu', '3349')
 	});
  // Dang ky hoc phan
   it('should dangKiHocPhan initialized records', async()=>{
@@ -125,5 +126,15 @@ describe ('Test Mychaincode', () => {
     const xetTotNghiep = await chaincode.xetTotNghiep({stub:mockStub},'B1609549')
     console.log(xetTotNghiep)
   })
+
+  /*it('should lay hp cua gv initialized records', async()=>{
+    console.log("Lay hoc phan cua gv day")
+    var arr = await chaincode.truyVanGVArr({stub:mockStub},'TCDe')
+    console.log(arr)
+  })
+  it('should Cho diem SV', async()=>{
+    console.log("Cho diem sv")
+    await chaincode.choDiemTay({stub:mockStub}, 'B1609520', 'hocki1','TCDe', JSON.stringify({'CT003':{diem: 'A', magv: 'TCDe'}}))
+  })*/
 })
 module.exports = QuanLyDiem;

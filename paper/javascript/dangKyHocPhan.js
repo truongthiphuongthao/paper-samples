@@ -40,9 +40,9 @@ async function main () {
             'hocki1',
             JSON.stringify(
                 {
-                    'CT001':{diem: -1, magv: null},
-                    'CT002':{diem: -1, magv: null},
-                    'CT003':{diem: -1, magv: null}
+                    'CT001':{diem: -1, magv: null, signature: null},
+                    'CT002':{diem: -1, magv: null, signature: null},
+                    'CT003':{diem: -1, magv: null, signature: null}
                 }
             )
         )
@@ -52,9 +52,9 @@ async function main () {
             'hocki2',
             JSON.stringify(
                 {
-                    'CT004':{diem: -1, magv: null},
-                    'CT005':{diem: -1, magv: null},
-                    'CT006':{diem: -1, magv: null}
+                    'CT004':{diem: -1, magv: null, signature: null},
+                    'CT005':{diem: -1, magv: null, signature: null},
+                    'CT006':{diem: -1, magv: null, signature: null}
                 }
             )
         )
@@ -64,9 +64,9 @@ async function main () {
             'hocki3',
             JSON.stringify(
                 {
-                    'CT007':{diem: -1, magv: null},
-                    'CT008':{diem: -1, magv: null},
-                    'CT009':{diem: -1, magv: null}
+                    'CT007':{diem: -1, magv: null, signature: null},
+                    'CT008':{diem: -1, magv: null, signature: null},
+                    'CT009':{diem: -1, magv: null, signature: null}
                 }
             )
         )
@@ -77,8 +77,8 @@ async function main () {
             'hocki1',
             JSON.stringify(
                 {
-                    'CT001':{diem: -1, magv: null},
-                    'CT002':{diem: -1, magv: null}
+                    'CT001':{diem: -1, magv: null, signature: null},
+                    'CT002':{diem: -1, magv: null, signature: null}
                 }
             )
         )
@@ -88,9 +88,9 @@ async function main () {
             'hocki2',
             JSON.stringify(
                 {
-                    'CT003':{diem: -1, magv: null},
-                    'CT004':{diem: -1, magv: null},
-                    'CT005':{diem: -1, magv: null}
+                    'CT003':{diem: -1, magv: null, signature: null},
+                    'CT004':{diem: -1, magv: null, signature: null},
+                    'CT005':{diem: -1, magv: null, signature: null}
                 }
             )
         )
@@ -100,10 +100,10 @@ async function main () {
             'hocki3',
             JSON.stringify(
                 {
-                    'CT006':{diem: -1, magv: null},
-                    'CT007':{diem: -1, magv: null},
-                    'CT008':{diem: -1, magv: null},
-                    'CT009':{diem: -1, magv: null}
+                    'CT006':{diem: -1, magv: null, signature: null},
+                    'CT007':{diem: -1, magv: null, signature: null},
+                    'CT008':{diem: -1, magv: null, signature: null},
+                    'CT009':{diem: -1, magv: null, signature: null}
                 }
             )
         )
@@ -114,9 +114,9 @@ async function main () {
             'hocki1',
             JSON.stringify(
                 {
-                    'CT001':{diem: -1, magv: null},
-                    'CT002':{diem: -1, magv: null},
-                    'CT003':{diem: -1, magv: null}
+                    'CT001':{diem: -1, magv: null, signature: null},
+                    'CT002':{diem: -1, magv: null, signature: null},
+                    'CT003':{diem: -1, magv: null, signature: null}
                 }
             )
         )
@@ -126,9 +126,9 @@ async function main () {
             'hocki3',
             JSON.stringify(
                 {
-                    'CT004':{diem: -1, magv: null},
-                    'CT005':{diem: -1, magv: null},
-                    'CT006':{diem: -1, magv: null}
+                    'CT004':{diem: -1, magv: null, signature: null},
+                    'CT005':{diem: -1, magv: null, signature: null},
+                    'CT006':{diem: -1, magv: null, signature: null}
                 }
             )
         )

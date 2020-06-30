@@ -17,6 +17,14 @@ var truyVan = require('./truyVan.js')
 var truyVanGV = require('./truyVanGV.js')
 var truyVanBlock = require('./truyVanBlock.js')
 var truyVanTatCaBlock = require('./truyVanTatCaBlock.js')
+//Module cua tui
+var moduleCreateSign = require('./genarate.js')
+var moduleThemGV = require('./themGiangVien.js')
+var suaDiem = require('./suaDiem.js')
+var moduleThemSV = require('./themSinhVienTay.js')
+const { KJUR, KEYUTIL } = require('jsrsasign');
+const CryptoJS = require('crypto-js');
+
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -80,13 +88,25 @@ app.get('/truyVanTatCaBlock',async(req, res)=>{
   res.send(JSON.stringify(response))
 })
 
+
 app.listen(port, async() => {
   await enrollAdmin()
   await registerUser('appUser')
+  await moduleThemGV('TVChau','TVChau')
+  await moduleThemGV('PHCuong','PHCuong')
+  await moduleThemGV('TCDe','TCDe')
+  await moduleThemGV('PTCang','PTCang')
+  await moduleThemGV('NCHuy','NCHuy')
+  await moduleThemGV('NCHNgoc','NCHNgoc')
+  await moduleThemGV('LQThang','LQThang')
+  await moduleThemGV('LDThang','LDThang')
+  await moduleThemGV('TCAn','TCAn')
   await khoiTaoCacHocPhan()
   await khoiTaoGiangVien()
   await themSinhVien('admin')
   await dangKyHocPhan()
-  await choDiem('appUser')
+  await suaDiem('admin')
+  //await choDiem('appUser')
+  
   console.log(`Example app listening at http://localhost:${port}`)
 });

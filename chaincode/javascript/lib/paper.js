@@ -68,6 +68,7 @@ class QuanLyDiem extends Contract {
 		console.log(cacHocPhan)
 		return JSON.stringify(cacHocPhan)
 	}
+
 	// Nha truong them sinh vien
 	async themSinhVien(ctx, mssv, ten, cmnd) {
 		let tatCaHocPhan = await ctx.stub.getState('__hocphan__')
@@ -95,7 +96,8 @@ class QuanLyDiem extends Contract {
 	async dangKyHocPhan(ctx, mssv, hocki, hocphan) {
 		const sv = await ctx.stub.getState(mssv);
 		const svinfo = JSON.parse(sv);
-		console.log(svinfo.hocki[hocki])
+		console.log(svinfo.hocki[hocki]);
+		const hp = JSON.parse(hocphan)
 		// todo: Kiem tra hocphan xem hop le k
 		if (svinfo.hocki[hocki] != undefined){
 			svinfo.hocki[hocki] = JSON.parse(hocphan)
@@ -105,7 +107,7 @@ class QuanLyDiem extends Contract {
 	}
     // Giang vien cho diem tung sinh vien
 	async choDiem(ctx, mssv, ki, maLopHocPhan){
-		const sv = await ctx.stub.getState(mssv);
+	    const sv = await ctx.stub.getState(mssv);
 	    const svinfo = JSON.parse(sv); 
 	    const gv = await ctx.stub.getState('__giangvien__')
 	    const gvinfo = JSON.parse(gv)
