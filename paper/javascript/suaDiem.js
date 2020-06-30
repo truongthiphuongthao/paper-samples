@@ -51,27 +51,27 @@ async function main(dinhdanh) {
         await contract.submitTransaction('choDiem', 'B1609549' ,'hocki1', 
 			JSON.stringify(
 				{
-				'CT001':{diem: 'A', magv: 'TVChau', signatrue: await taochuky('B1609549hocki1CT001ATVChau',await laykhoa('TVChau'))},
-				'CT002':{diem: 'A', magv: 'PHCuong', signatrue: await taochuky('B1609549hocki1CT002APHCuong',await laykhoa('PHCuong'))},
-				'CT003':{diem: 'A' ,magv: 'TCDe', signatrue: await taochuky('B1609549hocki1CT003ATCDe',await laykhoa('TCDe'))}
+				'CT001':{diem: 'A', magv: 'TVChau', signature: await taochuky('B1609549hocki1CT001ATVChau',await laykhoa('TVChau'))},
+				'CT002':{diem: 'A', magv: 'PHCuong', signature: await taochuky('B1609549hocki1CT002APHCuong',await laykhoa('PHCuong'))},
+				'CT003':{diem: 'A' ,magv: 'TCDe', signature: await taochuky('B1609549hocki1CT003ATCDe',await laykhoa('TCDe'))}
                 		}
 			)
 		)
         await contract.submitTransaction('choDiem','B1609549', 'hocki2',
              JSON.stringify(
                 {
-                'CT004':{diem: 'B', magv: 'PTCang', signatrue: await taochuky('B1609549hocki2CT004BPTCang',await laykhoa('PTCang'))},
-                'CT005':{diem: 'B+', magv: 'NCHuy', signatrue: await taochuky('B1609549hocki2CT005B+NCHuy',await laykhoa('NCHuy'))},
-                'CT006':{diem: 'A' ,magv: 'NCHNgoc', signatrue: await taochuky('B1609549hocki2CT006ANCHNgoc',await laykhoa('NCHNgoc'))}
+                'CT004':{diem: 'B', magv: 'PTCang', signature: await taochuky('B1609549hocki2CT004BPTCang',await laykhoa('PTCang'))},
+                'CT005':{diem: 'B+', magv: 'NCHuy', signature: await taochuky('B1609549hocki2CT005B+NCHuy',await laykhoa('NCHuy'))},
+                'CT006':{diem: 'A' ,magv: 'NCHNgoc', signature: await taochuky('B1609549hocki2CT006ANCHNgoc',await laykhoa('NCHNgoc'))}
                 }
             )
         )
         await contract.submitTransaction('choDiem','B1609549', 'hocki3',
              JSON.stringify(
                 {
-                'CT007':{diem: 'A', magv: 'LQThang', signatrue: await taochuky('B1609549hocki3CT007ALQThang',await laykhoa('LQThang'))},
-                'CT008':{diem: 'B', magv: 'LDThang', signatrue: await taochuky('B1609549hocki3CT008BLDThang',await laykhoa('LDThang'))},
-                'CT009':{diem: 'B' ,magv: 'TCAn', signatrue: await taochuky('B1609549hocki3CT009BTCAn',await laykhoa('TCAn'))}
+                'CT007':{diem: 'A', magv: 'LQThang', signature: await taochuky('B1609549hocki3CT007ALQThang',await laykhoa('LQThang'))},
+                'CT008':{diem: 'B', magv: 'LDThang', signature: await taochuky('B1609549hocki3CT008BLDThang',await laykhoa('LDThang'))},
+                'CT009':{diem: 'B' ,magv: 'TCAn', signature: await taochuky('B1609549hocki3CT009BTCAn',await laykhoa('TCAn'))}
                 }
             )
         )
@@ -79,27 +79,27 @@ async function main(dinhdanh) {
          await contract.submitTransaction('choDiem','B1609550','hocki1',
             JSON.stringify(
                 {
-                'CT001':{diem: 'B', magv: 'TVChau', signatrue: await taochuky('B1609550hocki1CT001BTVChau',await laykhoa('TVChau'))},
-                'CT002':{diem: 'A', magv: 'PHCuong', signatrue: await taochuky('B1609550hocki1CT002APHCuong',await laykhoa('PHCuong'))}
+                'CT001':{diem: 'B', magv: 'TVChau', signature: await taochuky('B1609550hocki1CT001BTVChau',await laykhoa('TVChau'))},
+                'CT002':{diem: 'A', magv: 'PHCuong', signature: await taochuky('B1609550hocki1CT002APHCuong',await laykhoa('PHCuong'))}
                 }
             )
         )
         await contract.submitTransaction('choDiem','B1609550','hocki2',
             JSON.stringify(
                 {
-                'CT003':{diem: 'A' ,magv: 'TCDe', signatrue: await taochuky('B1609550hocki2CT003ATCDe',await laykhoa('TCDe'))},
-                'CT004':{diem: 'C', magv: 'PTCang', signatrue: await taochuky('B1609550hocki2CT004CPTCang',await laykhoa('PTCang'))},
-                'CT005':{diem: 'C+', magv: 'NCHuy', signatrue: await taochuky('B1609550hocki2CT005C+NCHuy',await laykhoa('NCHuy'))},
+                'CT003':{diem: 'A' ,magv: 'TCDe', signature: await taochuky('B1609550hocki2CT003ATCDe',await laykhoa('TCDe'))},
+                'CT004':{diem: 'C', magv: 'PTCang', signature: await taochuky('B1609550hocki2CT004CPTCang',await laykhoa('PTCang'))},
+                'CT005':{diem: 'C+', magv: 'NCHuy', signature: await taochuky('B1609550hocki2CT005C+NCHuy',await laykhoa('NCHuy'))},
                 }
             )
         )
         await contract.submitTransaction('choDiem','B1609550','hocki3',
             JSON.stringify(
                 {
-                'CT006':{diem: 'B' ,magv: 'NCHNgoc', signatrue: await taochuky('B1609550hocki3CT006BNCHNgoc',await laykhoa('NCHNgoc'))},
-                'CT007':{diem: 'B+', magv: 'LQThang', signatrue: await taochuky('B1609550hocki3CT007B+LQThang',await laykhoa('LQThang'))},
-                'CT008':{diem: 'C', magv: 'LDThang', signatrue: await taochuky('B1609550hocki3CT008CLDThang',await laykhoa('LDThang'))},
-                'CT009':{diem: 'A' ,magv: 'TCAn', signatrue: await taochuky('B1609550hocki3CT009ATCAn',await laykhoa('TCAn'))}
+                'CT006':{diem: 'B' ,magv: 'NCHNgoc', signature: await taochuky('B1609550hocki3CT006BNCHNgoc',await laykhoa('NCHNgoc'))},
+                'CT007':{diem: 'B+', magv: 'LQThang', signature: await taochuky('B1609550hocki3CT007B+LQThang',await laykhoa('LQThang'))},
+                'CT008':{diem: 'C', magv: 'LDThang', signature: await taochuky('B1609550hocki3CT008CLDThang',await laykhoa('LDThang'))},
+                'CT009':{diem: 'A' ,magv: 'TCAn', signature: await taochuky('B1609550hocki3CT009ATCAn',await laykhoa('TCAn'))}
                 }
             )
         )
@@ -107,18 +107,18 @@ async function main(dinhdanh) {
         await contract.submitTransaction('choDiem','B1609552','hocki1',
             JSON.stringify(
                 {
-                'CT001':{diem: 'B', magv: 'TVChau', signatrue: await taochuky('B1609552hocki1CT001BTVChau',await laykhoa('TVChau'))},
-                'CT002':{diem: 'C', magv: 'PHCuong', signatrue: await taochuky('B1609552hocki1CT002CPHCuong',await laykhoa('PHCuong'))},
-                'CT003':{diem: 'F' ,magv: 'TCDe', signatrue: await taochuky('B1609552hocki1CT003FTCDe',await laykhoa('TCDe'))}
+                'CT001':{diem: 'B', magv: 'TVChau', signature: await taochuky('B1609552hocki1CT001BTVChau',await laykhoa('TVChau'))},
+                'CT002':{diem: 'C', magv: 'PHCuong', signature: await taochuky('B1609552hocki1CT002CPHCuong',await laykhoa('PHCuong'))},
+                'CT003':{diem: 'F' ,magv: 'TCDe', signature: await taochuky('B1609552hocki1CT003FTCDe',await laykhoa('TCDe'))}
                 }
             )
         )
         await contract.submitTransaction('choDiem','B1609552','hocki3',
             JSON.stringify(
                 {
-                'CT004':{diem: 'C', magv: 'PTCang', signatrue: await taochuky('B1609552hocki3CT004CPTCang',await laykhoa('PTCang'))},
-                'CT005':{diem: 'C+', magv: 'NCHuy', signatrue: await taochuky('B1609552hocki3CT005C+NCHuy',await laykhoa('NCHuy'))},
-                'CT006':{diem: 'B' ,magv: 'NCHNgoc', signatrue: await taochuky('B1609552hocki3CT006BNCHNgoc',await laykhoa('NCHNgoc'))}
+                'CT004':{diem: 'C', magv: 'PTCang', signature: await taochuky('B1609552hocki3CT004CPTCang',await laykhoa('PTCang'))},
+                'CT005':{diem: 'C+', magv: 'NCHuy', signature: await taochuky('B1609552hocki3CT005C+NCHuy',await laykhoa('NCHuy'))},
+                'CT006':{diem: 'B' ,magv: 'NCHNgoc', signature: await taochuky('B1609552hocki3CT006BNCHNgoc',await laykhoa('NCHNgoc'))}
                 }
             )
         )
