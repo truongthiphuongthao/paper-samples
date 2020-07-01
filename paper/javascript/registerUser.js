@@ -12,7 +12,6 @@ const path = require('path');
 
 async function main(dinhDanh) {  
         // load the network configuration
-        //const ccpPath = path.resolve(__dirname, '..', '..','test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
         const ccpPath = path.resolve(__dirname, '..', '..','first-network', 'connection-org1.json');
         const ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
 
@@ -48,7 +47,7 @@ async function main(dinhDanh) {
             affiliation: 'org1.department1',
             enrollmentID: dinhDanh,
             role: 'client',
-	    attrs: [{name: 'name', value: 'Thao', ecert: true}]
+	        attrs: [{name: 'name', value: 'Thao', ecert: true}]
         }, adminUser);
         const enrollment = await ca.enroll({
             enrollmentID: dinhDanh,

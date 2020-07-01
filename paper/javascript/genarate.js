@@ -6,27 +6,23 @@ const path = require('path');
 
 const { KJUR, KEYUTIL } = require('jsrsasign');
 const CryptoJS = require('crypto-js');
-//async function main (dulieu,pk){
-//exports.taoChuKy= async function(dulieu,pk) {
 async function taoChuKy(dulieu,pk){
     try {
         // calculate Hash from the specified file
         //const fileLoaded = fs.readFileSync(filename, 'utf8');
         var hashToAction = CryptoJS.SHA256(dulieu).toString();
         console.log("Hash of the file: " + hashToAction);
-
         //const walletContents = await wallet.export(user);
- 
-	console.log(pk);
+	    console.log(pk);
         var sig = new KJUR.crypto.Signature({"alg": "SHA256withECDSA"});
-	//console.log(sig)
+	    //console.log(sig)
         sig.init(pk);
         sig.updateHex(hashToAction);
         var sigValueHex = sig.sign();
         var sigValueBase64 = new Buffer.from(sigValueHex, 'hex').toString('base64');
         console.log("Signature "+dulieu+":" + sigValueBase64);
-	//console.log(typeof sigValueBase64);
-	return sigValueBase64;
+	    //console.log(typeof sigValueBase64);
+	    return sigValueBase64;
     } catch (error) {
         console.error(`Failed to create Signature: ${error}`);
         return false

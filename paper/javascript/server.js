@@ -9,7 +9,6 @@ var khoiTaoCacHocPhan = require('./khoiTaoCacHocPhan')
 var khoiTaoGiangVien = require('./khoiTaoGiangVien')
 var themSinhVien = require('./themSinhVien.js')
 var dangKyHocPhan = require('./dangKyHocPhan')
-//var choDiem = require('./choDiem.js')
 var tinhTrungBinhHocKy = require('./tinhTrungBinhHocKy.js')
 var tinhTichLuy = require('./tinhTichLuy.js')
 var xetTotNghiep = require('./xetTotNghiep.js')
@@ -17,11 +16,10 @@ var truyVan = require('./truyVan.js')
 var truyVanGV = require('./truyVanGV.js')
 var truyVanBlock = require('./truyVanBlock.js')
 var truyVanTatCaBlock = require('./truyVanTatCaBlock.js')
-//Module cua tui
+
 var moduleCreateSign = require('./genarate.js')
 var themGiangVien = require('./themGiangVien.js')
-var suaDiem = require('./suaDiem.js')
-//var moduleThemSV = require('./themSinhVienTay.js')
+var choDiem = require('./choDiem.js')
 const { KJUR, KEYUTIL } = require('jsrsasign');
 const CryptoJS = require('crypto-js');
 
@@ -105,7 +103,6 @@ app.listen(port, async() => {
   await khoiTaoGiangVien()
   await themSinhVien('admin')
   await dangKyHocPhan()
-  await suaDiem('admin')
-  //await choDiem('appUser')
+  await choDiem('admin')
   console.log(`Example app listening at http://localhost:${port}`)
 });

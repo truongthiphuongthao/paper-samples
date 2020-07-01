@@ -6,7 +6,6 @@
 // const nw = require('fabric-network');
 const { Gateway, Wallets } = require('fabric-network');
 const { BlockDecoder} = require('fabric-common')
-// const { BlockDecoder } = require('BlockDecoder')
 const path = require('path');
 const fs = require('fs');
 var Marshal = require('marshal');

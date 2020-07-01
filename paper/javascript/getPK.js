@@ -7,7 +7,6 @@ const { Gateway, Wallets } = require('fabric-network');
 const fs = require('fs');
 const path = require('path');
 
-//exports.changePoint= async function(mssv,ki,maLopHocPhan,diemmoi,dinhdanh, signature) {
 async function main(magv) {
     try {
         const ccpPath = path.resolve(__dirname, '..', '..','first-network', 'connection-org1.json');
@@ -23,8 +22,7 @@ async function main(magv) {
         return identity.credentials.privateKey
 
     } catch (error) {
-        return false
-        //process.exit(1);
+        return false;
     }
 }
 //let mssv='B1609577';

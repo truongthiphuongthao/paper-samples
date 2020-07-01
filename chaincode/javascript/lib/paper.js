@@ -60,13 +60,31 @@ class QuanLyDiem extends Contract {
 	//truy van giang vien
 	async truyVanGV(ctx, magv){ // truy van cac hoc phan ma giang vien day:
 		const gv = JSON.parse(await ctx.stub.getState('__giangvien__'))
+		const hocphan = JSON.parse(await ctx.stub.getState('__hocphan__'))
 		let cacHocPhan  = []
 		for(let key in gv) { // TODO: fix this bad practice
 			if (gv[key].magv == magv) 
 				cacHocPhan.push(key)
 		}
+		let tenhocphan = []
+		for(let hp in hocphan){
+			if(hp == cacHocPhan){
+				tenhocphan.push(hocphan[hp].ten)
+			}
+		}
 		console.log(cacHocPhan)
-		return JSON.stringify(cacHocPhan)
+		console.log(
+					{
+						"mahocphan": cacHocPhan,
+						"tenhocphan": tenhocphan
+					}
+				)
+		return JSON.stringify(
+					{
+						"mahocphan": cacHocPhan,
+						"tenhocphan": tenhocphan
+					}
+				)
 	}
 
 	// Nha truong them sinh vien
@@ -97,7 +115,6 @@ class QuanLyDiem extends Contract {
 		const sv = await ctx.stub.getState(mssv);
 		const svinfo = JSON.parse(sv);
 		console.log(svinfo.hocki[hocki]);
-		const hp = JSON.parse(hocphan)
 		// todo: Kiem tra hocphan xem hop le k
 		if (svinfo.hocki[hocki] != undefined){
 			svinfo.hocki[hocki] = JSON.parse(hocphan)
@@ -147,10 +164,8 @@ class QuanLyDiem extends Contract {
 				'F': 0.0
 			}		
 			let diem = diemHocKy[hocphan].diem
-			if(diem != 'F'){
-				tong += bangDiem[diem] * tthp[hocphan].sotinchi
-				tongSoChiTB += tthp[hocphan].sotinchi
-			}
+			tong += bangDiem[diem] * tthp[hocphan].sotinchi
+			tongSoChiTB += tthp[hocphan].sotinchi
 		}
 		let diemTB = tong/tongSoChiTB
 		return JSON.stringify({
